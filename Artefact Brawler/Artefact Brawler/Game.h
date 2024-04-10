@@ -10,6 +10,23 @@
 /// Don't forget the endif at the bottom
 /// </summary>
 #include <SFML/Graphics.hpp>
+// Scenes
+#include "SplashScreen.h"
+#include "MainMenu.h"
+#include "Shop.h"
+#include "CharacterSelect.h"
+#include "GamePlay.h"
+
+enum class Scene
+{
+	None,
+	SplashScreen,
+	MainMenu,
+	Shop,
+	CharacterSelect,
+	GamePlay
+};
+
 
 class Game
 {
@@ -21,6 +38,9 @@ public:
 	/// </summary>
 	void run();
 
+	// Screen Transition
+	static Scene currentMode; // static is so that this variable can only be made once
+
 private:
 
 	void processEvents();
@@ -29,14 +49,18 @@ private:
 	void render();
 	
 	void setupFontAndText();
-	void setupSprite();
+
+	bool m_exitGame; // control exiting game
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_welcomeMessage; // text used for message on screen
-	sf::Texture m_logoTexture; // texture used for sfml logo
-	sf::Sprite m_logoSprite; // sprite used for sfml logo
-	bool m_exitGame; // control exiting game
+
+	// Scenes
+	SplashScreen splashScreen;
+	MainMenu mainMenu;
+	Shop shop;
+	CharacterSelect characterSelect;
+	GamePlay gameplay;
 
 };
 
