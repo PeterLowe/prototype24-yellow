@@ -1,4 +1,10 @@
-﻿  Game.cpp
+﻿  CharacterSelect.cpp
+  Game.cpp
+  GamePlay.cpp
   main.cpp
+  MainMenu.cpp
+  Shop.cpp
+  SplashScreen.cpp
   Generating Code...
-  Artefact Brawler.vcxproj -> C:\Users\C00294680\Desktop\prototype24-yellow\Artefact Brawler\Debug\Artefact Brawler.exe
+Game.obj : error LNK2001: unresolved external symbol "public: static enum Scene Game::currentMode" (?currentMode@Game@@2W4Scene@@A)
+C:\Users\C00294680\Desktop\prototype24-yellow\Artefact Brawler\Debug\Artefact Brawler.exe : fatal error LNK1120: 1 unresolved externals
