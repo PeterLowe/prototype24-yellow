@@ -9,7 +9,7 @@
 #include <iostream>
 
 
-
+Scene Game::currentMode = Scene::SplashScreen;
 /// <summary>
 /// default constructor
 /// setup the window properties
