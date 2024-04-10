@@ -80,18 +80,23 @@ void Game::processEvents()
 			break;
 
 		case Scene::SplashScreen:
+			splashScreen.processEvents(newEvent);
 			break;
 
 		case Scene::MainMenu:
+			mainMenu.processEvents(newEvent);
 			break;
 
 		case Scene::Shop:
+			shop.processEvents(newEvent);
 			break;
 
 		case Scene::CharacterSelect:
+			characterSelect.processEvents(newEvent);
 			break;
 
 		case Scene::GamePlay:
+			gameplay.processEvents(newEvent);
 			break;
 		}
 	}
@@ -128,18 +133,23 @@ void Game::update(sf::Time t_deltaTime)
 		break;
 
 	case Scene::SplashScreen:
+		splashScreen.update(t_deltaTime);
 		break;
 
 	case Scene::MainMenu:
+		mainMenu.update(t_deltaTime);
 		break;
 
 	case Scene::Shop:
+		shop.update(t_deltaTime);
 		break;
 
 	case Scene::CharacterSelect:
+		characterSelect.update(t_deltaTime);
 		break;
 
 	case Scene::GamePlay:
+		gameplay.update(t_deltaTime);
 		break;
 	}
 }
@@ -158,18 +168,23 @@ void Game::render()
 		break;
 
 	case Scene::SplashScreen:
+		splashScreen.render(m_window);
 		break;
 
 	case Scene::MainMenu:
+		mainMenu.render(m_window);
 		break;
 
 	case Scene::Shop:
+		shop.render(m_window);
 		break;
 
 	case Scene::CharacterSelect:
+		characterSelect.render(m_window);
 		break;
 
 	case Scene::GamePlay:
+		gameplay.render(m_window);
 		break;
 	}
 
