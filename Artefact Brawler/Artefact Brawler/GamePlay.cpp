@@ -90,6 +90,31 @@ void GamePlay::update(sf::Time t_deltaTime)
 
 		// Set the endlag
 		endLagDuration = neutralAttack.END_LAG;
+
+		// If hit...
+		if (neutralAttack.hasHit)
+		{
+			knockbackAngle = neutralAttack.angleD; // Set angle
+			knockbackPower = neutralAttack.power; // Set power
+			damageTaken = neutralAttack.damage; // Set the damage to add to sandbag's percentage
+
+
+			sandbag.hitAgain = true;
+			sandbag.knockingBack = true;
+
+			// Damage Adding...
+		}
+	}
+
+
+	// Sandbags knockback
+	if (sandbag.knockingBack)
+	{
+		// Change the percentage
+
+		// Bouncing
+		knockbackAngle = sandbag.bounce(knockbackAngle);
+		sandbag.knockback(knockbackAngle, knockbackPower, damageTaken); // Knockback
 	}
 
 	if (!canAttack)
@@ -104,7 +129,6 @@ void GamePlay::update(sf::Time t_deltaTime)
 void GamePlay::render(sf::RenderWindow& t_window)
 {
 	// Sandbag
-	t_window.draw(sandbag.getBody());
 	t_window.draw(sandbag.getSprite());
 
 	// Player

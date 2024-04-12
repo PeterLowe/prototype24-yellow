@@ -37,5 +37,6 @@ private:
 	// Sandbag Knockback info
 	float knockbackAngle = 0.0f;
 	float knockbackPower = 0.0f;
+	int damageTaken = 0;
 };
 
