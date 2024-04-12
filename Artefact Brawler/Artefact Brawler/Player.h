@@ -21,6 +21,8 @@ public:
 	void gravity();
 	void checkBoundries();
 
+	void changeColor(bool t_canAttack);
+
 	bool jumping = false;
 	bool jumpAgain = false;
 	bool canJump = false;
