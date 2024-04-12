@@ -54,6 +54,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	// Player
 	t_window.draw(player.getBody());
 	t_window.draw(sandbag.getBody());
+	t_window.draw(sandbag.getSprite());
 }
 
 void GamePlay::setupObjects()

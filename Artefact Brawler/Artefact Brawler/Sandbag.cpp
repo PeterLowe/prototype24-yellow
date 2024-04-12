@@ -2,6 +2,13 @@
 
 Sandbag::Sandbag() 
 {
+    if (!sandbagTexture.loadFromFile("ASSETS\\IMAGES\\sandbagStatic.png"))
+    {
+        std::cout << "problem loading sandbag texture" << std::endl;
+    }
+    sandbagSprite.setTexture(sandbagTexture);
+    sandbagSprite.setOrigin(16, 32);
+    sandbagSprite.setScale(1.5, 1.5);
 }
 
 void Sandbag::setup(sf::Vector2f t_pos)
@@ -12,12 +19,14 @@ void Sandbag::setup(sf::Vector2f t_pos)
     body.setFillColor(sf::Color::Red);
     body.setSize({ width, height });
     body.setOrigin({ width / 2, height / 2 });
+
 }
 
 void Sandbag::gravity()
 {
     position.y += GRAVITY;
     body.setPosition(position);
+    sandbagSprite.setPosition(position);
 }
 
 void Sandbag::checkBoundries()
