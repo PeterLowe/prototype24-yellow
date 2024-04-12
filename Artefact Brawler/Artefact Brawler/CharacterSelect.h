@@ -19,7 +19,7 @@ private:
 	sf::Texture character1Texture;
 	sf::Sprite character2Sprite;
 	sf::Texture character2Texture;
-
-
+	sf::Sprite character3sprite;
+	sf::Texture character3Texture;
 };
 
