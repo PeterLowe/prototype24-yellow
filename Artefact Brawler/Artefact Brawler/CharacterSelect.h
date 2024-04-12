@@ -12,5 +12,9 @@ public:
 
 private:
 
+	sf::Sprite character1Sprite;
+	sf::Texture character1Texture;
+
+
 };
 
