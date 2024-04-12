@@ -16,23 +16,27 @@ void Player::setup(sf::Vector2f t_pos)
 
 	// Ground checker setup
 	groundChecker.setPosition(position + GROUND_CHECK_DISPLACEMENT);
-	groundChecker.setFillColor(sf::Color::White);
 	groundChecker.setSize({ width, 1.0f });
 	groundChecker.setOrigin({ width / 2, 0.5f });
 }
 
 void Player::move()
 {
+	std::cout << position.x << ", " << position.y << std::endl;
 	// Left movement
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		position.x += -speed;
+
+		std::cout << "Left";
 	}
 
 	// Right movement
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		position.x += speed;
+
+		std::cout << "Right";
 	}
 }
 
