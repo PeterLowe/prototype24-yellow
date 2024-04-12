@@ -7,13 +7,9 @@ GamePlay::GamePlay()
 
 void GamePlay::processEvents(sf::Event t_event)
 {
-	sf::Event newEvent;
-	while (m_window.pollEvent(newEvent))
+	if (sf::Event::KeyPressed == t_event.type)
 	{
-		if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
-		{
-			processKeys(newEvent);
-		}
+		processKeys(t_event);
 	}
 }
 
@@ -43,6 +39,7 @@ void GamePlay::update(sf::Time t_deltaTime)
 	}
 
 	player.groundCheck();
+
 	player.gravity();
 	player.checkBoundries();
 }

@@ -22,21 +22,16 @@ void Player::setup(sf::Vector2f t_pos)
 
 void Player::move()
 {
-	std::cout << position.x << ", " << position.y << std::endl;
 	// Left movement
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		position.x += -speed;
-
-		std::cout << "Left";
 	}
 
 	// Right movement
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		position.x += speed;
-
-		std::cout << "Right";
 	}
 }
 

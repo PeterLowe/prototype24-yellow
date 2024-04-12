@@ -9,7 +9,7 @@
 #include <iostream>
 
 
-Scene Game::currentMode = Scene::CharacterSelect;
+Scene Game::currentMode = Scene::GamePlay;
 /// <summary>
 /// default constructor
 /// setup the window properties
