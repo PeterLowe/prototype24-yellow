@@ -40,7 +40,7 @@ public:
 
 	// Screen Transition
 	static Scene currentMode; // static is so that this variable can only be made once
-
+	// Game::currentMode
 private:
 
 	void processEvents();
