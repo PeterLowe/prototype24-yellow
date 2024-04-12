@@ -20,25 +20,33 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CharacterSelect.cpp" />
+    <ClCompile Include="DownAttack.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamePlay.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="NeutralAttack.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sandbag.cpp" />
     <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="SideAttack.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
+    <ClCompile Include="UpAttack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CharacterSelect.h" />
+    <ClInclude Include="DownAttack.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamePlay.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="NeutralAttack.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Sandbag.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="SideAttack.h" />
     <ClInclude Include="SplashScreen.h" />
+    <ClInclude Include="UpAttack.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ASSETS\IMAGES\SFML-LOGO.png">
@@ -112,6 +120,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SFML_SDK)/include</AdditionalIncludeDirectories>
+      <AdditionalHeaderUnitDependencies>
+      </AdditionalHeaderUnitDependencies>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SFML_SDK)\lib</AdditionalLibraryDirectories>

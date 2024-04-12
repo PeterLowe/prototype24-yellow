@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Sandbag.h"
+// Attacks
+#include "NeutralAttack.h"
 
 class GamePlay
 {
@@ -20,10 +22,20 @@ private:
 
 	void setupObjects();
 
-	sf::RenderWindow m_window; // main SFML window
-
 	// Objects
 	Player player;
 	Sandbag sandbag;
+	// Attacks (Objects)
+	NeutralAttack neutralAttack;
+
+	// Attack info
+	void endLag();
+	bool canAttack = true;
+	int endLagTimer = 0;
+	int endLagDuration; // Set after doing an attack
+
+	// Sandbag Knockback info
+	float knockbackAngle = 0.0f;
+	float knockbackPower = 0.0f;
 };
 

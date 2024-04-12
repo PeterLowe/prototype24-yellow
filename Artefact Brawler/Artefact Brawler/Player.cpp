@@ -127,3 +127,15 @@ void Player::checkBoundries()
 		position.x = SCREEN_WIDTH - width / 2;
 	}
 }
+
+void Player::changeColor(bool t_canAttack)
+{
+	if (t_canAttack)
+	{
+		body.setFillColor(sf::Color::Blue);
+	}
+	else
+	{
+		body.setFillColor({ 50, 50, 255, 125 });
+	}
+}
