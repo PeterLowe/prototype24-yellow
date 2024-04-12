@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Sandbag.h"
 
 class GamePlay
 {
@@ -23,5 +24,6 @@ private:
 
 	// Objects
 	Player player;
+	Sandbag sandbag;
 };
 

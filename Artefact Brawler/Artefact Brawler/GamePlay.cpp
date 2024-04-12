@@ -3,6 +3,7 @@
 GamePlay::GamePlay()
 {
 	setupObjects();
+	sandbag.setup(sf::Vector2f{ 100.0f,100.0f });
 }
 
 void GamePlay::processEvents(sf::Event t_event)
@@ -42,12 +43,17 @@ void GamePlay::update(sf::Time t_deltaTime)
 
 	player.gravity();
 	player.checkBoundries();
+
+	// Sandbag
+	sandbag.gravity();
+	sandbag.checkBoundries();
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
 	// Player
 	t_window.draw(player.getBody());
+	t_window.draw(sandbag.getBody());
 }
 
 void GamePlay::setupObjects()
