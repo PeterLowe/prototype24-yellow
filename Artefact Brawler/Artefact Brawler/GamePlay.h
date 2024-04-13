@@ -7,6 +7,7 @@
 #include "NeutralAttack.h"
 #include "SideAttack.h"
 #include "UpAttack.h"
+#include "DownAttack.h"
 
 class GamePlay
 {
@@ -31,7 +32,8 @@ private:
 	NeutralAttack neutralAttack;
 	SideAttack sideAttackLeft;
 	SideAttack sideAttackRight;
-	UpAttack upAttack; 
+	UpAttack upAttack;
+	DownAttack downAttack;
 
 	// Attack info
 	void endLag();
