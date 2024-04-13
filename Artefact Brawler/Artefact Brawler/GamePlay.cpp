@@ -82,6 +82,8 @@ void GamePlay::update(sf::Time t_deltaTime)
 	// Sandbag
 	sandbag.gravity();
 	sandbag.checkBoundries();
+	// Off screen indicator
+	sandbag.offScreenIndicator();
 
 	/// Attacks ///
 	// Neutral Attack
@@ -266,6 +268,12 @@ void GamePlay::render(sf::RenderWindow& t_window)
 {
 	// Sandbag
 	t_window.draw(sandbag.getSprite());
+
+	// Off screen indicator
+	if (sandbag.indicatorActive)
+	{
+		t_window.draw(sandbag.getIndicatorBody());
+	}
 
 	// Player
 	t_window.draw(player.getBody());

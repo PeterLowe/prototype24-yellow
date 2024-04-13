@@ -14,6 +14,8 @@ public:
     sf::RectangleShape getBody() { return body; }
     sf::Sprite getSprite() { return sprite; }
 
+    sf::CircleShape getIndicatorBody() { return indicator; }
+
     void gravity();
     void checkBoundries();
 
@@ -24,8 +26,14 @@ public:
     // Damage
     void takeDamage(int t_damage);
 
+    // Indicator that shows where the sandbag is while off screen
+    void offScreenIndicator();
+
     bool hitAgain = false;
     bool knockingBack = false;
+
+    // Off screen Indicator
+    bool indicatorActive = false;
 
     // Damage done to sandbag
     int percentage = 0;
@@ -46,6 +54,11 @@ private:
     const float PERCENTAGE_DIVIDER = 10.0f;
 
     sf::Vector2f direction;
+
+    // Off screen Indicator
+    sf::CircleShape indicator;
+    float indicatorRadius = 20;
+    sf::Vector2f indicatorPos = { 0.0f, 25.0f };
 
 
 };

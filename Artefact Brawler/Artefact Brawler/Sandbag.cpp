@@ -13,12 +13,18 @@ Sandbag::Sandbag()
 
 void Sandbag::setup(sf::Vector2f t_pos)
 {
+	// Body
     position = t_pos;
     body.setPosition(position);
 
     body.setFillColor(sf::Color::Red);
     body.setSize({ width, height });
     body.setOrigin({ width / 2, height / 2 });
+
+	// Indicator
+	indicator.setFillColor(sf::Color::Red);
+	indicator.setRadius(indicatorRadius);
+	indicator.setOrigin({ indicatorRadius, indicatorRadius });
 
 }
 
@@ -140,4 +146,19 @@ int Sandbag::bounce(float t_angleD)
 void Sandbag::takeDamage(int t_damage)
 {
 	percentage += t_damage;
+}
+
+void Sandbag::offScreenIndicator()
+{
+	if (position.y <= -(height / 2.0f))
+	{
+		indicatorActive = true;
+
+		indicatorPos.x = position.x;
+		indicator.setPosition(indicatorPos);
+	}
+	else
+	{
+		indicatorActive = false;
+	}
 }
