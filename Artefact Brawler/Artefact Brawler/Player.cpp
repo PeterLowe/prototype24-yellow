@@ -33,6 +33,24 @@ void Player::move()
 	{
 		position.x += speed;
 	}
+
+	// Fast fall
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) // When S is held...
+	{
+		if (fastfallCounter < TIME_TILL_FASTFALL)
+		{
+			fastfallCounter++;
+		}
+		else if (fastfallCounter >= TIME_TILL_FASTFALL)
+		{
+			fastfall = true;
+		}
+	}
+	else // When S is not held...
+	{
+		fastfall = false; // Stop fastfall
+		fastfallCounter = 0; // Reset the counter
+	}
 }
 
 void Player::jump()
@@ -108,7 +126,16 @@ void Player::gravity()
 {
 	if (!onGround)
 	{
-		position.y += GRAVITY;
+		// While fastfalling use extra gravity
+		if (fastfall)
+		{
+			position.y += FASTFALL_SPEED;
+		}
+		// While not fastfalling use normal gravity
+		else
+		{
+			position.y += GRAVITY;
+		}
 	}
 
 	body.setPosition(position);

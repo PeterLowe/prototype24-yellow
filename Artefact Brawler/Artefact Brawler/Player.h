@@ -49,4 +49,10 @@ private:
 	int jumpTimer = 0;
 	const float RISE_DURATION = 1;
 	float deceleration = 0;
+
+	// Fast fall
+	bool fastfall = false;
+	int fastfallCounter = 0;
+	const int TIME_TILL_FASTFALL = 0.15f * 60; // 12 frames
+	const int FASTFALL_SPEED = GRAVITY + 10;
 };
