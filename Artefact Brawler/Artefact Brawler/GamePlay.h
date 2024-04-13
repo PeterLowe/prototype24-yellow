@@ -17,6 +17,7 @@ public:
 
 	void processEvents(sf::Event t_event);
 	void processKeys(sf::Event t_event);
+	void processController();
 
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
@@ -35,6 +36,11 @@ private:
 	SideAttack sideAttackRight;
 	UpAttack upAttack;
 	DownAttack downAttack;
+
+	// Controller
+	Controller controller;
+	bool controllerConnected = false;
+	bool buttonPressed = false;
 
 	// Attack info
 	void endLag();

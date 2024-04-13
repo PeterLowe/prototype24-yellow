@@ -20,36 +20,73 @@ void Player::setup(sf::Vector2f t_pos)
 	groundChecker.setOrigin({ width / 2, 0.5f });
 }
 
-void Player::move()
+void Player::move(Controller& t_controller, bool t_controllerConnected)
 {
-	// Left movement
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (t_controllerConnected)
 	{
-		position.x += -speed;
-	}
 
-	// Right movement
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		position.x += speed;
-	}
+		// Left movement
+		if (t_controller.currentState.LeftThumbStick.x < -25)
+		{
+			position.x += -speed;
+		}
 
-	// Fast fall
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) // When S is held...
-	{
-		if (fastfallCounter < TIME_TILL_FASTFALL)
+		// Right movement
+		if (t_controller.currentState.LeftThumbStick.x > 25)
 		{
-			fastfallCounter++;
+			position.x += speed;
 		}
-		else if (fastfallCounter >= TIME_TILL_FASTFALL)
+
+		// Fast fall
+		if (t_controller.currentState.LeftThumbStick.y > 50) // When S is held...
 		{
-			fastfall = true;
+			if (fastfallCounter < TIME_TILL_FASTFALL)
+			{
+				fastfallCounter++;
+			}
+			else if (fastfallCounter >= TIME_TILL_FASTFALL)
+			{
+				fastfall = true;
+			}
+		}
+		else // When S is not held...
+		{
+			fastfall = false; // Stop fastfall
+			fastfallCounter = 0; // Reset the counter
 		}
 	}
-	else // When S is not held...
+	else
 	{
-		fastfall = false; // Stop fastfall
-		fastfallCounter = 0; // Reset the counter
+		// Left movement
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			position.x += -speed;
+		}
+
+		// Right movement
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			position.x += speed;
+		}
+
+
+		// Fast fall
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) // When S is held...
+		{
+			if (fastfallCounter < TIME_TILL_FASTFALL)
+			{
+				fastfallCounter++;
+			}
+			else if (fastfallCounter >= TIME_TILL_FASTFALL)
+			{
+				fastfall = true;
+			}
+		}
+		else // When S is not held...
+		{
+			fastfall = false; // Stop fastfall
+			fastfallCounter = 0; // Reset the counter
+		}
 	}
 }
 

@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Globals.h"
+#include "Controller.h"
 
 class Player
 {
@@ -13,7 +14,7 @@ public:
 	sf::RectangleShape getBody() { return body; }
 	sf::Vector2f getPosition() { return position; }
 
-	void move();
+	void move(Controller& t_controller, bool t_controllerConnected);
 	void jump();
 
 	void groundCheck();

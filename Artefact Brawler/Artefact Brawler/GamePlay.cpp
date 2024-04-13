@@ -17,6 +17,8 @@ void GamePlay::processEvents(sf::Event t_event)
 
 void GamePlay::processKeys(sf::Event t_event)
 {
+	controllerConnected = false;
+
 	// Player's Jump
 	if (sf::Keyboard::Space == t_event.key.code)
 	{
@@ -62,12 +64,85 @@ void GamePlay::processKeys(sf::Event t_event)
 	}
 }
 
+void GamePlay::processController()
+{
+	// Jumping
+	if (controller.currentState.A)
+	{
+		if (!player.jumped)
+		{
+			if (player.canJump)
+			{
+				player.jumped = true;
+
+				player.jumping = true;
+				player.jumpAgain = true;
+			}
+		}
+	}
+	// Once let go allow another jump
+	else
+	{
+		player.jumped = false;
+	}
+
+
+	// If can attack
+	if (canAttack)
+	{
+		if (!buttonPressed)
+		{
+			// if X is pressed and ...
+			if (controller.currentState.X)
+			{
+				// Up Attack
+				if (controller.currentState.LeftThumbStick.y <= -50)
+				{
+					upAttack.spawn(player.getPosition());
+				}
+				// Down Attack
+				else if (controller.currentState.LeftThumbStick.y >= 50)
+				{
+					downAttack.spawn(player.getPosition());
+				}
+				// Left Attack
+				else if (controller.currentState.LeftThumbStick.x <= -50)
+				{
+					sideAttackLeft.spawn(player.getPosition());
+				}
+				// Right Attack
+				else if (controller.currentState.LeftThumbStick.x >= 50)
+				{
+					sideAttackRight.spawn(player.getPosition());
+				}
+				else
+				{
+					neutralAttack.spawn(player.getPosition());
+				}
+
+				// Make sure only one attack is done at a time
+				buttonPressed = true;
+			}
+		}
+	}
+}
+
 
 void GamePlay::update(sf::Time t_deltaTime)
 {
-	// Player
-	player.move();
+	if (controllerConnected)
+	{
+		controller.update();
+		processController();
+	}
+	// Check if the controller should be connected
+	else
+	{
+		controllerConnected = controller.connectCheck();
+	}
 
+	// Player
+	player.move(controller, controllerConnected);
 	// Jumping
 	if (player.jumping)
 	{
@@ -257,6 +332,9 @@ void GamePlay::update(sf::Time t_deltaTime)
 	{
 		// Do endlag timer
 		endLag();
+
+		// Allow for another attack input from controller
+		buttonPressed = false;
 
 		// Allow damage again
 		damageDone = false;

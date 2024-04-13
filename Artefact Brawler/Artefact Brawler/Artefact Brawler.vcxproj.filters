@@ -72,6 +72,9 @@
     <ClCompile Include="DownAttack.cpp">
       <Filter>Source Files\Attacks</Filter>
     </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="DownAttack.h">
       <Filter>Header Files\Attacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
