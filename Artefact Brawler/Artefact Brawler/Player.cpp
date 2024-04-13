@@ -45,7 +45,6 @@ void Player::jump()
 
 	if (jumpAgain)
 	{
-		std::cout << jumpAmount << std::endl;
 		jumpAmount--;
 
 		deceleration = 0;

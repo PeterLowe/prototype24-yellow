@@ -5,6 +5,7 @@
 #include "Sandbag.h"
 // Attacks
 #include "NeutralAttack.h"
+#include "SideAttack.h"
 
 class GamePlay
 {
@@ -27,6 +28,8 @@ private:
 	Sandbag sandbag;
 	// Attacks (Objects)
 	NeutralAttack neutralAttack;
+	SideAttack sideAttackLeft;
+	SideAttack sideAttackRight;
 
 	// Attack info
 	void endLag();

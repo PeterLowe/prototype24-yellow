@@ -45,12 +45,12 @@ void GamePlay::processKeys(sf::Event t_event)
 			// Left Attack
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			{
-				// sideAttackLeft
+				sideAttackLeft.spawn(player.getPosition());
 			}
 			// Right Attack
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			{
-				// sideAttackRight
+				sideAttackRight.spawn(player.getPosition());
 			}
 			else
 			{
@@ -106,6 +106,54 @@ void GamePlay::update(sf::Time t_deltaTime)
 		}
 	}
 
+	// Right Attack
+	if (sideAttackRight.active) // Attack
+	{
+		sideAttackRight.attack(player.getPosition(), sandbag, canAttack);
+
+		// Set the endlag
+		endLagDuration = sideAttackRight.END_LAG;
+
+		// If hit...
+		if (sideAttackRight.hasHit)
+		{
+			knockbackAngle = sideAttackRight.angleD; // Set angle
+			knockbackPower = sideAttackRight.power; // Set power
+			damageTaken = sideAttackRight.damage; // Set the damage to add to sandbag's percentage
+
+
+			sandbag.hitAgain = true;
+			sandbag.knockingBack = true;
+
+
+			// Damage
+		}
+	}
+
+	// Left Attack
+	if (sideAttackLeft.active) // Attack
+	{
+		sideAttackLeft.attack(player.getPosition(), sandbag, canAttack);
+
+		// Set the endlag
+		endLagDuration = sideAttackLeft.END_LAG;
+
+		// If hit...
+		if (sideAttackLeft.hasHit)
+		{
+			knockbackAngle = sideAttackLeft.angleD; // Set angle
+			knockbackPower = sideAttackLeft.power; // Set power
+			damageTaken = sideAttackLeft.damage; // Set the damage to add to sandbag's percentage
+
+
+			sandbag.hitAgain = true;
+			sandbag.knockingBack = true;
+
+
+			// Damage
+		}
+	}
+
 
 	// Sandbags knockback
 	if (sandbag.knockingBack)
@@ -140,12 +188,24 @@ void GamePlay::render(sf::RenderWindow& t_window)
 		t_window.draw(neutralAttack.getBodyLeft());
 		t_window.draw(neutralAttack.getBodyRight());
 	}
+	else if (sideAttackLeft.active)
+	{
+		t_window.draw(sideAttackLeft.getBody());
+	}
+	else if (sideAttackRight.active)
+	{
+		t_window.draw(sideAttackRight.getBody());
+	}
 }
 
 void GamePlay::setupObjects()
 {
 	// Player
 	player.setup({ 300, 100 });
+
+	// Setup side attacks
+	sideAttackLeft.setup(true);
+	sideAttackRight.setup(false);
 }
 
 void GamePlay::endLag()

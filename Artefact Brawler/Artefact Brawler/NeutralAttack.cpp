@@ -34,7 +34,6 @@ void NeutralAttack::spawn(sf::Vector2f t_pos)
 
 void NeutralAttack::attack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
 {
-	std::cout << "ATTACK";
 
 	// While attack is happening
 	if (timer < ACTIVE_DURATION)
