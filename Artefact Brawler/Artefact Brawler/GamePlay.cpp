@@ -2,6 +2,7 @@
 
 GamePlay::GamePlay()
 {
+	setupFontAndText();
 	setupObjects();
 	sandbag.setup(sf::Vector2f{ 100.0f,100.0f });
 }
@@ -103,7 +104,15 @@ void GamePlay::update(sf::Time t_deltaTime)
 			sandbag.hitAgain = true;
 			sandbag.knockingBack = true;
 
-			// Damage Adding...
+			// Do damage if damage has not been done
+			if (!damageDone)
+			{
+				// Add to the sandbag's percentage
+				sandbag.takeDamage(neutralAttack.damage);
+
+
+				damageDone = true;
+			}
 		}
 	}
 
@@ -126,8 +135,15 @@ void GamePlay::update(sf::Time t_deltaTime)
 			sandbag.hitAgain = true;
 			sandbag.knockingBack = true;
 
+			// Do damage if damage has not been done
+			if (!damageDone)
+			{
+				// Add to the sandbag's percentage
+				sandbag.takeDamage(sideAttackRight.damage);
 
-			// Damage
+
+				damageDone = true;
+			}
 		}
 	}
 
@@ -150,8 +166,15 @@ void GamePlay::update(sf::Time t_deltaTime)
 			sandbag.hitAgain = true;
 			sandbag.knockingBack = true;
 
+			// Do damage if damage has not been done
+			if (!damageDone)
+			{
+				// Add to the sandbag's percentage
+				sandbag.takeDamage(sideAttackLeft.damage);
 
-			// Damage
+
+				damageDone = true;
+			}
 		}
 	}
 
@@ -174,7 +197,15 @@ void GamePlay::update(sf::Time t_deltaTime)
 			sandbag.hitAgain = true;
 			sandbag.knockingBack = true;
 
-			// Damage Adding...
+			// Do damage if damage has not been done
+			if (!damageDone)
+			{
+				// Add to the sandbag's percentage
+				sandbag.takeDamage(upAttack.damage);
+
+
+				damageDone = true;
+			}
 		}
 	}
 
@@ -196,14 +227,23 @@ void GamePlay::update(sf::Time t_deltaTime)
 			sandbag.hitAgain = true;
 			sandbag.knockingBack = true;
 
-			// damage
+			// Do damage if damage has not been done
+			if (!damageDone)
+			{
+				// Add to the sandbag's percentage
+				sandbag.takeDamage(downAttack.damage);
+
+
+				damageDone = true;
+			}
 		}
 	}
 
 	// Sandbags knockback
 	if (sandbag.knockingBack)
 	{
-		// Change the percentage
+		// Change the percentage string
+		sandbagPercentage.setString("Sandbag: " + std::to_string(sandbag.percentage) + "%");
 
 		// Bouncing
 		knockbackAngle = sandbag.bounce(knockbackAngle);
@@ -214,6 +254,9 @@ void GamePlay::update(sf::Time t_deltaTime)
 	{
 		// Do endlag timer
 		endLag();
+
+		// Allow damage again
+		damageDone = false;
 	}
 
 	player.changeColor(canAttack);
@@ -249,6 +292,26 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	{
 		t_window.draw(downAttack.getBody());
 	}
+
+	// Sandbag's percentage
+	t_window.draw(sandbagPercentage);
+}
+
+void GamePlay::setupFontAndText()
+{
+	if (!font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	{
+		std::cout << "problem loading arial black font" << std::endl;
+	}
+	sandbagPercentage.setFont(font);
+	sandbagPercentage.setString("Sandbag: " + std::to_string(sandbag.percentage) + "%");
+	sandbagPercentage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
+	sandbagPercentage.setCharacterSize(30U);
+	sandbagPercentage.setOutlineColor(sf::Color::Red);
+	sandbagPercentage.setFillColor(sf::Color::White);
+	sandbagPercentage.setOutlineThickness(3.0f);
+
+	sandbagPercentage.setPosition(SCREEN_WIDTH - 250, SCREEN_HEIGHT - 50);
 }
 
 void GamePlay::setupObjects()

@@ -23,6 +23,7 @@ public:
 
 private:
 
+	void setupFontAndText();
 	void setupObjects();
 
 	// Objects
@@ -40,10 +41,15 @@ private:
 	bool canAttack = true;
 	int endLagTimer = 0;
 	int endLagDuration; // Set after doing an attack
+	bool damageDone = false;
 
 	// Sandbag Knockback info
 	float knockbackAngle = 0.0f;
 	float knockbackPower = 0.0f;
 	int damageTaken = 0;
+
+	// Sandbag Percentage
+	sf::Font font;
+	sf::Text sandbagPercentage;
 };
 

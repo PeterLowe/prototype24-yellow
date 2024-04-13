@@ -21,6 +21,9 @@ public:
     void knockback(int t_angleD, float& t_power, int t_damage);
     int bounce(float t_angleD);
 
+    // Damage
+    void takeDamage(int t_damage);
+
     bool hitAgain = false;
     bool knockingBack = false;
 

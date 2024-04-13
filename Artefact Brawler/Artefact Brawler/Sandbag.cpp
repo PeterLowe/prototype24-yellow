@@ -136,3 +136,8 @@ int Sandbag::bounce(float t_angleD)
 
 	return t_angleD;
 }
+
+void Sandbag::takeDamage(int t_damage)
+{
+	percentage += t_damage;
+}
