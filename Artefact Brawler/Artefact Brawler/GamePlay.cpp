@@ -36,6 +36,7 @@ void GamePlay::processKeys(sf::Event t_event)
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			{
 				// upAttack
+				upAttack.spawn(player.getPosition());
 			}
 			// Down Attack
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -154,6 +155,28 @@ void GamePlay::update(sf::Time t_deltaTime)
 		}
 	}
 
+	if (upAttack.active) // Attack
+	{
+		// Do the attack and check collisions
+		upAttack.attack(player.getPosition(), sandbag, canAttack);
+
+		// Set the endlag
+		endLagDuration = upAttack.END_LAG;
+
+		// If hit...
+		if (upAttack.hasHit)
+		{
+			knockbackAngle = upAttack.angleD; // Set angle
+			knockbackPower = upAttack.power; // Set power
+			damageTaken = upAttack.damage; // Set the damage to add to sandbag's percentage
+
+
+			sandbag.hitAgain = true;
+			sandbag.knockingBack = true;
+
+			// Damage Adding...
+		}
+	}
 
 	// Sandbags knockback
 	if (sandbag.knockingBack)
@@ -195,6 +218,10 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	else if (sideAttackRight.active)
 	{
 		t_window.draw(sideAttackRight.getBody());
+	}
+	else if (upAttack.active)
+	{
+		t_window.draw(upAttack.getBody());
 	}
 }
 
