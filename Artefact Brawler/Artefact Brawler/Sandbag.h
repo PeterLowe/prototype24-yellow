@@ -12,9 +12,12 @@ public:
 
     // "Get" Functions
     sf::RectangleShape getBody() { return body; }
+    sf::RectangleShape getChecker() { return groundChecker; }
     sf::Sprite getSprite() { return sprite; }
 
     sf::CircleShape getIndicatorBody() { return indicator; }
+
+    void groundCheck();
 
     void gravity();
     void checkBoundries();
@@ -59,6 +62,12 @@ private:
     sf::CircleShape indicator;
     float indicatorRadius = 20;
     sf::Vector2f indicatorPos = { 0.0f, 25.0f };
+
+    // Ground checking
+    sf::RectangleShape groundChecker;
+    const sf::Vector2f GROUND_CHECK_DISPLACEMENT = { 0.0f, (height / 2.0f) };
+    bool onGround = false;
+    bool hitGround = false;
 
 
 };

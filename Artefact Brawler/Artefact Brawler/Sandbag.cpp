@@ -26,13 +26,41 @@ void Sandbag::setup(sf::Vector2f t_pos)
 	indicator.setRadius(indicatorRadius);
 	indicator.setOrigin({ indicatorRadius, indicatorRadius });
 
+	// Ground checker
+	groundChecker.setPosition(position + GROUND_CHECK_DISPLACEMENT);
+	groundChecker.setSize({ width, 1.0f });
+	groundChecker.setOrigin({ width / 2, 0.5f });
+
+}
+
+void Sandbag::groundCheck()
+{
+	//if (groundChecker.getGlobalBounds().intersects(t_platform))
+
+	if (groundChecker.getPosition().y >= SCREEN_HEIGHT)
+	{
+		onGround = true;
+
+		// This is for bouncing off the ground
+		hitGround = true;
+	}
+	else
+	{
+		onGround = false;
+	}
 }
 
 void Sandbag::gravity()
 {
-    position.y += GRAVITY;
-    body.setPosition(position);
+	if (!onGround)
+	{
+		position.y += GRAVITY;
+	}
+
+	body.setPosition(position);
     sprite.setPosition(position);
+
+	groundChecker.setPosition(position + GROUND_CHECK_DISPLACEMENT);
 }
 
 void Sandbag::checkBoundries()
@@ -45,12 +73,6 @@ void Sandbag::checkBoundries()
     else if (position.x >= SCREEN_WIDTH - width / 2)
     {
         position.x = SCREEN_WIDTH - width / 2;
-    }
-
-    // y-axis checking
-    if (position.y >= SCREEN_HEIGHT - (height / 2))
-    {
-        position.y = SCREEN_HEIGHT - (height / 2);
     }
 }
 
@@ -109,8 +131,11 @@ int Sandbag::bounce(float t_angleD)
 	}
 
 	// y-axis checking
-	if (position.y >= SCREEN_HEIGHT - (height / 2))
+	if (hitGround)
 	{
+		// hitGround becomes false so it only happens once
+		hitGround = false;
+
 		// Invert the velocity
 		direction.y *= -1;
 

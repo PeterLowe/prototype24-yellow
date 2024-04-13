@@ -80,6 +80,7 @@ void GamePlay::update(sf::Time t_deltaTime)
 	player.checkBoundries();
 
 	// Sandbag
+	sandbag.groundCheck();
 	sandbag.gravity();
 	sandbag.checkBoundries();
 	// Off screen indicator
