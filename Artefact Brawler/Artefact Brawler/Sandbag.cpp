@@ -161,7 +161,7 @@ int Sandbag::bounce(float t_angleD)
 		}
 		else if (t_angleD > 225 && t_angleD < 315) // Does bouncing to the left
 		{
-			t_angleD = (360 - (t_angleD * 1.5)) * -1;
+			t_angleD = (360 - (t_angleD * 1.5));
 		}
 	}
 
