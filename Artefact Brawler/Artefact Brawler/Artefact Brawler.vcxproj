@@ -37,6 +37,7 @@
   <ItemGroup>
     <ClInclude Include="CharacterSelect.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Currency.h" />
     <ClInclude Include="DownAttack.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GamePlay.h" />

@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Sandbag.h"
+#include "Currency.h"
 // Attacks
 #include "NeutralAttack.h"
 #include "SideAttack.h"
