@@ -22,6 +22,9 @@ public:
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
 
+	// Coins
+	int coins = 0;
+
 private:
 
 	void setupFontAndText();
@@ -57,5 +60,9 @@ private:
 	// Sandbag Percentage
 	sf::Font font;
 	sf::Text sandbagPercentage;
+
+	// Currency
+	sf::Text coinsText;
+	const int COINS_PER_HIT = 10;
 };
 

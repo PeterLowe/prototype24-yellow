@@ -1,4 +1,5 @@
 #include "GamePlay.h"
+#include "game.h"
 
 GamePlay::GamePlay()
 {
@@ -17,7 +18,14 @@ void GamePlay::processEvents(sf::Event t_event)
 
 void GamePlay::processKeys(sf::Event t_event)
 {
+	// Deactivate controller
 	controllerConnected = false;
+
+	// On escape swap to show scene
+	if (sf::Keyboard::Escape == t_event.key.code)
+	{
+		Game::currentMode = Scene::Shop;
+	}
 
 	// Player's Jump
 	if (sf::Keyboard::Space == t_event.key.code)
@@ -188,6 +196,9 @@ void GamePlay::update(sf::Time t_deltaTime)
 				// Add to the sandbag's percentage
 				sandbag.takeDamage(neutralAttack.damage);
 
+				// Add to the currency
+				coins += COINS_PER_HIT; // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(coins));
 
 				damageDone = true;
 			}
@@ -218,6 +229,10 @@ void GamePlay::update(sf::Time t_deltaTime)
 			{
 				// Add to the sandbag's percentage
 				sandbag.takeDamage(sideAttackRight.damage);
+
+				// Add to the currency
+				coins += COINS_PER_HIT; // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(coins));
 
 
 				damageDone = true;
@@ -250,6 +265,10 @@ void GamePlay::update(sf::Time t_deltaTime)
 				// Add to the sandbag's percentage
 				sandbag.takeDamage(sideAttackLeft.damage);
 
+				// Add to the currency
+				coins += COINS_PER_HIT; // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(coins));
+
 
 				damageDone = true;
 			}
@@ -281,6 +300,10 @@ void GamePlay::update(sf::Time t_deltaTime)
 				// Add to the sandbag's percentage
 				sandbag.takeDamage(upAttack.damage);
 
+				// Add to the currency
+				coins += COINS_PER_HIT; // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(coins));
+
 
 				damageDone = true;
 			}
@@ -310,6 +333,10 @@ void GamePlay::update(sf::Time t_deltaTime)
 			{
 				// Add to the sandbag's percentage
 				sandbag.takeDamage(downAttack.damage);
+
+				// Add to the currency
+				coins += COINS_PER_HIT; // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(coins));
 
 
 				damageDone = true;
@@ -382,6 +409,9 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 	// Sandbag's percentage
 	t_window.draw(sandbagPercentage);
+
+	// Coins Text
+	t_window.draw(coinsText);
 }
 
 void GamePlay::setupFontAndText()
@@ -390,6 +420,8 @@ void GamePlay::setupFontAndText()
 	{
 		std::cout << "problem loading arial black font" << std::endl;
 	}
+
+	// Percentage
 	sandbagPercentage.setFont(font);
 	sandbagPercentage.setString("Sandbag: " + std::to_string(sandbag.percentage) + "%");
 	sandbagPercentage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
@@ -397,8 +429,16 @@ void GamePlay::setupFontAndText()
 	sandbagPercentage.setOutlineColor(sf::Color::Red);
 	sandbagPercentage.setFillColor(sf::Color::White);
 	sandbagPercentage.setOutlineThickness(3.0f);
-
 	sandbagPercentage.setPosition(SCREEN_WIDTH - 250, SCREEN_HEIGHT - 50);
+
+	coinsText.setFont(font);
+	coinsText.setString("Coins: " + std::to_string(coins));
+	coinsText.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
+	coinsText.setCharacterSize(30U);
+	coinsText.setOutlineColor(sf::Color::Yellow);
+	coinsText.setFillColor({ 255, 100, 0, 255});
+	coinsText.setOutlineThickness(3.0f);
+	coinsText.setPosition(SCREEN_WIDTH - 250, 50);
 }
 
 void GamePlay::setupObjects()
