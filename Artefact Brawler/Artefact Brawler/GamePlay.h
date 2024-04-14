@@ -23,8 +23,6 @@ public:
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
 
-	int coins = 0;
-
 private:
 
 	void setupFontAndText();

@@ -11,6 +11,3 @@ private:
 
 	static int coins;
 };
-
-// Definition of static variable outside the class
-int Currency::coins = 0;

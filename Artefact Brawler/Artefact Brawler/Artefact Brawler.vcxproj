@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="CharacterSelect.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Currency.cpp" />
     <ClCompile Include="DownAttack.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GamePlay.cpp" />

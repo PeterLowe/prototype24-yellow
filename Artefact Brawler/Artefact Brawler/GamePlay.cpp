@@ -197,8 +197,8 @@ void GamePlay::update(sf::Time t_deltaTime)
 				sandbag.takeDamage(neutralAttack.damage);
 
 				// Add to the currency
-				coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(coins));
+				Currency::changeCoinsAmount(COINS_PER_HIT); // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(Currency::getCoins()));
 
 				damageDone = true;
 			}
@@ -231,8 +231,8 @@ void GamePlay::update(sf::Time t_deltaTime)
 				sandbag.takeDamage(sideAttackRight.damage);
 
 				// Add to the currency
-				coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(coins));
+				Currency::changeCoinsAmount(COINS_PER_HIT); // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(Currency::getCoins()));
 
 
 				damageDone = true;
@@ -266,8 +266,8 @@ void GamePlay::update(sf::Time t_deltaTime)
 				sandbag.takeDamage(sideAttackLeft.damage);
 
 				// Add to the currency
-				coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(coins));
+				Currency::changeCoinsAmount(COINS_PER_HIT); // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(Currency::getCoins()));
 
 
 				damageDone = true;
@@ -301,8 +301,8 @@ void GamePlay::update(sf::Time t_deltaTime)
 				sandbag.takeDamage(upAttack.damage);
 
 				// Add to the currency
-				coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(coins));
+				Currency::changeCoinsAmount(COINS_PER_HIT); // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(Currency::getCoins()));
 
 
 				damageDone = true;
@@ -335,8 +335,8 @@ void GamePlay::update(sf::Time t_deltaTime)
 				sandbag.takeDamage(downAttack.damage);
 
 				// Add to the currency
-				coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(coins));
+				Currency::changeCoinsAmount(COINS_PER_HIT); // * comboMultiplier
+				coinsText.setString("Coins: " + std::to_string(Currency::getCoins()));
 
 
 				damageDone = true;
@@ -432,7 +432,7 @@ void GamePlay::setupFontAndText()
 	sandbagPercentage.setPosition(SCREEN_WIDTH - 250, SCREEN_HEIGHT - 50);
 
 	coinsText.setFont(font);
-	coinsText.setString("Coins: " + std::to_string(coins));
+	coinsText.setString("Coins: " + std::to_string(Currency::getCoins()));
 	coinsText.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
 	coinsText.setCharacterSize(30U);
 	coinsText.setOutlineColor(sf::Color::Yellow);
