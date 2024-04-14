@@ -1,4 +1,5 @@
 #include "Shop.h"
+#include "game.h"
 
 Shop::Shop()
 {
@@ -7,10 +8,24 @@ Shop::Shop()
 
 void Shop::processEvents(sf::Event t_event)
 {
+	if (sf::Event::KeyPressed == t_event.type)
+	{
+		processKeys(t_event);
+	}
+}
+
+void Shop::processKeys(sf::Event t_event)
+{
+	// On escape swap to show scene
+	if (sf::Keyboard::Escape == t_event.key.code)
+	{
+		Game::currentMode = Scene::GamePlay;
+	}
 }
 
 void Shop::update(sf::Time t_deltaTime)
 {
+	coinsText.setString("Coins: " + std::to_string(Currency::coins));
 }
 
 void Shop::render(sf::RenderWindow& t_window)
@@ -27,7 +42,6 @@ void Shop::setupFontAndText()
 	}
 
 	coinsText.setFont(font);
-	//coinsText.setString("Coins: " + std::to_string(coins));
 	coinsText.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
 	coinsText.setCharacterSize(30U);
 	coinsText.setOutlineColor(sf::Color::Yellow);
