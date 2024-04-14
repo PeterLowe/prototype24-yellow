@@ -22,7 +22,6 @@ public:
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
 
-	// Coins
 	int coins = 0;
 
 private:
