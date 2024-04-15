@@ -156,14 +156,29 @@ void GamePlay::update(sf::Time t_deltaTime)
 	{
 		player.jump();
 	}
+	for (int i = 0; i < 3; i++) // Used to check each platform
+	{
+		player.groundCheck(platforms[i]);
 
-	player.groundCheck();
+		if (player.onGround)
+		{
+			break;
+		}
+	}
 
 	player.gravity();
 	player.checkBoundries();
 
 	// Sandbag
-	sandbag.groundCheck();
+	for (int i = 0; i < 3; i++)
+	{
+		sandbag.groundCheck(platforms[i]);
+
+		if (sandbag.onGround)
+		{
+			break;
+		}
+	}
 	sandbag.gravity();
 	sandbag.checkBoundries();
 	// Off screen indicator
@@ -407,6 +422,12 @@ void GamePlay::render(sf::RenderWindow& t_window)
 		t_window.draw(downAttack.getBody());
 	}
 
+	// Platforms
+	for (int i = 0; i < 3; i++)
+	{
+		t_window.draw(platforms[i].getBody());
+	}
+
 	// Sandbag's percentage
 	t_window.draw(sandbagPercentage);
 
@@ -449,6 +470,11 @@ void GamePlay::setupObjects()
 	// Setup side attacks
 	sideAttackLeft.setup(true);
 	sideAttackRight.setup(false);
+
+	// Platforms
+	platforms[0].setup({ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3 }); // Top
+	platforms[1].setup({ SCREEN_WIDTH / 3 - 50, (SCREEN_HEIGHT / 3) * 2 }); // Left
+	platforms[2].setup({ (SCREEN_WIDTH / 3 + 50) * 2, (SCREEN_HEIGHT / 3) * 2 }); // Right
 }
 
 void GamePlay::endLag()

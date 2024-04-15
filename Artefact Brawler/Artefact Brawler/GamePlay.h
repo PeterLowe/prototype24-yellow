@@ -9,6 +9,7 @@
 #include "SideAttack.h"
 #include "UpAttack.h"
 #include "DownAttack.h"
+#include "Platform.h"
 
 class GamePlay
 {
@@ -31,6 +32,7 @@ private:
 	// Objects
 	Player player;
 	Sandbag sandbag;
+	Platform platforms[3];
 	// Attacks (Objects)
 	NeutralAttack neutralAttack;
 	SideAttack sideAttackLeft;

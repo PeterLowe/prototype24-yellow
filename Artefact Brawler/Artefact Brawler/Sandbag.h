@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Globals.h"
+#include "Platform.h"
 #include <iostream>
 
 class Sandbag
@@ -17,7 +18,7 @@ public:
 
     sf::CircleShape getIndicatorBody() { return indicator; }
 
-    void groundCheck();
+    void groundCheck(Platform t_platform);
 
     void gravity();
     void checkBoundries();
@@ -40,6 +41,8 @@ public:
 
     // Damage done to sandbag
     int percentage = 0;
+
+    bool onGround = false;
 
 private:
 
@@ -66,7 +69,6 @@ private:
     // Ground checking
     sf::RectangleShape groundChecker;
     const sf::Vector2f GROUND_CHECK_DISPLACEMENT = { 0.0f, (height / 2.0f) };
-    bool onGround = false;
     bool hitGround = false;
 
 

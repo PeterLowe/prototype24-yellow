@@ -16,6 +16,7 @@ void Player::setup(sf::Vector2f t_pos)
 
 	// Ground checker setup
 	groundChecker.setPosition(position + GROUND_CHECK_DISPLACEMENT);
+	groundChecker.setFillColor(sf::Color::White);
 	groundChecker.setSize({ width, 1.0f });
 	groundChecker.setOrigin({ width / 2, 0.5f });
 }
@@ -100,6 +101,7 @@ void Player::jump()
 
 	if (jumpAgain)
 	{
+		std::cout << jumpAmount << std::endl;
 		jumpAmount--;
 
 		deceleration = 0;
@@ -135,11 +137,15 @@ void Player::jump()
 }
 
 // Needs to go through each platform and see if it intersects with the ground checker
-void Player::groundCheck()
+void Player::groundCheck(Platform t_platform)
 {
-	//if (groundChecker.getGlobalBounds().intersects(t_platform))
 
 	if (groundChecker.getPosition().y >= SCREEN_HEIGHT)
+	{
+		onGround = true;
+	}
+	// Platform checking
+	else if (groundChecker.getGlobalBounds().intersects(t_platform.getGround().getGlobalBounds()))
 	{
 		onGround = true;
 	}
@@ -148,7 +154,7 @@ void Player::groundCheck()
 		onGround = false;
 	}
 
-	if (onGround)
+	if (onGround && !jumping)
 	{
 		// Reset your jumps
 		jumpAmount = MAX_JUMPS;

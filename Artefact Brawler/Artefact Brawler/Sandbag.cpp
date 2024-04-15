@@ -33,11 +33,18 @@ void Sandbag::setup(sf::Vector2f t_pos)
 
 }
 
-void Sandbag::groundCheck()
+void Sandbag::groundCheck(Platform t_platform)
 {
-	//if (groundChecker.getGlobalBounds().intersects(t_platform))
 
 	if (groundChecker.getPosition().y >= SCREEN_HEIGHT)
+	{
+		onGround = true;
+
+		// This is for bouncing off the ground
+		hitGround = true;
+	}
+	// Platform checking
+	else if (groundChecker.getGlobalBounds().intersects(t_platform.getGround().getGlobalBounds()))
 	{
 		onGround = true;
 
