@@ -32,7 +32,9 @@ AttackManager::AttackManager()
 	}
 }
 
-void AttackManager::neutralAttack()
+
+/// Attacking ///
+void AttackManager::neutralAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
 {
 	// Call the neutral attack equipped
 	switch (neutral)
@@ -41,13 +43,13 @@ void AttackManager::neutralAttack()
 		break;
 
 	case AttackType::BasicNeutral:
-		//Attacks::basicNeutral.attack();
+		attacks.basicNeutral.attack(t_pos, t_sandbag, t_canAttack);
 		break;
 
 	}
 }
 
-void AttackManager::sideAttack()
+void AttackManager::sideAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
 {
 	// Call the side attack equipped
 	switch (side)
@@ -56,26 +58,26 @@ void AttackManager::sideAttack()
 		break;
 
 	case AttackType::BasicSide:
-		//Attacks::basicSide.attack();
+		attacks.basicSide.attack(t_pos, t_sandbag, t_canAttack);
 		break;
 	}
 }
 
-void AttackManager::upAttack()
+void AttackManager::upAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
 {
 	// Call the up attack equipped
 	switch (up)
-	{
+	{  
 	case AttackType::None:
 		break;
 
 	case AttackType::BasicUp:
-		//Attacks::basicUp.attack();
+		attacks.basicUp.attack(t_pos, t_sandbag, t_canAttack);
 		break;
 	}
 }
 
-void AttackManager::downAttack()
+void AttackManager::downAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
 {
 	// Call the down attack equipped
 	switch (down)
@@ -84,7 +86,144 @@ void AttackManager::downAttack()
 		break;
 
 	case AttackType::BasicDown:
-		//Attacks::basicDown.attack();
+
+		// Info
+		damage = attacks.basicDown.damage;
+		power = attacks.basicDown.power;
+		angleD = attacks.basicDown.angleD;
+		endLag = attacks.basicDown.END_LAG;
+		active = attacks.basicDown.active;
+		hasHit = attacks.basicDown.hasHit;
+
+		// Call attack
+		attacks.basicDown.attack(t_pos, t_sandbag, t_canAttack);
+
 		break;
 	}
 }
+
+
+/// Spawning ///
+void AttackManager::neutralSpawn(sf::Vector2f t_pos)
+{
+	// Call the down spawning equipped
+	switch (neutral)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicNeutral:
+		attacks.basicNeutral.spawn(t_pos);
+		break;
+	}
+}
+
+void AttackManager::sideSpawn(sf::Vector2f t_pos)
+{
+	// Call the down spawning equipped
+	switch (side)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicSide:
+		attacks.basicSide.spawn(t_pos);
+		break;
+	}
+}
+
+void AttackManager::upSpawn(sf::Vector2f t_pos)
+{
+	// Call the down spawning equipped
+	switch (up)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicUp:
+		attacks.basicUp.spawn(t_pos);
+		break;
+	}
+}
+
+void AttackManager::downSpawn(sf::Vector2f t_pos)
+{
+	// Call the down spawning equipped
+	switch (down)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicDown:
+
+		// Spawn attack
+		attacks.basicDown.spawn(t_pos);
+
+		break;
+	}
+}
+
+bool AttackManager::getNeutralActive()
+{
+	// Call the neutral spawning equipped
+	switch (down)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicDown:
+
+		return attacks.basicDown.active;
+
+		break;
+	}
+}
+
+bool AttackManager::getSideActive()
+{
+	// Call the side spawning equipped
+	switch (side)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicSide:
+
+		return attacks.basicSide.active;
+
+		break;
+	}
+}
+
+bool AttackManager::getUpActive()
+{
+	// Call the up spawning equipped
+	switch (up)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicUp:
+
+		return attacks.basicUp.active;
+
+		break;
+	}
+}
+
+bool AttackManager::getDownActive()
+{
+	// Call the down spawning equipped
+	switch (down)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicDown:
+
+		return attacks.basicDown.active;
+
+		break;
+	}
+}
+

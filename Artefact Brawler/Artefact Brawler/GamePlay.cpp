@@ -47,12 +47,12 @@ void GamePlay::processKeys(sf::Event t_event)
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			{
 				// upAttack
-				upAttack.spawn(player.getPosition());
+				AttackManager::upSpawn(player.getPosition());
 			}
 			// Down Attack
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			{
-				downAttack.spawn(player.getPosition());
+				AttackManager::downSpawn(player.getPosition());
 			}
 			// Left Attack
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -66,7 +66,7 @@ void GamePlay::processKeys(sf::Event t_event)
 			}
 			else
 			{
-				neutralAttack.spawn(player.getPosition());
+				AttackManager::neutralSpawn(player.getPosition());
 			}
 		}
 	}
@@ -186,10 +186,10 @@ void GamePlay::update(sf::Time t_deltaTime)
 
 	/// Attacks ///
 	// Neutral Attack
-	if (neutralAttack.active) // Attack
+	if (AttackManager::getNeutralActive()) // Attack
 	{
 		// Do the attack and check collisions
-		neutralAttack.attack(player.getPosition(), sandbag, canAttack);
+		AttackManager::neutralAttack(player.getPosition(), sandbag, canAttack);
 
 		// Set the endlag
 		endLagDuration = neutralAttack.END_LAG;
@@ -290,10 +290,10 @@ void GamePlay::update(sf::Time t_deltaTime)
 		}
 	}
 
-	if (upAttack.active) // Attack
+	if (AttackManager::getUpActive()) // Attack
 	{
 		// Do the attack and check collisions
-		upAttack.attack(player.getPosition(), sandbag, canAttack);
+		AttackManager::upAttack(player.getPosition(), sandbag, canAttack);
 
 		// Set the endlag
 		endLagDuration = upAttack.END_LAG;
@@ -326,9 +326,9 @@ void GamePlay::update(sf::Time t_deltaTime)
 	}
 
 	// down attack
-	if (downAttack.active) // attack
+	if (AttackManager::getDownActive()) // attack
 	{
-		downAttack.attack(player.getPosition(), sandbag, canAttack);
+		AttackManager::downAttack(player.getPosition(), sandbag, canAttack);
 
 		// set endlag
 		endLagDuration = downAttack.END_LAG;

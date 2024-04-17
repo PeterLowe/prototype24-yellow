@@ -5,11 +5,9 @@
 #include "Sandbag.h"
 #include "Currency.h"
 // Attacks
-#include "NeutralAttack.h"
 #include "SideAttack.h"
-#include "UpAttack.h"
-#include "DownAttack.h"
 #include "Platform.h"
+#include "AttackManager.h"
 
 class GamePlay
 {
@@ -34,11 +32,8 @@ private:
 	Sandbag sandbag;
 	Platform platforms[3];
 	// Attacks (Objects)
-	NeutralAttack neutralAttack;
 	SideAttack sideAttackLeft;
 	SideAttack sideAttackRight;
-	UpAttack upAttack;
-	DownAttack downAttack;
 
 	// Controller
 	Controller controller;

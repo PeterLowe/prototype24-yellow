@@ -43,10 +43,18 @@ class AttackManager
 public:
 
 	AttackManager();
-	void neutralAttack();
-	void sideAttack();
-	void upAttack();
-	void downAttack();
+
+	// Attacking
+	static void neutralAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+	static void sideAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+	static void upAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+	static void downAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+
+	// Spawning
+	static void neutralSpawn(sf::Vector2f t_pos);
+	static void sideSpawn(sf::Vector2f t_pos);
+	static void upSpawn(sf::Vector2f t_pos);
+	static void downSpawn(sf::Vector2f t_pos);
 
 
 	static AttackType neutral;
@@ -54,6 +62,43 @@ public:
 	static AttackType up;
 	static AttackType down;
 
+	static Attacks attacks;
+
+	// Active
+	static bool getNeutralActive();
+	static bool getSideActive();
+	static bool getUpActive();
+	static bool getDownActive();
+
+	// Damage
+	static int getNeutralDamage();
+	static int getSideDamage();
+	static int getUpDamage();
+	static int getDownDamage();
+
+	// Power
+	static float getNeutralPower();
+	static float getSidePower();
+	static float getUpPower();
+	static float getDownPower();
+
+	// AngleD
+	static float getNeutralAngleD();
+	static float getSideAngleD();
+	static float getUpAngleD();
+	static float getDownAngleD();
+
+	// Endlag
+	static int getNeutralEndlag();
+	static int getSideEndlag();
+	static int getUpEndlag();
+	static int getDownEndlag();
+
+	// Has Hit
+	static bool getNeutralHasHit();
+	static bool getSideHasHit();
+	static bool getUpHasHit();
+	static bool getDownHasHit();
 
 
 private:
