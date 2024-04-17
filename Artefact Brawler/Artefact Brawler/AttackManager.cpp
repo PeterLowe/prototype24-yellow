@@ -1,39 +1,23 @@
 #include "AttackManager.h"
 
 AttackType neutral = AttackType::BasicNeutral;
-AttackType side = AttackType::BasicSide;
+AttackType sideLeft = AttackType::BasicSideLeft;
+AttackType sideRight = AttackType::BasicSideRight;
 AttackType up = AttackType::BasicUp;
 AttackType down = AttackType::BasicDown;
 
 static Attacks attacks;
 
-AttackManager::AttackManager()
+
+
+
+// Used for attacks like side attacks with different directions
+void AttackManager::setup()
 {
-	// Go through and find the attack you have equipped for neutral
-	switch (neutral)
-	{
-
-	}
-
-	// Go through and find the attack you have equipped for side
-	switch (side)
-	{
-
-	}
-
-	// Go through and find the attack you have equipped for up
-	switch (up)
-	{
-
-	}
-
-	// Go through and find the attack you have equipped for down
-	switch (down)
-	{
-
-	}
+	// Setup the basic side attacks
+	attacks.basicSideLeft.setup(true);
+	attacks.basicSideRight.setup(false);
 }
-
 
 /// Attacking ///
 void AttackManager::neutralAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
@@ -51,16 +35,30 @@ void AttackManager::neutralAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& 
 	}
 }
 
-void AttackManager::sideAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
+void AttackManager::sideAttackLeft(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
 {
-	// Call the side attack equipped
-	switch (side)
+	// Call the sideLeft attack equipped
+	switch (sideLeft)
 	{
 	case AttackType::None:
 		break;
 
-	case AttackType::BasicSide:
-		attacks.basicSide.attack(t_pos, t_sandbag, t_canAttack);
+	case AttackType::BasicSideLeft:
+		attacks.basicSideLeft.attack(t_pos, t_sandbag, t_canAttack);
+		break;
+	}
+}
+
+void AttackManager::sideAttackRight(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
+{
+	// Call the sideRight attack equipped
+	switch (sideLeft)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicSideRight:
+		attacks.basicSideRight.attack(t_pos, t_sandbag, t_canAttack);
 		break;
 	}
 }
@@ -112,16 +110,30 @@ void AttackManager::neutralSpawn(sf::Vector2f t_pos)
 	}
 }
 
-void AttackManager::sideSpawn(sf::Vector2f t_pos)
+void AttackManager::sideSpawnLeft(sf::Vector2f t_pos)
 {
 	// Call the down spawning equipped
-	switch (side)
+	switch (sideLeft)
 	{
 	case AttackType::None:
 		break;
 
-	case AttackType::BasicSide:
-		attacks.basicSide.spawn(t_pos);
+	case AttackType::BasicSideLeft:
+		attacks.basicSideLeft.spawn(t_pos);
+		break;
+	}
+}
+
+void AttackManager::sideSpawnRight(sf::Vector2f t_pos)
+{
+	// Call the down spawning equipped
+	switch (sideRight)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicSideRight:
+		attacks.basicSideRight.spawn(t_pos);
 		break;
 	}
 }
@@ -175,17 +187,33 @@ void AttackManager::drawNeutral(sf::RenderWindow& t_window)
 	}
 }
 
-void AttackManager::drawSide(sf::RenderWindow& t_window)
+void AttackManager::drawSideLeft(sf::RenderWindow& t_window)
 {
-	switch (side)
+	switch (sideLeft)
 	{
 	case AttackType::None:
 		break;
 
-	case AttackType::BasicSide:
+	case AttackType::BasicSideLeft:
 
 		// Draw attack
-		t_window.draw(attacks.basicSide.getBody());
+		t_window.draw(attacks.basicSideLeft.getBody());
+
+		break;
+	}
+}
+
+void AttackManager::drawSideRight(sf::RenderWindow& t_window)
+{
+	switch (sideRight)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicSideRight:
+
+		// Draw attack
+		t_window.draw(attacks.basicSideRight.getBody());
 
 		break;
 	}
@@ -244,18 +272,35 @@ bool AttackManager::getNeutralActive()
 	}
 }
 
-bool AttackManager::getSideActive()
+bool AttackManager::getSideLeftActive()
 {
 	// Call the side spawning equipped
-	switch (side)
+	switch (sideLeft)
 	{
 	case AttackType::None:
 		return false;
 		break;
 
-	case AttackType::BasicSide:
+	case AttackType::BasicSideLeft:
 
-		return attacks.basicSide.active;
+		return attacks.basicSideLeft.active;
+
+		break;
+	}
+}
+
+bool AttackManager::getSideRightActive()
+{
+	// Call the side spawning equipped
+	switch (sideRight)
+	{
+	case AttackType::None:
+		return false;
+		break;
+
+	case AttackType::BasicSideRight:
+
+		return attacks.basicSideRight.active;
 
 		break;
 	}
@@ -313,17 +358,33 @@ int AttackManager::getNeutralDamage()
 	}
 }
 
-int AttackManager::getSideDamage()
+int AttackManager::getSideDamageLeft()
 {
-	switch (side)
+	switch (sideLeft)
 	{
 	case AttackType::None:
 		return 0;
 		break;
 
-	case AttackType::BasicSide:
+	case AttackType::BasicSideLeft:
 
-		return attacks.basicSide.damage;
+		return attacks.basicSideLeft.damage;
+
+		break;
+	}
+}
+
+int AttackManager::getSideDamageRight()
+{
+	switch (sideRight)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSideRight:
+
+		return attacks.basicSideRight.damage;
 
 		break;
 	}
@@ -379,17 +440,33 @@ float AttackManager::getNeutralPower()
 	}
 }
 
-float AttackManager::getSidePower()
+float AttackManager::getSidePowerLeft()
 {
-	switch (side)
+	switch (sideLeft)
 	{
 	case AttackType::None:
 		return 0;
 		break;
 
-	case AttackType::BasicSide:
+	case AttackType::BasicSideLeft:
 
-		return attacks.basicSide.power;
+		return attacks.basicSideLeft.power;
+
+		break;
+	}
+}
+
+float AttackManager::getSidePowerRight()
+{
+	switch (sideRight)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSideRight:
+
+		return attacks.basicSideRight.power;
 
 		break;
 	}
@@ -446,17 +523,33 @@ float AttackManager::getNeutralAngleD()
 	}
 }
 
-float AttackManager::getSideAngleD()
+float AttackManager::getSideAngleDLeft()
 {
-	switch (side)
+	switch (sideLeft)
 	{
 	case AttackType::None:
 		return 0;
 		break;
 
-	case AttackType::BasicSide:
+	case AttackType::BasicSideLeft:
 
-		return attacks.basicSide.angleD;
+		return attacks.basicSideLeft.angleD;
+
+		break;
+	}
+}
+
+float AttackManager::getSideAngleDRight()
+{
+	switch (sideRight)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSideRight:
+
+		return attacks.basicSideRight.angleD;
 
 		break;
 	}
@@ -512,17 +605,33 @@ int AttackManager::getNeutralEndlag()
 	}
 }
 
-int AttackManager::getSideEndlag()
+int AttackManager::getSideEndlagLeft()
 {
-	switch (side)
+	switch (sideLeft)
 	{
 	case AttackType::None:
 		return 0;
 		break;
 
-	case AttackType::BasicSide:
+	case AttackType::BasicSideLeft:
 
-		return attacks.basicSide.END_LAG;
+		return attacks.basicSideLeft.END_LAG;
+
+		break;
+	}
+}
+
+int AttackManager::getSideEndlagRight()
+{
+	switch (sideRight)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSideRight:
+
+		return attacks.basicSideRight.END_LAG;
 
 		break;
 	}
@@ -578,17 +687,33 @@ bool AttackManager::getNeutralHasHit()
 	}
 }
 
-bool AttackManager::getSideHasHit()
+bool AttackManager::getSideHasHitLeft()
 {
-	switch (side)
+	switch (sideLeft)
 	{
 	case AttackType::None:
 		return 0;
 		break;
 
-	case AttackType::BasicSide:
+	case AttackType::BasicSideLeft:
 
-		return attacks.basicSide.hasHit;
+		return attacks.basicSideLeft.hasHit;
+
+		break;
+	}
+}
+
+bool AttackManager::getSideHasHitRight()
+{
+	switch (sideRight)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSideRight:
+
+		return attacks.basicSideRight.hasHit;
 
 		break;
 	}

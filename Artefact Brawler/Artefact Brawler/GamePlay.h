@@ -4,8 +4,6 @@
 #include "Player.h"
 #include "Sandbag.h"
 #include "Currency.h"
-// Attacks
-#include "SideAttack.h"
 #include "Platform.h"
 #include "AttackManager.h"
 
@@ -31,9 +29,6 @@ private:
 	Player player;
 	Sandbag sandbag;
 	Platform platforms[3];
-	// Attacks (Objects)
-	SideAttack sideAttackLeft;
-	SideAttack sideAttackRight;
 
 	// Controller
 	Controller controller;

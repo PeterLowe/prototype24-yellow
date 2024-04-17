@@ -14,7 +14,8 @@ enum class AttackType
 
 	// Basics
 	BasicNeutral,
-	BasicSide,
+	BasicSideLeft,
+	BasicSideRight,
 	BasicUp,
 	BasicDown
 
@@ -25,7 +26,8 @@ struct Attacks
 {
 	// Basics
 	NeutralAttack basicNeutral;
-	SideAttack basicSide;
+	SideAttack basicSideLeft;
+	SideAttack basicSideRight;
 	UpAttack basicUp;
 	DownAttack basicDown;
 
@@ -43,59 +45,68 @@ class AttackManager
 {
 public:
 
-	AttackManager();
+	static void setup();
 
 	// Attacking
 	static void neutralAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
-	static void sideAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+	static void sideAttackLeft(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+	static void sideAttackRight(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
 	static void upAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
 	static void downAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
 
 	// Spawning
 	static void neutralSpawn(sf::Vector2f t_pos);
-	static void sideSpawn(sf::Vector2f t_pos);
+	static void sideSpawnLeft(sf::Vector2f t_pos);
+	static void sideSpawnRight(sf::Vector2f t_pos);
 	static void upSpawn(sf::Vector2f t_pos);
 	static void downSpawn(sf::Vector2f t_pos);
 
 	// Draw
 	static void drawNeutral(sf::RenderWindow& t_window);
-	static void drawSide(sf::RenderWindow& t_window);
+	static void drawSideLeft(sf::RenderWindow& t_window);
+	static void drawSideRight(sf::RenderWindow& t_window);
 	static void drawUp(sf::RenderWindow& t_window);
 	static void drawDown(sf::RenderWindow& t_window);
 
 	// Active
 	static bool getNeutralActive();
-	static bool getSideActive();
+	static bool getSideLeftActive();
+	static bool getSideRightActive();
 	static bool getUpActive();
 	static bool getDownActive();
 
 	// Damage
 	static int getNeutralDamage();
-	static int getSideDamage();
+	static int getSideDamageLeft();
+	static int getSideDamageRight();
 	static int getUpDamage();
 	static int getDownDamage();
 
 	// Power
 	static float getNeutralPower();
-	static float getSidePower();
+	static float getSidePowerLeft();
+	static float getSidePowerRight();
 	static float getUpPower();
 	static float getDownPower();
 
 	// AngleD
 	static float getNeutralAngleD();
-	static float getSideAngleD();
+	static float getSideAngleDLeft();
+	static float getSideAngleDRight();
 	static float getUpAngleD();
 	static float getDownAngleD();
 
 	// Endlag
 	static int getNeutralEndlag();
-	static int getSideEndlag();
+	static int getSideEndlagLeft();
+	static int getSideEndlagRight();
 	static int getUpEndlag();
 	static int getDownEndlag();
 
 	// Has Hit
 	static bool getNeutralHasHit();
-	static bool getSideHasHit();
+	static bool getSideHasHitLeft();
+	static bool getSideHasHitRight();
 	static bool getUpHasHit();
 	static bool getDownHasHit();
 
