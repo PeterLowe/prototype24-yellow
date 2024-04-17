@@ -52,7 +52,7 @@ void AttackManager::sideAttackLeft(sf::Vector2f t_pos, Sandbag& t_sandbag, bool&
 void AttackManager::sideAttackRight(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
 {
 	// Call the sideRight attack equipped
-	switch (sideLeft)
+	switch (sideRight)
 	{
 	case AttackType::None:
 		break;

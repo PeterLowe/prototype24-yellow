@@ -404,18 +404,22 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	{
 		AttackManager::drawNeutral(t_window);
 	}
+
 	else if (AttackManager::getSideLeftActive())
 	{
 		AttackManager::drawSideLeft(t_window);
 	}
+
 	else if (AttackManager::getSideRightActive())
 	{
 		AttackManager::drawSideRight(t_window);
 	}
+
 	else if (AttackManager::getUpActive())
 	{
 		AttackManager::drawUp(t_window);
 	}
+
 	else if (AttackManager::getDownActive())
 	{
 		AttackManager::drawDown(t_window);
