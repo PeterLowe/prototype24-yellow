@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AttackManager.cpp" />
     <ClCompile Include="CharacterSelect.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Currency.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="UpAttack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AttackManager.h" />
     <ClInclude Include="CharacterSelect.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Currency.h" />
