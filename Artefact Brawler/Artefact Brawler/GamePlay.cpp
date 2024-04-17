@@ -106,12 +106,12 @@ void GamePlay::processController()
 				// Up Attack
 				if (controller.currentState.LeftThumbStick.y <= -50)
 				{
-					upAttack.spawn(player.getPosition());
+					AttackManager::upSpawn(player.getPosition());
 				}
 				// Down Attack
 				else if (controller.currentState.LeftThumbStick.y >= 50)
 				{
-					downAttack.spawn(player.getPosition());
+					AttackManager::downSpawn(player.getPosition());
 				}
 				// Left Attack
 				else if (controller.currentState.LeftThumbStick.x <= -50)
@@ -125,7 +125,7 @@ void GamePlay::processController()
 				}
 				else
 				{
-					neutralAttack.spawn(player.getPosition());
+					AttackManager::neutralSpawn(player.getPosition());
 				}
 
 				// Make sure only one attack is done at a time
@@ -192,14 +192,14 @@ void GamePlay::update(sf::Time t_deltaTime)
 		AttackManager::neutralAttack(player.getPosition(), sandbag, canAttack);
 
 		// Set the endlag
-		endLagDuration = neutralAttack.END_LAG;
+		endLagDuration = AttackManager::getNeutralEndlag();
 
 		// If hit...
-		if (neutralAttack.hasHit)
+		if (AttackManager::getNeutralHasHit())
 		{
-			knockbackAngle = neutralAttack.angleD; // Set angle
-			knockbackPower = neutralAttack.power; // Set power
-			damageTaken = neutralAttack.damage; // Set the damage to add to sandbag's percentage
+			knockbackAngle = AttackManager::getNeutralAngleD(); // Set angle
+			knockbackPower = AttackManager::getNeutralPower(); // Set power
+			damageTaken = AttackManager::getNeutralDamage(); // Set the damage to add to sandbag's percentage
 
 
 			sandbag.hitAgain = true;
@@ -209,7 +209,7 @@ void GamePlay::update(sf::Time t_deltaTime)
 			if (!damageDone)
 			{
 				// Add to the sandbag's percentage
-				sandbag.takeDamage(neutralAttack.damage);
+				sandbag.takeDamage(AttackManager::getNeutralDamage());
 
 				// Add to the currency
 				Currency::coins += COINS_PER_HIT; // * comboMultiplier
@@ -296,14 +296,14 @@ void GamePlay::update(sf::Time t_deltaTime)
 		AttackManager::upAttack(player.getPosition(), sandbag, canAttack);
 
 		// Set the endlag
-		endLagDuration = upAttack.END_LAG;
+		endLagDuration = AttackManager::getUpEndlag();
 
 		// If hit...
-		if (upAttack.hasHit)
+		if (AttackManager::getUpHasHit())
 		{
-			knockbackAngle = upAttack.angleD; // Set angle
-			knockbackPower = upAttack.power; // Set power
-			damageTaken = upAttack.damage; // Set the damage to add to sandbag's percentage
+			knockbackAngle = AttackManager::getUpAngleD(); // Set angle
+			knockbackPower = AttackManager::getUpPower(); // Set power
+			damageTaken = AttackManager::getUpDamage();
 
 
 			sandbag.hitAgain = true;
@@ -313,7 +313,7 @@ void GamePlay::update(sf::Time t_deltaTime)
 			if (!damageDone)
 			{
 				// Add to the sandbag's percentage
-				sandbag.takeDamage(upAttack.damage);
+				sandbag.takeDamage(AttackManager::getUpDamage());
 
 				// Add to the currency
 				Currency::coins += COINS_PER_HIT; // * comboMultiplier
@@ -331,14 +331,14 @@ void GamePlay::update(sf::Time t_deltaTime)
 		AttackManager::downAttack(player.getPosition(), sandbag, canAttack);
 
 		// set endlag
-		endLagDuration = downAttack.END_LAG;
+		endLagDuration = AttackManager::getDownEndlag();
 
 		// If hit...
-		if (downAttack.hasHit)
+		if (AttackManager::getDownHasHit())
 		{
-			knockbackAngle = downAttack.angleD; // set angle
-			knockbackPower = downAttack.power; // set power
-			damageTaken = downAttack.damage;  // set damage to add to sandbag's percentage
+			knockbackAngle = AttackManager::getDownAngleD(); // set angle
+			knockbackPower = AttackManager::getDownPower(); // set power
+			damageTaken = AttackManager::getDownDamage();
 
 			sandbag.hitAgain = true;
 			sandbag.knockingBack = true;
@@ -347,7 +347,7 @@ void GamePlay::update(sf::Time t_deltaTime)
 			if (!damageDone)
 			{
 				// Add to the sandbag's percentage
-				sandbag.takeDamage(downAttack.damage);
+				sandbag.takeDamage(AttackManager::getDownDamage());
 
 				// Add to the currency
 				Currency::coins += COINS_PER_HIT; // * comboMultiplier
@@ -400,10 +400,9 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	t_window.draw(player.getBody());
 
 	/// Attacks ///
-	if (neutralAttack.active)
+	if (AttackManager::getNeutralActive())
 	{
-		t_window.draw(neutralAttack.getBodyLeft());
-		t_window.draw(neutralAttack.getBodyRight());
+		AttackManager::drawNeutral(t_window);
 	}
 	else if (sideAttackLeft.active)
 	{
@@ -413,13 +412,13 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	{
 		t_window.draw(sideAttackRight.getBody());
 	}
-	else if (upAttack.active)
+	else if (AttackManager::getUpActive())
 	{
-		t_window.draw(upAttack.getBody());
+		AttackManager::drawUp(t_window);
 	}
-	else if (downAttack.active)
+	else if (AttackManager::getDownActive())
 	{
-		t_window.draw(downAttack.getBody());
+		AttackManager::drawDown(t_window);
 	}
 
 	// Platforms

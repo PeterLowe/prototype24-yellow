@@ -1,9 +1,11 @@
 #include "AttackManager.h"
 
 AttackType neutral = AttackType::BasicNeutral;
-AttackType side = AttackType::BasicNeutral;
-AttackType up = AttackType::BasicNeutral;
-AttackType down = AttackType::BasicNeutral;
+AttackType side = AttackType::BasicSide;
+AttackType up = AttackType::BasicUp;
+AttackType down = AttackType::BasicDown;
+
+static Attacks attacks;
 
 AttackManager::AttackManager()
 {
@@ -87,14 +89,6 @@ void AttackManager::downAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_c
 
 	case AttackType::BasicDown:
 
-		// Info
-		damage = attacks.basicDown.damage;
-		power = attacks.basicDown.power;
-		angleD = attacks.basicDown.angleD;
-		endLag = attacks.basicDown.END_LAG;
-		active = attacks.basicDown.active;
-		hasHit = attacks.basicDown.hasHit;
-
 		// Call attack
 		attacks.basicDown.attack(t_pos, t_sandbag, t_canAttack);
 
@@ -163,9 +157,58 @@ void AttackManager::downSpawn(sf::Vector2f t_pos)
 	}
 }
 
-bool AttackManager::getNeutralActive()
+//-------------------- Attack Drawing --------------------//
+void AttackManager::drawNeutral(sf::RenderWindow& t_window)
 {
-	// Call the neutral spawning equipped
+	switch (neutral)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicNeutral:
+
+		// Draw attack
+		t_window.draw(attacks.basicNeutral.getBodyLeft());
+		t_window.draw(attacks.basicNeutral.getBodyRight());
+
+		break;
+	}
+}
+
+void AttackManager::drawSide(sf::RenderWindow& t_window)
+{
+	switch (side)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicSide:
+
+		// Draw attack
+		t_window.draw(attacks.basicSide.getBody());
+
+		break;
+	}
+}
+
+void AttackManager::drawUp(sf::RenderWindow& t_window)
+{
+	switch (up)
+	{
+	case AttackType::None:
+		break;
+
+	case AttackType::BasicUp:
+
+		// Draw attack
+		t_window.draw(attacks.basicUp.getBody());
+
+		break;
+	}
+}
+
+void AttackManager::drawDown(sf::RenderWindow& t_window)
+{
 	switch (down)
 	{
 	case AttackType::None:
@@ -173,7 +216,29 @@ bool AttackManager::getNeutralActive()
 
 	case AttackType::BasicDown:
 
-		return attacks.basicDown.active;
+		// Draw attack
+		t_window.draw(attacks.basicDown.getBody());
+
+		break;
+	}
+}
+
+//---------------- Attack Information ----------------//
+
+
+/// Get Active ///
+bool AttackManager::getNeutralActive()
+{
+	// Call the neutral spawning equipped
+	switch (neutral)
+	{
+	case AttackType::None:
+		return false;
+		break;
+
+	case AttackType::BasicNeutral:
+
+		return attacks.basicNeutral.active;
 
 		break;
 	}
@@ -185,6 +250,7 @@ bool AttackManager::getSideActive()
 	switch (side)
 	{
 	case AttackType::None:
+		return false;
 		break;
 
 	case AttackType::BasicSide:
@@ -201,6 +267,7 @@ bool AttackManager::getUpActive()
 	switch (up)
 	{
 	case AttackType::None:
+		return false;
 		break;
 
 	case AttackType::BasicUp:
@@ -217,6 +284,7 @@ bool AttackManager::getDownActive()
 	switch (down)
 	{
 	case AttackType::None:
+		return false;
 		break;
 
 	case AttackType::BasicDown:
@@ -227,3 +295,333 @@ bool AttackManager::getDownActive()
 	}
 }
 
+
+/// Get damage ///
+int AttackManager::getNeutralDamage()
+{
+	switch (neutral)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicNeutral:
+
+		return attacks.basicNeutral.damage;
+
+		break;
+	}
+}
+
+int AttackManager::getSideDamage()
+{
+	switch (side)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSide:
+
+		return attacks.basicSide.damage;
+
+		break;
+	}
+}
+
+int AttackManager::getUpDamage()
+{
+	switch (neutral)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicNeutral:
+
+		return attacks.basicNeutral.damage;
+
+		break;
+	}
+}
+
+int AttackManager::getDownDamage()
+{
+	switch (down)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicDown:
+
+		return attacks.basicDown.damage;
+
+		break;
+	}
+}
+
+
+/// Get Power ///
+float AttackManager::getNeutralPower()
+{
+	switch (neutral)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicNeutral:
+
+		return attacks.basicNeutral.power;
+
+		break;
+	}
+}
+
+float AttackManager::getSidePower()
+{
+	switch (side)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSide:
+
+		return attacks.basicSide.power;
+
+		break;
+	}
+}
+
+float AttackManager::getUpPower()
+{
+	switch (up)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicUp:
+
+		return attacks.basicUp.power;
+
+		break;
+	}
+}
+
+float AttackManager::getDownPower()
+{
+	switch (down)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicDown:
+
+		return attacks.basicNeutral.power;
+
+		break;
+	}
+}
+
+
+
+/// Get AngleD ///
+float AttackManager::getNeutralAngleD()
+{
+	switch (neutral)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicNeutral:
+
+		return attacks.basicNeutral.angleD;
+
+		break;
+	}
+}
+
+float AttackManager::getSideAngleD()
+{
+	switch (side)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSide:
+
+		return attacks.basicSide.angleD;
+
+		break;
+	}
+}
+
+float AttackManager::getUpAngleD()
+{
+	switch (up)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicUp:
+
+		return attacks.basicUp.angleD;
+
+		break;
+	}
+}
+
+float AttackManager::getDownAngleD()
+{
+	switch (down)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicDown:
+
+		return attacks.basicDown.angleD;
+
+		break;
+	}
+}
+
+
+// Get Endlag
+int AttackManager::getNeutralEndlag()
+{
+	switch (neutral)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicNeutral:
+
+		return attacks.basicNeutral.END_LAG;
+
+		break;
+	}
+}
+
+int AttackManager::getSideEndlag()
+{
+	switch (side)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSide:
+
+		return attacks.basicSide.END_LAG;
+
+		break;
+	}
+}
+
+int AttackManager::getUpEndlag()
+{
+	switch (up)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicUp:
+
+		return attacks.basicUp.END_LAG;
+
+		break;
+	}
+}
+
+int AttackManager::getDownEndlag()
+{
+	switch (down)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicDown:
+
+		return attacks.basicDown.END_LAG;
+
+		break;
+	}
+}
+
+
+/// Get hasHit ///
+bool AttackManager::getNeutralHasHit()
+{
+	switch (neutral)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicNeutral:
+
+		return attacks.basicNeutral.hasHit;
+
+		break;
+	}
+}
+
+bool AttackManager::getSideHasHit()
+{
+	switch (side)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicSide:
+
+		return attacks.basicSide.hasHit;
+
+		break;
+	}
+}
+
+bool AttackManager::getUpHasHit()
+{
+	switch (up)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicUp:
+
+		return attacks.basicUp.hasHit;
+
+		break;
+	}
+}
+
+bool AttackManager::getDownHasHit()
+{
+	switch (down)
+	{
+	case AttackType::None:
+		return 0;
+		break;
+
+	case AttackType::BasicDown:
+
+		return attacks.basicDown.hasHit;
+
+		break;
+	}
+}

@@ -19,6 +19,7 @@ enum class AttackType
 	BasicDown
 
 };
+
 // Structure that holds normal attacks
 struct Attacks
 {
@@ -56,13 +57,11 @@ public:
 	static void upSpawn(sf::Vector2f t_pos);
 	static void downSpawn(sf::Vector2f t_pos);
 
-
-	static AttackType neutral;
-	static AttackType side;
-	static AttackType up;
-	static AttackType down;
-
-	static Attacks attacks;
+	// Draw
+	static void drawNeutral(sf::RenderWindow& t_window);
+	static void drawSide(sf::RenderWindow& t_window);
+	static void drawUp(sf::RenderWindow& t_window);
+	static void drawDown(sf::RenderWindow& t_window);
 
 	// Active
 	static bool getNeutralActive();
