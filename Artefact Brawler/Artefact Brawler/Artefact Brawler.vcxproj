@@ -53,6 +53,7 @@
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Sandbag.h" />
+    <ClInclude Include="Scenes.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="SideAttack.h" />
     <ClInclude Include="SplashScreen.h" />

@@ -6,6 +6,7 @@
 #include "Currency.h"
 #include "Platform.h"
 #include "AttackManager.h"
+#include "Scenes.h"
 
 class GamePlay
 {
