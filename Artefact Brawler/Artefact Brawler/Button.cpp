@@ -1,7 +1,11 @@
 #include "Button.h"
 
 
-void Button::setup(sf::Vector2f t_pos, float t_width, float t_height, Scene t_sendTo)
+Button::Button()
+{
+}
+
+void Button::setup(sf::Vector2f t_pos, float t_width, float t_height, Scene t_sendTo, sf::Color t_color)
 {
 	// Get the scene it should send you to
 	sendTo = t_sendTo;
@@ -12,7 +16,7 @@ void Button::setup(sf::Vector2f t_pos, float t_width, float t_height, Scene t_se
 
 
 	body.setSize({ width, height });
-	body.setFillColor(sf::Color::Blue);
+	body.setFillColor(t_color);
 
 	body.setOutlineThickness(10);
 	body.setOutlineColor({ 0, 175, 255, 255 });

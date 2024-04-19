@@ -9,7 +9,7 @@
 #include <iostream>
 
 
-Scene Game::currentMode = Scene::GamePlay;
+Scene SceneClass::currentMode = Scene::MainMenu;
 /// <summary>
 /// default constructor
 /// setup the window properties
@@ -74,7 +74,7 @@ void Game::processEvents()
 		}
 		
 		// Check which scene you are in and do the processEvents() of that scene
-		switch (currentMode)
+		switch (SceneClass::currentMode)
 		{
 		case Scene::None:
 			break;
@@ -127,7 +127,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 
 	// Check which scene you are in and do the update() of that scene
-	switch (currentMode)
+	switch (SceneClass::currentMode)
 	{
 	case Scene::None:
 		break;
@@ -162,7 +162,7 @@ void Game::render()
 	m_window.clear(sf::Color::Black);
 	
 	// Check which scene you are in and do the render() of that scene
-	switch (currentMode)
+	switch (SceneClass::currentMode)
 	{
 	case Scene::None:
 		break;

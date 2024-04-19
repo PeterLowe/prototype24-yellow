@@ -19,7 +19,7 @@ void Shop::processKeys(sf::Event t_event)
 	// On escape swap to show scene
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
-		Game::currentMode = Scene::GamePlay;
+		SceneClass::currentMode = Scene::GamePlay;
 	}
 }
 
