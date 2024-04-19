@@ -1,5 +1,5 @@
 /// <summary>
-/// author Pete Lowe May 2019
+/// author Ian Perez Bunuel, Liam Treacy, Vit Pretchl, Sophia Stanley
 /// you need to change the above line or lose marks
 /// </summary>
 #ifndef GAME_HPP

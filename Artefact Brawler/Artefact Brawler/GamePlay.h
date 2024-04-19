@@ -6,6 +6,8 @@
 #include "Currency.h"
 #include "Platform.h"
 #include "AttackManager.h"
+#include"ReflectiveBouncePads.h"
+#include <iostream>
 
 class GamePlay
 {
@@ -19,6 +21,8 @@ public:
 
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
+	void bouncePadCheck(ReflectiveBouncePads t_bouncingPad);
+	sf::RectangleShape checkGroundArea() { return ground; }
 
 private:
 
@@ -29,6 +33,7 @@ private:
 	Player player;
 	Sandbag sandbag;
 	Platform platforms[3];
+	ReflectiveBouncePads bouncePad;
 
 	// Controller
 	Controller controller;
@@ -54,5 +59,8 @@ private:
 	// Currency
 	sf::Text coinsText;
 	const int COINS_PER_HIT = 10;
+	// ground
+
+	sf::RectangleShape ground;
 };
 

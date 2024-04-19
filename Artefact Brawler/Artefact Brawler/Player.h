@@ -5,6 +5,7 @@
 #include "Globals.h"
 #include "Controller.h"
 #include "Platform.h"
+#include "ReflectiveBouncePads.h"
 
 #include <iostream>
 

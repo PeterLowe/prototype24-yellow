@@ -358,7 +358,7 @@ void GamePlay::update(sf::Time t_deltaTime)
 			}
 		}
 	}
-
+	bouncePadCheck(bouncePad);
 	// Sandbags knockback
 	if (sandbag.knockingBack)
 	{
@@ -431,11 +431,27 @@ void GamePlay::render(sf::RenderWindow& t_window)
 		t_window.draw(platforms[i].getBody());
 	}
 
+	t_window.draw(bouncePad.getBouncePad());
+
 	// Sandbag's percentage
 	t_window.draw(sandbagPercentage);
 
 	// Coins Text
 	t_window.draw(coinsText);
+}
+
+void GamePlay::bouncePadCheck(ReflectiveBouncePads t_bouncingPad)
+{
+	if (ground.getGlobalBounds().intersects(t_bouncingPad.getBouncePad().getGlobalBounds()))
+	{
+		//knockbackAngle = AttackManager::getUpAngleD(); // Set angle
+		//knockbackPower = AttackManager::getUpPower(); // Set power
+
+		knockbackAngle = bouncePad.angle;
+		knockbackPower = bouncePad.power;
+
+		bouncePad.hasHit = true;
+	}
 }
 
 void GamePlay::setupFontAndText()
@@ -475,6 +491,8 @@ void GamePlay::setupObjects()
 	platforms[0].setup({ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3 }); // Top
 	platforms[1].setup({ SCREEN_WIDTH / 3 - 50, (SCREEN_HEIGHT / 3) * 2 }); // Left
 	platforms[2].setup({ (SCREEN_WIDTH / 3 + 50) * 2, (SCREEN_HEIGHT / 3) * 2 }); // Right
+
+	bouncePad.setUpBP({ (SCREEN_WIDTH / 3 + 5) * 3, (SCREEN_HEIGHT / 3)});
 
 	// Attack setups
 	AttackManager::setup();
