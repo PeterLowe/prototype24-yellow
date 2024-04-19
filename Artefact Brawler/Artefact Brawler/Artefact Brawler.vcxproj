@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AttackManager.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelect.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Currency.cpp" />
@@ -39,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackManager.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelect.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Currency.h" />
