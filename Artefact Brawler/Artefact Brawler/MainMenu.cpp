@@ -24,17 +24,17 @@ void MainMenu::processMouseDown(sf::Event t_event)
 {
 	if (colosseumColliding)
 	{
-		SceneClass::currentMode = colosseum.sendTo;
+		transitionCircle.transition(colosseum.sendTo);
 	}
 
 	if (shopColliding)
 	{
-		SceneClass::currentMode = shop.sendTo;
+		transitionCircle.transition(shop.sendTo);
 	}
 
 	if (helpColliding)
 	{
-		SceneClass::currentMode = help.sendTo;
+		transitionCircle.transition(help.sendTo);
 	}
 }
 
@@ -50,13 +50,26 @@ void MainMenu::update(sf::Time t_deltaTime)
 	colosseumColliding = colosseum.checkForMouse(mousePos);
 	shopColliding = shop.checkForMouse(mousePos);
 	helpColliding = help.checkForMouse(mousePos);
+
+	// Screen Transition
+	if (transitionCircle.active)
+	{
+		transitionCircle.transition(transitionCircle.goTo);
+	}
 }
 
 void MainMenu::render(sf::RenderWindow& t_window)
 {
+	// Buttons
 	t_window.draw(colosseum.getBody());
 	t_window.draw(shop.getBody());
 	//t_window.draw(help.getBody());
+
+	// Screen Transition
+	if (transitionCircle.active)
+	{
+		t_window.draw(transitionCircle.getBody());
+	}
 }
 
 void MainMenu::setupButtons()

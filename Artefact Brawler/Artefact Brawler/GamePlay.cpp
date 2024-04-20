@@ -23,7 +23,7 @@ void GamePlay::processKeys(sf::Event t_event)
 	// On escape swap to show scene
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
-		SceneClass::currentMode = Scene::Shop;
+		transitionCircle.transition(Scene::Shop);
 	}
 
 	// Player's Jump
@@ -146,6 +146,12 @@ void GamePlay::update(sf::Time t_deltaTime)
 	else
 	{
 		controllerConnected = controller.connectCheck();
+	}
+
+	// Screen Transition
+	if (transitionCircle.active)
+	{
+		transitionCircle.transition(transitionCircle.goTo);
 	}
 
 	// Player
@@ -435,6 +441,12 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 	// Coins Text
 	t_window.draw(coinsText);
+
+	// Screen Transition
+	if (transitionCircle.active)
+	{
+		t_window.draw(transitionCircle.getBody());
+	}
 }
 
 void GamePlay::setupFontAndText()

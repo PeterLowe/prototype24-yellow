@@ -19,12 +19,20 @@ void Shop::processKeys(sf::Event t_event)
 	// On escape swap to show scene
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
-		SceneClass::currentMode = Scene::GamePlay;
+		transitionCircle.transition(Scene::MainMenu);
 	}
 }
 
 void Shop::update(sf::Time t_deltaTime)
 {
+
+	// Screen Transition
+	if (transitionCircle.active)
+	{
+		transitionCircle.transition(transitionCircle.goTo);
+	}
+
+	// Coin update
 	coinsText.setString("Coins: " + std::to_string(Currency::coins));
 }
 
@@ -32,6 +40,12 @@ void Shop::render(sf::RenderWindow& t_window)
 {
 	// Coins Text
 	t_window.draw(coinsText);
+
+	// Screen Transition
+	if (transitionCircle.active)
+	{
+		t_window.draw(transitionCircle.getBody());
+	}
 }
 
 void Shop::setupFontAndText()

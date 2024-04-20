@@ -24,5 +24,6 @@ private:
 	// Currency
 	sf::Text coinsText;
 
+	ScreenTransition transitionCircle;
 };
 

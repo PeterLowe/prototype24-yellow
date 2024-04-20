@@ -3,6 +3,7 @@
 # include <SFML/Graphics.hpp>
 #include "Button.h"
 #include "Scenes.h"
+#include "ScreenTransition.h"
 
 class Game;
 
@@ -37,9 +38,10 @@ private:
 	bool helpColliding = false;
 	sf::Vector2f helpPos = { 200.0f, 200.0f };
 
-
 	float buttonWidth = 100.0f;
 	float buttonHeight = 200.0f;
+
+	ScreenTransition transitionCircle;
 
 };
 

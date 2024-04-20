@@ -33,6 +33,7 @@
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sandbag.cpp" />
+    <ClCompile Include="ScreenTransition.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="SideAttack.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Sandbag.h" />
     <ClInclude Include="Scenes.h" />
+    <ClInclude Include="ScreenTransition.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="SideAttack.h" />
     <ClInclude Include="SplashScreen.h" />

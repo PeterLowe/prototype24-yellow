@@ -7,6 +7,7 @@
 #include "Platform.h"
 #include "AttackManager.h"
 #include "Scenes.h"
+#include "ScreenTransition.h"
 
 class GamePlay
 {
@@ -55,5 +56,7 @@ private:
 	// Currency
 	sf::Text coinsText;
 	const int COINS_PER_HIT = 10;
+
+	ScreenTransition transitionCircle;
 };
 
