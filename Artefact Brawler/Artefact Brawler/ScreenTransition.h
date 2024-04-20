@@ -23,7 +23,7 @@ private:
 	bool grow = false;
 
 	sf::CircleShape body;
-	const int MAX_SIZE = SCREEN_WIDTH;
+	const int MAX_SIZE = SCREEN_WIDTH - 200;
 	const int MIN_SIZE = 0;
 	float size = MAX_SIZE;
 

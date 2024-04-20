@@ -151,243 +151,251 @@ void GamePlay::update(sf::Time t_deltaTime)
 	// Screen Transition
 	if (transitionCircle.active)
 	{
+		paused = true;
 		transitionCircle.transition(transitionCircle.goTo);
 	}
-
-	// Player
-	player.move(controller, controllerConnected);
-	// Jumping
-	if (player.jumping)
+	else
 	{
-		player.jump();
+		paused = false;
 	}
-	for (int i = 0; i < 3; i++) // Used to check each platform
-	{
-		player.groundCheck(platforms[i]);
 
-		if (player.onGround)
+	if (!paused)
+	{
+		// Player
+		player.move(controller, controllerConnected);
+		// Jumping
+		if (player.jumping)
 		{
-			break;
+			player.jump();
 		}
-	}
-
-	player.gravity();
-	player.checkBoundries();
-
-	// Sandbag
-	for (int i = 0; i < 3; i++)
-	{
-		sandbag.groundCheck(platforms[i]);
-
-		if (sandbag.onGround)
+		for (int i = 0; i < 3; i++) // Used to check each platform
 		{
-			break;
-		}
-	}
-	sandbag.gravity();
-	sandbag.checkBoundries();
-	// Off screen indicator
-	sandbag.offScreenIndicator();
+			player.groundCheck(platforms[i]);
 
-	/// Attacks ///
-	// Neutral Attack
-	if (AttackManager::getNeutralActive()) // Attack
-	{
-		// Do the attack and check collisions
-		AttackManager::neutralAttack(player.getPosition(), sandbag, canAttack);
-
-		// Set the endlag
-		endLagDuration = AttackManager::getNeutralEndlag();
-
-		// If hit...
-		if (AttackManager::getNeutralHasHit())
-		{
-			knockbackAngle = AttackManager::getNeutralAngleD(); // Set angle
-			knockbackPower = AttackManager::getNeutralPower(); // Set power
-			damageTaken = AttackManager::getNeutralDamage(); // Set the damage to add to sandbag's percentage
-
-
-			sandbag.hitAgain = true;
-			sandbag.knockingBack = true;
-
-			// Do damage if damage has not been done
-			if (!damageDone)
+			if (player.onGround)
 			{
-				// Add to the sandbag's percentage
-				sandbag.takeDamage(AttackManager::getNeutralDamage());
-
-				// Add to the currency
-				Currency::coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(Currency::coins));
-
-				damageDone = true;
+				break;
 			}
 		}
-	}
 
-	// Right Attack
-	if (AttackManager::getSideRightActive()) // Attack
-	{
-		AttackManager::sideAttackRight(player.getPosition(), sandbag, canAttack);
+		player.gravity();
+		player.checkBoundries();
 
-		// Set the endlag
-		endLagDuration = AttackManager::getSideEndlagRight();
-
-		// If hit...
-		if (AttackManager::getSideHasHitRight())
+		// Sandbag
+		for (int i = 0; i < 3; i++)
 		{
-			knockbackAngle = AttackManager::getSideAngleDRight(); // Set angle
-			knockbackPower = AttackManager::getSidePowerRight(); // Set power
-			damageTaken = AttackManager::getSideDamageRight(); // Set the damage to add to sandbag's percentage
+			sandbag.groundCheck(platforms[i]);
 
-
-			sandbag.hitAgain = true;
-			sandbag.knockingBack = true;
-
-			// Do damage if damage has not been done
-			if (!damageDone)
+			if (sandbag.onGround)
 			{
-				// Add to the sandbag's percentage
-				sandbag.takeDamage(AttackManager::getSideDamageRight());
-
-				// Add to the currency
-				Currency::coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(Currency::coins));
-
-
-				damageDone = true;
+				break;
 			}
 		}
-	}
+		sandbag.gravity();
+		sandbag.checkBoundries();
+		// Off screen indicator
+		sandbag.offScreenIndicator();
 
-	// Left Attack
-	if (AttackManager::getSideLeftActive()) // Attack
-	{
-		AttackManager::sideAttackLeft(player.getPosition(), sandbag, canAttack);
-
-		// Set the endlag
-		endLagDuration = AttackManager::getSideEndlagLeft();
-
-		// If hit...
-		if (AttackManager::getSideHasHitLeft())
+		/// Attacks ///
+		// Neutral Attack
+		if (AttackManager::getNeutralActive()) // Attack
 		{
-			knockbackAngle = AttackManager::getSideAngleDLeft(); // Set angle
-			knockbackPower = AttackManager::getSidePowerLeft(); // Set power
-			damageTaken = AttackManager::getSideDamageLeft(); // Set the damage to add to sandbag's percentage
+			// Do the attack and check collisions
+			AttackManager::neutralAttack(player.getPosition(), sandbag, canAttack);
 
+			// Set the endlag
+			endLagDuration = AttackManager::getNeutralEndlag();
 
-			sandbag.hitAgain = true;
-			sandbag.knockingBack = true;
-
-			// Do damage if damage has not been done
-			if (!damageDone)
+			// If hit...
+			if (AttackManager::getNeutralHasHit())
 			{
-				// Add to the sandbag's percentage
-				sandbag.takeDamage(AttackManager::getSideDamageLeft());
-
-				// Add to the currency
-				Currency::coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(Currency::coins));
+				knockbackAngle = AttackManager::getNeutralAngleD(); // Set angle
+				knockbackPower = AttackManager::getNeutralPower(); // Set power
+				damageTaken = AttackManager::getNeutralDamage(); // Set the damage to add to sandbag's percentage
 
 
-				damageDone = true;
+				sandbag.hitAgain = true;
+				sandbag.knockingBack = true;
+
+				// Do damage if damage has not been done
+				if (!damageDone)
+				{
+					// Add to the sandbag's percentage
+					sandbag.takeDamage(AttackManager::getNeutralDamage());
+
+					// Add to the currency
+					Currency::coins += COINS_PER_HIT; // * comboMultiplier
+					coinsText.setString("Coins: " + std::to_string(Currency::coins));
+
+					damageDone = true;
+				}
 			}
 		}
-	}
 
-	if (AttackManager::getUpActive()) // Attack
-	{
-		// Do the attack and check collisions
-		AttackManager::upAttack(player.getPosition(), sandbag, canAttack);
-
-		// Set the endlag
-		endLagDuration = AttackManager::getUpEndlag();
-
-		// If hit...
-		if (AttackManager::getUpHasHit())
+		// Right Attack
+		if (AttackManager::getSideRightActive()) // Attack
 		{
-			knockbackAngle = AttackManager::getUpAngleD(); // Set angle
-			knockbackPower = AttackManager::getUpPower(); // Set power
-			damageTaken = AttackManager::getUpDamage();
+			AttackManager::sideAttackRight(player.getPosition(), sandbag, canAttack);
 
+			// Set the endlag
+			endLagDuration = AttackManager::getSideEndlagRight();
 
-			sandbag.hitAgain = true;
-			sandbag.knockingBack = true;
-
-			// Do damage if damage has not been done
-			if (!damageDone)
+			// If hit...
+			if (AttackManager::getSideHasHitRight())
 			{
-				// Add to the sandbag's percentage
-				sandbag.takeDamage(AttackManager::getUpDamage());
-
-				// Add to the currency
-				Currency::coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(Currency::coins));
+				knockbackAngle = AttackManager::getSideAngleDRight(); // Set angle
+				knockbackPower = AttackManager::getSidePowerRight(); // Set power
+				damageTaken = AttackManager::getSideDamageRight(); // Set the damage to add to sandbag's percentage
 
 
-				damageDone = true;
+				sandbag.hitAgain = true;
+				sandbag.knockingBack = true;
+
+				// Do damage if damage has not been done
+				if (!damageDone)
+				{
+					// Add to the sandbag's percentage
+					sandbag.takeDamage(AttackManager::getSideDamageRight());
+
+					// Add to the currency
+					Currency::coins += COINS_PER_HIT; // * comboMultiplier
+					coinsText.setString("Coins: " + std::to_string(Currency::coins));
+
+
+					damageDone = true;
+				}
 			}
 		}
-	}
 
-	// down attack
-	if (AttackManager::getDownActive()) // attack
-	{
-		AttackManager::downAttack(player.getPosition(), sandbag, canAttack);
-
-		// set endlag
-		endLagDuration = AttackManager::getDownEndlag();
-
-		// If hit...
-		if (AttackManager::getDownHasHit())
+		// Left Attack
+		if (AttackManager::getSideLeftActive()) // Attack
 		{
-			knockbackAngle = AttackManager::getDownAngleD(); // set angle
-			knockbackPower = AttackManager::getDownPower(); // set power
-			damageTaken = AttackManager::getDownDamage();
+			AttackManager::sideAttackLeft(player.getPosition(), sandbag, canAttack);
 
-			sandbag.hitAgain = true;
-			sandbag.knockingBack = true;
+			// Set the endlag
+			endLagDuration = AttackManager::getSideEndlagLeft();
 
-			// Do damage if damage has not been done
-			if (!damageDone)
+			// If hit...
+			if (AttackManager::getSideHasHitLeft())
 			{
-				// Add to the sandbag's percentage
-				sandbag.takeDamage(AttackManager::getDownDamage());
-
-				// Add to the currency
-				Currency::coins += COINS_PER_HIT; // * comboMultiplier
-				coinsText.setString("Coins: " + std::to_string(Currency::coins));
+				knockbackAngle = AttackManager::getSideAngleDLeft(); // Set angle
+				knockbackPower = AttackManager::getSidePowerLeft(); // Set power
+				damageTaken = AttackManager::getSideDamageLeft(); // Set the damage to add to sandbag's percentage
 
 
-				damageDone = true;
+				sandbag.hitAgain = true;
+				sandbag.knockingBack = true;
+
+				// Do damage if damage has not been done
+				if (!damageDone)
+				{
+					// Add to the sandbag's percentage
+					sandbag.takeDamage(AttackManager::getSideDamageLeft());
+
+					// Add to the currency
+					Currency::coins += COINS_PER_HIT; // * comboMultiplier
+					coinsText.setString("Coins: " + std::to_string(Currency::coins));
+
+
+					damageDone = true;
+				}
 			}
 		}
+
+		if (AttackManager::getUpActive()) // Attack
+		{
+			// Do the attack and check collisions
+			AttackManager::upAttack(player.getPosition(), sandbag, canAttack);
+
+			// Set the endlag
+			endLagDuration = AttackManager::getUpEndlag();
+
+			// If hit...
+			if (AttackManager::getUpHasHit())
+			{
+				knockbackAngle = AttackManager::getUpAngleD(); // Set angle
+				knockbackPower = AttackManager::getUpPower(); // Set power
+				damageTaken = AttackManager::getUpDamage();
+
+
+				sandbag.hitAgain = true;
+				sandbag.knockingBack = true;
+
+				// Do damage if damage has not been done
+				if (!damageDone)
+				{
+					// Add to the sandbag's percentage
+					sandbag.takeDamage(AttackManager::getUpDamage());
+
+					// Add to the currency
+					Currency::coins += COINS_PER_HIT; // * comboMultiplier
+					coinsText.setString("Coins: " + std::to_string(Currency::coins));
+
+
+					damageDone = true;
+				}
+			}
+		}
+
+		// down attack
+		if (AttackManager::getDownActive()) // attack
+		{
+			AttackManager::downAttack(player.getPosition(), sandbag, canAttack);
+
+			// set endlag
+			endLagDuration = AttackManager::getDownEndlag();
+
+			// If hit...
+			if (AttackManager::getDownHasHit())
+			{
+				knockbackAngle = AttackManager::getDownAngleD(); // set angle
+				knockbackPower = AttackManager::getDownPower(); // set power
+				damageTaken = AttackManager::getDownDamage();
+
+				sandbag.hitAgain = true;
+				sandbag.knockingBack = true;
+
+				// Do damage if damage has not been done
+				if (!damageDone)
+				{
+					// Add to the sandbag's percentage
+					sandbag.takeDamage(AttackManager::getDownDamage());
+
+					// Add to the currency
+					Currency::coins += COINS_PER_HIT; // * comboMultiplier
+					coinsText.setString("Coins: " + std::to_string(Currency::coins));
+
+
+					damageDone = true;
+				}
+			}
+		}
+
+		// Sandbags knockback
+		if (sandbag.knockingBack)
+		{
+			// Change the percentage string
+			sandbagPercentage.setString("Sandbag: " + std::to_string(sandbag.percentage) + "%");
+
+			// Bouncing
+			knockbackAngle = sandbag.bounce(knockbackAngle);
+			sandbag.knockback(knockbackAngle, knockbackPower, damageTaken); // Knockback
+		}
+
+		if (!canAttack)
+		{
+			// Do endlag timer
+			endLag();
+
+			// Allow for another attack input from controller
+			buttonPressed = false;
+
+			// Allow damage again
+			damageDone = false;
+		}
+
+		player.changeColor(canAttack);
 	}
-
-	// Sandbags knockback
-	if (sandbag.knockingBack)
-	{
-		// Change the percentage string
-		sandbagPercentage.setString("Sandbag: " + std::to_string(sandbag.percentage) + "%");
-
-		// Bouncing
-		knockbackAngle = sandbag.bounce(knockbackAngle);
-		sandbag.knockback(knockbackAngle, knockbackPower, damageTaken); // Knockback
-	}
-
-	if (!canAttack)
-	{
-		// Do endlag timer
-		endLag();
-
-		// Allow for another attack input from controller
-		buttonPressed = false;
-
-		// Allow damage again
-		damageDone = false;
-	}
-
-	player.changeColor(canAttack);
 }
 
 void GamePlay::render(sf::RenderWindow& t_window)

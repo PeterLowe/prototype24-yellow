@@ -58,5 +58,6 @@ private:
 	const int COINS_PER_HIT = 10;
 
 	ScreenTransition transitionCircle;
+	bool paused = false;
 };
 
