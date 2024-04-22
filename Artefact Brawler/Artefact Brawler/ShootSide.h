@@ -43,7 +43,7 @@ private:
 	float height = 30.0f;
 	sf::Vector2f position;
 	sf::Vector2f velocity = {};
-	int speed = 5;
+	int speed = 10;
 
 	// Left or Right
 	float angleRight = 22.5; // 0 is straight up, 45 ->, 180 down, 315 <-

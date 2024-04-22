@@ -29,7 +29,7 @@ void AttackManager::setup()
 
 	// special Side shooting
 	specials.shootSideLeft.setup(true);
-	specials.shootSideRight.setup(true);
+	specials.shootSideRight.setup(false);
 }
 
 /// Attacking ///
@@ -781,7 +781,7 @@ void AttackManager::neutralSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool&
 void AttackManager::sideSpecialLeft(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
 {
 	// Call the sideLeft special equipped
-	switch (specialNeutral)
+	switch (specialSideLeft)
 	{
 	case SpecialType::None:
 		break;
@@ -796,7 +796,7 @@ void AttackManager::sideSpecialLeft(sf::Vector2f t_pos, Sandbag& t_sandbag, bool
 void AttackManager::sideSpecialRight(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
 {
 	// Call the sideRight special equipped
-	switch (specialNeutral)
+	switch (specialSideRight)
 	{
 	case SpecialType::None:
 		break;
@@ -975,7 +975,7 @@ bool AttackManager::getNeutralSpecialActive()
 	case SpecialType::ShootingNeutral:
 
 		//return specials.shootNeutral.active;
-
+		return false;
 		break;
 	}
 }
@@ -1023,7 +1023,7 @@ bool AttackManager::getUpSpecialActive()
 	case SpecialType::ShootingUp:
 
 		//return specials.shootUp.active;
-
+		return false;
 		break;
 	}
 }
@@ -1039,7 +1039,7 @@ bool AttackManager::getDownSpecialActive()
 	case SpecialType::ShootingDown:
 
 		//return specials.shootDown.active;
-
+		return false;
 		break;
 	}
 }
