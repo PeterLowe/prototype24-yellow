@@ -1054,7 +1054,7 @@ int AttackManager::getNeutralSpecialDamage()
 	case SpecialType::ShootingNeutral:
 
 		//return specials.shootNeutral.damage;
-
+		return 0;
 		break;
 	}
 }
@@ -1099,7 +1099,7 @@ int AttackManager::getUpSpecialDamage()
 	case SpecialType::ShootingUp:
 
 		//return specials.shootUp.damage;
-
+		return 0;
 		break;
 	}
 }
@@ -1114,7 +1114,7 @@ int AttackManager::getDownSpecialDamage()
 	case SpecialType::ShootingDown:
 
 		//return specials.shootDown.damage;
-
+		return 0;
 		break;
 	}
 }
@@ -1129,7 +1129,7 @@ float AttackManager::getNeutralSpecialPower()
 	case SpecialType::ShootingNeutral:
 
 		//return specials.shootNeutral.power;
-
+		return 0;
 		break;
 	}
 }
@@ -1174,7 +1174,7 @@ float AttackManager::getUpSpecialPower()
 	case SpecialType::ShootingDown:
 
 		//return specials.shootUp.power;
-
+		return 0;
 		break;
 	}
 }
@@ -1189,7 +1189,7 @@ float AttackManager::getDownSpecialPower()
 	case SpecialType::ShootingDown:
 
 		//return specials.shootDown.power;
-
+		return 0;
 		break;
 	}
 }
@@ -1204,7 +1204,7 @@ float AttackManager::getNeutralSpecialAngleD()
 	case SpecialType::ShootingNeutral:
 
 		//return specials.shootNeutral.angleD;
-
+		return 0;
 		break;
 	}
 }
@@ -1249,7 +1249,7 @@ float AttackManager::getUpSpecialAngleD()
 	case SpecialType::ShootingUp:
 
 		//return specials.shootUp.angleD;
-
+		return 0;
 		break;
 	}
 }
@@ -1264,7 +1264,7 @@ float AttackManager::getDownSpecialAngleD()
 	case SpecialType::ShootingDown:
 
 		//return specials.shootDown.angleD;
-
+		return 0;
 		break;
 	}
 }
@@ -1279,7 +1279,7 @@ int AttackManager::getNeutralSpecialEndlag()
 	case SpecialType::ShootingNeutral:
 
 		//return specials.shootNeutral.END_LAG;
-
+		return 0;
 		break;
 	}
 }
@@ -1324,7 +1324,7 @@ int AttackManager::getUpSpecialEndlag()
 	case SpecialType::ShootingUp:
 
 		//return specials.shootUp.END_LAG;
-
+		return 0;
 		break;
 	}
 }
@@ -1339,7 +1339,7 @@ int AttackManager::getDownSpecialEndlag()
 	case SpecialType::ShootingDown:
 
 		//return specials.shootDown.END_LAG;
-
+		return 0;
 		break;
 	}
 }
@@ -1354,7 +1354,7 @@ bool AttackManager::getNeutralSpecialHasHit()
 	case SpecialType::ShootingNeutral:
 
 		//return specials.shootNeutral.hasHit;
-
+		return 0;
 		break;
 	}
 }
@@ -1399,7 +1399,7 @@ bool AttackManager::getUpSpecialHasHit()
 	case SpecialType::ShootingUp:
 
 		//return specials.shootUp.hasHit;
-
+		return 0;
 		break;
 	}
 }
@@ -1414,7 +1414,7 @@ bool AttackManager::getDownSpecialHasHit()
 	case SpecialType::ShootingDown:
 
 		//return specials.shootDown.hasHit;
-
+		return 0;
 		break;
 	}
 }

@@ -27,6 +27,11 @@ private:
 	void setupFontAndText();
 	void setupObjects();
 
+	void doAttacks();
+	void drawAttacks(sf::RenderWindow& t_window);
+	void doSpecials();
+	void drawSpecials(sf::RenderWindow& t_window);
+
 	// Objects
 	Player player;
 	Sandbag sandbag;
