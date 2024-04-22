@@ -51,6 +51,7 @@ void ShootSide::attack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack
 	{
 		timer++;
 
+
 		// Set Direction to go in
 		if (direction == Direction::Right)
 		{

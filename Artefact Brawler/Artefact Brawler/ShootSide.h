@@ -27,7 +27,7 @@ public:
 
 	// Information of the attack for the sandbag
 	int damage = 5; // Damage done
-	const int END_LAG = 0.4f * 60; // Delay before you can attack again
+	const int END_LAG = 0.1f * 60; // Delay before you can attack again
 	float angleD; // 0 is straight up, 45 ->, 180 down, 315 <-
 	float power = 0.1f; // How fast it's knocked back
 	bool knockingBack = false;
@@ -54,6 +54,6 @@ private:
 	bool leftAttack = true;
 	Direction direction = Direction::None;
 	int timer = 0;
-	const int ACTIVE_DURATION = 2.0f * 60; // Seconds wanted * Framerate
+	const int ACTIVE_DURATION = 1.0f * 60; // Seconds wanted * Framerate
 };
 
