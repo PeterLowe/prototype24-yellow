@@ -1043,3 +1043,378 @@ bool AttackManager::getDownSpecialActive()
 		break;
 	}
 }
+
+int AttackManager::getNeutralSpecialDamage()
+{
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingNeutral:
+
+		//return specials.shootNeutral.damage;
+
+		break;
+	}
+}
+
+int AttackManager::getSideSpecialDamageLeft()
+{
+	switch (specialSideLeft)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideLeft:
+
+		return specials.shootSideLeft.damage;
+
+		break;
+	}
+}
+
+int AttackManager::getSideSpecialDamageRight()
+{
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideRight:
+
+		return specials.shootSideRight.damage;
+
+		break;
+	}
+}
+
+int AttackManager::getUpSpecialDamage()
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingUp:
+
+		//return specials.shootUp.damage;
+
+		break;
+	}
+}
+
+int AttackManager::getDownSpecialDamage()
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingDown:
+
+		//return specials.shootDown.damage;
+
+		break;
+	}
+}
+
+float AttackManager::getNeutralSpecialPower()
+{
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingNeutral:
+
+		//return specials.shootNeutral.power;
+
+		break;
+	}
+}
+
+float AttackManager::getSideSpecialPowerLeft()
+{
+	switch (specialSideLeft)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideLeft:
+
+		return specials.shootSideLeft.power;
+
+		break;
+	}
+}
+
+float AttackManager::getSideSpecialPowerRight()
+{
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideRight:
+
+		return specials.shootSideRight.power;
+
+		break;
+	}
+}
+
+float AttackManager::getUpSpecialPower()
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingDown:
+
+		//return specials.shootUp.power;
+
+		break;
+	}
+}
+
+float AttackManager::getDownSpecialPower()
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingDown:
+
+		//return specials.shootDown.power;
+
+		break;
+	}
+}
+
+float AttackManager::getNeutralSpecialAngleD()
+{
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingNeutral:
+
+		//return specials.shootNeutral.angleD;
+
+		break;
+	}
+}
+
+float AttackManager::getSideSpecialAngleDLeft()
+{
+	switch (specialSideLeft)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideLeft:
+
+		return specials.shootSideLeft.angleD;
+
+		break;
+	}
+}
+
+float AttackManager::getSideSpecialAngleDRight()
+{
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideRight:
+
+		return specials.shootSideRight.angleD;
+
+		break;
+	}
+}
+
+float AttackManager::getUpSpecialAngleD()
+{
+	switch (specialUp)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingUp:
+
+		//return specials.shootUp.angleD;
+
+		break;
+	}
+}
+
+float AttackManager::getDownSpecialAngleD()
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingDown:
+
+		//return specials.shootDown.angleD;
+
+		break;
+	}
+}
+
+int AttackManager::getNeutralSpecialEndlag()
+{
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingNeutral:
+
+		//return specials.shootNeutral.END_LAG;
+
+		break;
+	}
+}
+
+int AttackManager::getSideSpecialEndlagLeft()
+{
+	switch (specialSideLeft)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideLeft:
+
+		return specials.shootSideLeft.END_LAG;
+
+		break;
+	}
+}
+
+int AttackManager::getSideSpecialEndlagRight()
+{
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideRight:
+
+		return specials.shootSideRight.END_LAG;
+
+		break;
+	}
+}
+
+int AttackManager::getUpSpecialEndlag()
+{
+	switch (specialUp)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingUp:
+
+		//return specials.shootUp.END_LAG;
+
+		break;
+	}
+}
+
+int AttackManager::getDownSpecialEndlag()
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingDown:
+
+		//return specials.shootDown.END_LAG;
+
+		break;
+	}
+}
+
+bool AttackManager::getNeutralSpecialHasHit()
+{
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingNeutral:
+
+		//return specials.shootNeutral.hasHit;
+
+		break;
+	}
+}
+
+bool AttackManager::getSideSpecialHasHitLeft()
+{
+	switch (specialSideLeft)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideLeft:
+
+		return specials.shootSideLeft.hasHit;
+
+		break;
+	}
+}
+
+bool AttackManager::getSideSpecialHasHitRight()
+{
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideRight:
+
+		return specials.shootSideRight.hasHit;
+
+		break;
+	}
+}
+
+bool AttackManager::getUpSpecialHasHit()
+{
+	switch (specialUp)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingUp:
+
+		//return specials.shootUp.hasHit;
+
+		break;
+	}
+}
+
+bool AttackManager::getDownSpecialHasHit()
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingDown:
+
+		//return specials.shootDown.hasHit;
+
+		break;
+	}
+}
