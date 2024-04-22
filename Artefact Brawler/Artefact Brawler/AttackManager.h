@@ -11,6 +11,8 @@
 
 // Special shooting attacks
 #include "ShootSide.h"
+#include "ShootUp.h"
+#include "ShootDown.h"
 
 enum class AttackType
 {
@@ -57,6 +59,8 @@ struct Specials
 	// Shooting
 	ShootSide shootSideLeft;
 	ShootSide shootSideRight;
+	ShootUp shootUp;
+	ShootDown shootDown;
 };
 
 

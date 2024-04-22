@@ -817,6 +817,7 @@ void AttackManager::upSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_ca
 		break;
 
 	case SpecialType::ShootingUp:
+		specials.shootUp.attack(t_pos, t_sandbag, t_canAttack);
 		break;
 
 	}
@@ -830,6 +831,7 @@ void AttackManager::downSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_
 		break;
 
 	case SpecialType::ShootingDown:
+		specials.shootDown.attack(t_pos, t_sandbag, t_canAttack);
 		break;
 
 	}
@@ -879,12 +881,13 @@ void AttackManager::sideSpecialSpawnRight(sf::Vector2f t_pos)
 void AttackManager::upSpecialSpawn(sf::Vector2f t_pos)
 {
 	// Call the up spawning equipped
-	switch (specialSideRight)
+	switch (specialUp)
 	{
 	case SpecialType::None:
 		break;
 
 	case SpecialType::ShootingUp:
+		specials.shootUp.spawn(t_pos);
 		break;
 	}
 }
@@ -892,12 +895,13 @@ void AttackManager::upSpecialSpawn(sf::Vector2f t_pos)
 void AttackManager::downSpecialSpawn(sf::Vector2f t_pos)
 {
 	// Call the down spawning equipped
-	switch (specialSideRight)
+	switch (specialDown)
 	{
 	case SpecialType::None:
 		break;
 
 	case SpecialType::ShootingDown:
+		specials.shootDown.spawn(t_pos);
 		break;
 	}
 }
@@ -948,6 +952,7 @@ void AttackManager::drawUpSpecial(sf::RenderWindow& t_window)
 		break;
 
 	case SpecialType::ShootingUp:
+		t_window.draw(specials.shootUp.getBody());
 		break;
 	}
 }
@@ -960,6 +965,7 @@ void AttackManager::drawDownSpecial(sf::RenderWindow& t_window)
 		break;
 
 	case SpecialType::ShootingDown:
+		t_window.draw(specials.shootDown.getBody());
 		break;
 	}
 }
@@ -1022,8 +1028,7 @@ bool AttackManager::getUpSpecialActive()
 
 	case SpecialType::ShootingUp:
 
-		//return specials.shootUp.active;
-		return false;
+		return specials.shootUp.active;
 		break;
 	}
 }
@@ -1038,8 +1043,7 @@ bool AttackManager::getDownSpecialActive()
 
 	case SpecialType::ShootingDown:
 
-		//return specials.shootDown.active;
-		return false;
+		return specials.shootDown.active;
 		break;
 	}
 }
@@ -1098,8 +1102,7 @@ int AttackManager::getUpSpecialDamage()
 
 	case SpecialType::ShootingUp:
 
-		//return specials.shootUp.damage;
-		return 0;
+		return specials.shootUp.damage;
 		break;
 	}
 }
@@ -1113,8 +1116,7 @@ int AttackManager::getDownSpecialDamage()
 
 	case SpecialType::ShootingDown:
 
-		//return specials.shootDown.damage;
-		return 0;
+		return specials.shootDown.damage;
 		break;
 	}
 }
@@ -1173,8 +1175,7 @@ float AttackManager::getUpSpecialPower()
 
 	case SpecialType::ShootingDown:
 
-		//return specials.shootUp.power;
-		return 0;
+		return specials.shootUp.power;
 		break;
 	}
 }
@@ -1188,8 +1189,7 @@ float AttackManager::getDownSpecialPower()
 
 	case SpecialType::ShootingDown:
 
-		//return specials.shootDown.power;
-		return 0;
+		return specials.shootDown.power;
 		break;
 	}
 }
@@ -1248,8 +1248,7 @@ float AttackManager::getUpSpecialAngleD()
 
 	case SpecialType::ShootingUp:
 
-		//return specials.shootUp.angleD;
-		return 0;
+		return specials.shootUp.angleD;
 		break;
 	}
 }
@@ -1263,8 +1262,7 @@ float AttackManager::getDownSpecialAngleD()
 
 	case SpecialType::ShootingDown:
 
-		//return specials.shootDown.angleD;
-		return 0;
+		return specials.shootDown.angleD;
 		break;
 	}
 }
@@ -1323,8 +1321,7 @@ int AttackManager::getUpSpecialEndlag()
 
 	case SpecialType::ShootingUp:
 
-		//return specials.shootUp.END_LAG;
-		return 0;
+		return specials.shootUp.END_LAG;
 		break;
 	}
 }
@@ -1338,8 +1335,7 @@ int AttackManager::getDownSpecialEndlag()
 
 	case SpecialType::ShootingDown:
 
-		//return specials.shootDown.END_LAG;
-		return 0;
+		return specials.shootDown.END_LAG;
 		break;
 	}
 }
@@ -1398,8 +1394,7 @@ bool AttackManager::getUpSpecialHasHit()
 
 	case SpecialType::ShootingUp:
 
-		//return specials.shootUp.hasHit;
-		return 0;
+		return specials.shootUp.hasHit;
 		break;
 	}
 }
@@ -1413,8 +1408,7 @@ bool AttackManager::getDownSpecialHasHit()
 
 	case SpecialType::ShootingDown:
 
-		//return specials.shootDown.hasHit;
-		return 0;
+		return specials.shootDown.hasHit;
 		break;
 	}
 }

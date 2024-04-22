@@ -71,7 +71,7 @@ void GamePlay::processKeys(sf::Event t_event)
 		}
 
 		// SPECIAL ATTACKS
-		// If J is pressed and ...
+		// If K is pressed and ...
 		if (sf::Keyboard::K == t_event.key.code)
 		{
 			// Up Attack

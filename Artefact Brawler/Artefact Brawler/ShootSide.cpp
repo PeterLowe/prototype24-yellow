@@ -2,6 +2,8 @@
 
 ShootSide::ShootSide()
 {
+	angleD = 0;
+
 	if (angleRight > 225 && angleRight <= 225)
 	{
 		angleLeft = 360 - (angleRight * 1.5f);
