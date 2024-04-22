@@ -2,11 +2,15 @@
 
 #include <SFML/Graphics.hpp>
 
-// Including Attacks
+/// Including Attacks ///
+// Basic Attacks
 #include "NeutralAttack.h"
 #include "SideAttack.h"
 #include "UpAttack.h"
 #include "DownAttack.h"
+
+// Special shooting attacks
+#include "ShootSide.h"
 
 enum class AttackType
 {
