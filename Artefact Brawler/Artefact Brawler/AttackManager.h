@@ -25,6 +25,19 @@ enum class AttackType
 
 };
 
+enum class SpecialType
+{
+	None,
+
+	// Shooting
+	ShootingNeutral,
+	ShootingSideLeft,
+	ShootingSideRight,
+	ShootingUp,
+	ShootingDown
+
+};
+
 // Structure that holds normal attacks
 struct Attacks
 {
@@ -41,6 +54,9 @@ struct Attacks
 // Structure that holds special attacks
 struct Specials
 {
+	// Shooting
+	ShootSide shootSideLeft;
+	ShootSide shootSideRight;
 };
 
 
@@ -51,6 +67,7 @@ public:
 
 	static void setup();
 
+	/// Normal Attacks ///
 	// Attacking
 	static void neutralAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
 	static void sideAttackLeft(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
@@ -113,6 +130,73 @@ public:
 	static bool getSideHasHitRight();
 	static bool getUpHasHit();
 	static bool getDownHasHit();
+
+
+
+	/// Special Attacks ///
+	// Attacking
+	static void neutralSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+	static void sideSpecialLeft(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+	static void sideSpecialRight(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+	static void upSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+	static void downSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack);
+
+	// Spawning
+	static void neutralSpecialSpawn(sf::Vector2f t_pos);
+	static void sideSpecialSpawnLeft(sf::Vector2f t_pos);
+	static void sideSpecialSpawnRight(sf::Vector2f t_pos);
+	static void upSpecialSpawn(sf::Vector2f t_pos);
+	static void downSpecialSpawn(sf::Vector2f t_pos);
+
+	// Draw
+	static void drawNeutralSpecial(sf::RenderWindow& t_window);
+	static void drawSideSpecialLeft(sf::RenderWindow& t_window);
+	static void drawSideSpecialRight(sf::RenderWindow& t_window);
+	static void drawUpSpecial(sf::RenderWindow& t_window);
+	static void drawDownSpecial(sf::RenderWindow& t_window);
+
+	// Active
+	static bool getNeutralSpecialActive();
+	static bool getSideSpecialLeftActive();
+	static bool getSideSpecialRightActive();
+	static bool getUpSpecialActive();
+	static bool getDownSpecialActive();
+
+	// Damage
+	static int getNeutralSpecialDamage();
+	static int getSideSpecialDamageLeft();
+	static int getSideSpecialDamageRight();
+	static int getUpSpecialDamage();
+	static int getDownSpecialDamage();
+
+	// Power
+	static float getNeutralSpecialPower();
+	static float getSideSpecialPowerLeft();
+	static float getSideSpecialPowerRight();
+	static float getUpSpecialPower();
+	static float getDownSpecialPower();
+
+	// AngleD
+	static float getNeutralSpecialAngleD();
+	static float getSideSpecialAngleDLeft();
+	static float getSideSpecialAngleDRight();
+	static float getUpSpecialAngleD();
+	static float getDownSpecialAngleD();
+
+	// Endlag
+	static int getNeutralSpecialEndlag();
+	static int getSideSpecialEndlagLeft();
+	static int getSideSpecialEndlagRight();
+	static int getUpSpecialEndlag();
+	static int getDownSpecialEndlag();
+
+	// Has Hit
+	static bool getNeutralSpecialHasHit();
+	static bool getSideSpecialHasHitLeft();
+	static bool getSideSpecialHasHitRight();
+	static bool getUpSpecialHasHit();
+	static bool getDownSpecialHasHit();
+	
 
 
 private:

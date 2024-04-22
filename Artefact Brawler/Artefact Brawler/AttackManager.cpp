@@ -9,6 +9,15 @@ AttackType down = AttackType::BasicDown;
 static Attacks attacks;
 
 
+SpecialType specialNeutral = SpecialType::ShootingNeutral;
+SpecialType specialSideLeft = SpecialType::ShootingSideLeft;
+SpecialType specialSideRight = SpecialType::ShootingSideRight;
+SpecialType specialUp = SpecialType::ShootingUp;
+SpecialType specialDown = SpecialType::ShootingDown;
+
+static Specials specials;
+
+
 
 
 // Used for attacks like side attacks with different directions
@@ -17,6 +26,10 @@ void AttackManager::setup()
 	// Setup the basic side attacks
 	attacks.basicSideLeft.setup(true);
 	attacks.basicSideRight.setup(false);
+
+	// special Side shooting
+	specials.shootSideLeft.setup(true);
+	specials.shootSideRight.setup(true);
 }
 
 /// Attacking ///
@@ -98,7 +111,7 @@ void AttackManager::downAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_c
 /// Spawning ///
 void AttackManager::neutralSpawn(sf::Vector2f t_pos)
 {
-	// Call the down spawning equipped
+	
 	switch (neutral)
 	{
 	case AttackType::None:
@@ -112,7 +125,7 @@ void AttackManager::neutralSpawn(sf::Vector2f t_pos)
 
 void AttackManager::sideSpawnLeft(sf::Vector2f t_pos)
 {
-	// Call the down spawning equipped
+	// Call the sideLeft spawning equipped
 	switch (sideLeft)
 	{
 	case AttackType::None:
@@ -126,7 +139,7 @@ void AttackManager::sideSpawnLeft(sf::Vector2f t_pos)
 
 void AttackManager::sideSpawnRight(sf::Vector2f t_pos)
 {
-	// Call the down spawning equipped
+	// Call the sideRight spawning equipped
 	switch (sideRight)
 	{
 	case AttackType::None:
@@ -140,7 +153,7 @@ void AttackManager::sideSpawnRight(sf::Vector2f t_pos)
 
 void AttackManager::upSpawn(sf::Vector2f t_pos)
 {
-	// Call the down spawning equipped
+	// Call the up spawning equipped
 	switch (up)
 	{
 	case AttackType::None:
@@ -257,7 +270,7 @@ void AttackManager::drawDown(sf::RenderWindow& t_window)
 /// Get Active ///
 bool AttackManager::getNeutralActive()
 {
-	// Call the neutral spawning equipped
+	
 	switch (neutral)
 	{
 	case AttackType::None:
@@ -746,6 +759,286 @@ bool AttackManager::getDownHasHit()
 	case AttackType::BasicDown:
 
 		return attacks.basicDown.hasHit;
+
+		break;
+	}
+}
+
+void AttackManager::neutralSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
+{
+	// Call the neutral attack equipped
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingNeutral:
+		break;
+
+	}
+}
+
+void AttackManager::sideSpecialLeft(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
+{
+	// Call the sideLeft special equipped
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideLeft:
+		specials.shootSideLeft.attack(t_pos, t_sandbag, t_canAttack);
+		break;
+
+	}
+}
+
+void AttackManager::sideSpecialRight(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
+{
+	// Call the sideRight special equipped
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideRight:
+		specials.shootSideRight.attack(t_pos, t_sandbag, t_canAttack);
+		break;
+
+	}
+}
+
+void AttackManager::upSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
+{
+	// Call the up special equipped
+	switch (specialUp)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingUp:
+		break;
+
+	}
+}
+
+void AttackManager::downSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_canAttack)
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingDown:
+		break;
+
+	}
+}
+
+void AttackManager::neutralSpecialSpawn(sf::Vector2f t_pos)
+{
+	
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingNeutral:
+		break;
+	}
+}
+
+void AttackManager::sideSpecialSpawnLeft(sf::Vector2f t_pos)
+{
+	// Call the sideLeft spawning equipped
+	switch (specialSideLeft)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideLeft:
+		specials.shootSideLeft.spawn(t_pos);
+		break;
+	}
+}
+
+void AttackManager::sideSpecialSpawnRight(sf::Vector2f t_pos)
+{
+	// Call the sideLeft spawning equipped
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideRight:
+		specials.shootSideRight.spawn(t_pos);
+		break;
+	}
+}
+
+void AttackManager::upSpecialSpawn(sf::Vector2f t_pos)
+{
+	// Call the up spawning equipped
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingUp:
+		break;
+	}
+}
+
+void AttackManager::downSpecialSpawn(sf::Vector2f t_pos)
+{
+	// Call the down spawning equipped
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingDown:
+		break;
+	}
+}
+
+void AttackManager::drawNeutralSpecial(sf::RenderWindow& t_window)
+{
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingNeutral:
+		break;
+	}
+}
+
+void AttackManager::drawSideSpecialLeft(sf::RenderWindow& t_window)
+{
+	switch (specialSideLeft)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideLeft:
+		t_window.draw(specials.shootSideLeft.getBody());
+		break;
+	}
+}
+
+void AttackManager::drawSideSpecialRight(sf::RenderWindow& t_window)
+{
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingSideRight:
+		t_window.draw(specials.shootSideRight.getBody());
+		break;
+	}
+}
+
+void AttackManager::drawUpSpecial(sf::RenderWindow& t_window)
+{
+	switch (specialUp)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingUp:
+		break;
+	}
+}
+
+void AttackManager::drawDownSpecial(sf::RenderWindow& t_window)
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		break;
+
+	case SpecialType::ShootingDown:
+		break;
+	}
+}
+
+bool AttackManager::getNeutralSpecialActive()
+{
+	switch (specialNeutral)
+	{
+	case SpecialType::None:
+		return false;
+		break;
+
+	case SpecialType::ShootingNeutral:
+
+		//return specials.shootNeutral.active;
+
+		break;
+	}
+}
+
+bool AttackManager::getSideSpecialLeftActive()
+{
+	switch (specialSideLeft)
+	{
+	case SpecialType::None:
+		return false;
+		break;
+
+	case SpecialType::ShootingSideLeft:
+
+		return specials.shootSideLeft.active;
+
+		break;
+	}
+}
+
+bool AttackManager::getSideSpecialRightActive()
+{
+	switch (specialSideRight)
+	{
+	case SpecialType::None:
+		return false;
+		break;
+
+	case SpecialType::ShootingSideRight:
+
+		return specials.shootSideRight.active;
+
+		break;
+	}
+}
+
+bool AttackManager::getUpSpecialActive()
+{
+	switch (specialUp)
+	{
+	case SpecialType::None:
+		return false;
+		break;
+
+	case SpecialType::ShootingUp:
+
+		//return specials.shootUp.active;
+
+		break;
+	}
+}
+
+bool AttackManager::getDownSpecialActive()
+{
+	switch (specialDown)
+	{
+	case SpecialType::None:
+		return false;
+		break;
+
+	case SpecialType::ShootingDown:
+
+		//return specials.shootDown.active;
 
 		break;
 	}
