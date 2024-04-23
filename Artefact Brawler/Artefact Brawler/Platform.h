@@ -1,8 +1,9 @@
-// IAN PEREZ BUNUEL
+// IAN PEREZ BUNUEL VIT PRECHTL
 
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Platform
 {
@@ -12,6 +13,7 @@ public:
 	void setup(sf::Vector2f t_pos);
 	sf::RectangleShape getBody() { return body; }
 	sf::RectangleShape getGround() { return ground; }
+	sf::Sprite getPlatformSprite() { return platformSprite; }
 
 private:
 
@@ -24,6 +26,8 @@ private:
 	sf::RectangleShape ground; // { Same width, 1.0f }
 	const sf::Vector2f GROUND_DISPLACEMENT = { 0.0f, -15 };
 
-
+	// Platform
+	sf::Sprite platformSprite;
+	sf::Texture platformTexture;
 };
 

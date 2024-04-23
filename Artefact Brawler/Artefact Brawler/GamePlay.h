@@ -1,4 +1,4 @@
-// IAN PEREZ BUNUEL
+// IAN PEREZ BUNUEL VIT PRECHTL
 
 #pragma once
 
@@ -31,6 +31,7 @@ private:
 
 	void setupFontAndText();
 	void setupObjects();
+	void setupBackground();
 
 	void doAttacks();
 	void drawAttacks(sf::RenderWindow& t_window);
@@ -69,5 +70,9 @@ private:
 	const int COINS_PER_HIT = 10;
 	ScreenTransition transitionCircle;
 	bool paused = false;
+
+	// Background
+	sf::Texture backgroundTexture;
+	sf::Sprite backgroundSprite;
 };
 

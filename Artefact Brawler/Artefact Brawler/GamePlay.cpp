@@ -1,10 +1,11 @@
 #include "GamePlay.h"
 #include "game.h"
-// IAN PEREZ BUNUEL LIAM TREACY
+// IAN PEREZ BUNUEL LIAM TREACY VIT PRECHTL
 GamePlay::GamePlay()
 {
 	setupFontAndText();
 	setupObjects();
+	setupBackground();
 	sandbag.setup(sf::Vector2f{ 100.0f,100.0f });
 }
 
@@ -299,6 +300,7 @@ void GamePlay::update(sf::Time t_deltaTime)
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
+	t_window.draw(backgroundSprite);
 	// Sandbag
 	t_window.draw(sandbag.getSprite());
 
@@ -318,7 +320,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	// Platforms
 	for (int i = 0; i < MAX_PLATFORMS; i++)
 	{
-		t_window.draw(platforms[i].getBody());
+		t_window.draw(platforms[i].getPlatformSprite());
 	}
 
 	for (int i = 0; i < MAX_BOUNCEPADS; i++)
@@ -383,6 +385,17 @@ void GamePlay::setupObjects()
 
 	// Attack setups
 	AttackManager::setup();
+}
+
+void GamePlay::setupBackground()
+{
+	if (!backgroundTexture.loadFromFile("ASSETS\\IMAGES\\Colosseum.png"))
+	{
+		std::cout << "problem loading Colosseum texture" << std::endl;
+	}
+
+	backgroundSprite.setTexture(backgroundTexture);
+	backgroundSprite.setScale(2, 2);
 }
 
 void GamePlay::doAttacks()
