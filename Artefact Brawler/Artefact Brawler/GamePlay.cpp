@@ -1,6 +1,6 @@
 #include "GamePlay.h"
 #include "game.h"
-
+// IAN PEREZ BUNUEL LIAM TREACY
 GamePlay::GamePlay()
 {
 	setupFontAndText();
@@ -442,7 +442,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 
 void GamePlay::bouncePadCheck(ReflectiveBouncePads t_bouncingPad)
 {
-	if (ground.getGlobalBounds().intersects(t_bouncingPad.getBouncePad().getGlobalBounds()))
+	if (sandbag.getBody().getGlobalBounds().intersects(t_bouncingPad.getBouncePad().getGlobalBounds()))
 	{
 		//knockbackAngle = AttackManager::getUpAngleD(); // Set angle
 		//knockbackPower = AttackManager::getUpPower(); // Set power
@@ -450,6 +450,10 @@ void GamePlay::bouncePadCheck(ReflectiveBouncePads t_bouncingPad)
 		knockbackAngle = bouncePad.angle;
 		knockbackPower = bouncePad.power;
 
+		sandbag.hitAgain = true;
+		sandbag.onGround = true;
+		player.onGround = true;
+		sandbag.knockingBack = true;
 		bouncePad.hasHit = true;
 	}
 }

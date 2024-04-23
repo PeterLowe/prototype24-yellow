@@ -22,7 +22,6 @@ public:
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
 	void bouncePadCheck(ReflectiveBouncePads t_bouncingPad);
-	sf::RectangleShape checkGroundArea() { return ground; }
 
 private:
 
