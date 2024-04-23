@@ -1,5 +1,6 @@
 #include "GamePlay.h"
-
+#include "game.h"
+// IAN PEREZ BUNUEL LIAM TREACY
 GamePlay::GamePlay()
 {
 	setupFontAndText();
@@ -546,6 +547,31 @@ void GamePlay::doAttacks()
 			}
 		}
 	}
+	bouncePadCheck(bouncePad);
+	// Sandbags knockback
+	if (sandbag.knockingBack)
+	{
+		// Change the percentage string
+		sandbagPercentage.setString("Sandbag: " + std::to_string(sandbag.percentage) + "%");
+
+		// Bouncing
+		knockbackAngle = sandbag.bounce(knockbackAngle);
+		sandbag.knockback(knockbackAngle, knockbackPower, damageTaken); // Knockback
+	}
+
+	if (!canAttack)
+	{
+		// Do endlag timer
+		endLag();
+
+		// Allow for another attack input from controller
+		buttonPressed = false;
+
+		// Allow damage again
+		damageDone = false;
+	}
+
+	player.changeColor(canAttack);
 }
 void GamePlay::drawAttacks(sf::RenderWindow& t_window)
 {
@@ -577,7 +603,42 @@ void GamePlay::drawAttacks(sf::RenderWindow& t_window)
 
 
 
-void GamePlay::doSpecials()
+void GamePlay::drawSpecials(sf::RenderWindow& t_window)
+{
+	// Platforms
+	for (int i = 0; i < 3; i++)
+	{
+		t_window.draw(platforms[i].getBody());
+	}
+
+	t_window.draw(bouncePad.getBouncePad());
+
+	// Sandbag's percentage
+	t_window.draw(sandbagPercentage);
+
+	// Coins Text
+	t_window.draw(coinsText);
+}
+
+void GamePlay::bouncePadCheck(ReflectiveBouncePads t_bouncingPad)
+{
+	if (sandbag.getBody().getGlobalBounds().intersects(t_bouncingPad.getBouncePad().getGlobalBounds()))
+	{
+		//knockbackAngle = AttackManager::getUpAngleD(); // Set angle
+		//knockbackPower = AttackManager::getUpPower(); // Set power
+
+		knockbackAngle = bouncePad.angle;
+		knockbackPower = bouncePad.power;
+
+		sandbag.hitAgain = true;
+		sandbag.onGround = true;
+		player.onGround = true;
+		sandbag.knockingBack = true;
+		bouncePad.hasHit = true;
+	}
+}
+
+void GamePlay::setupFontAndText()
 {
 	// Neutral Attack
 	if (AttackManager::getNeutralSpecialActive()) // Attack
@@ -769,7 +830,6 @@ void GamePlay::drawSpecials(sf::RenderWindow& t_window)
 	{
 		AttackManager::drawSideSpecialRight(t_window);
 	}
-
 	else if (AttackManager::getUpSpecialActive())
 	{
 		AttackManager::drawUpSpecial(t_window);
@@ -779,6 +839,10 @@ void GamePlay::drawSpecials(sf::RenderWindow& t_window)
 	{
 		AttackManager::drawDownSpecial(t_window);
 	}
+	bouncePad.setUpBP({ (SCREEN_WIDTH / 3 + 5) * 3, (SCREEN_HEIGHT / 3)});
+
+	// Attack setups
+	AttackManager::setup();
 }
 
 void GamePlay::endLag()

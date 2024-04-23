@@ -162,6 +162,7 @@ void Player::groundCheck(Platform t_platform)
 		// Since on the floor you can jump
 		canJump = true;
 	}
+
 }
 
 void Player::gravity()

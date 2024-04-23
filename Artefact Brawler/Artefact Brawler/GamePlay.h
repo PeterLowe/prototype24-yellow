@@ -8,6 +8,8 @@
 #include "AttackManager.h"
 #include "Scenes.h"
 #include "ScreenTransition.h"
+#include"ReflectiveBouncePads.h"
+#include <iostream>
 
 class GamePlay
 {
@@ -21,6 +23,7 @@ public:
 
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
+	void bouncePadCheck(ReflectiveBouncePads t_bouncingPad);
 
 private:
 
@@ -36,6 +39,7 @@ private:
 	Player player;
 	Sandbag sandbag;
 	Platform platforms[3];
+	ReflectiveBouncePads bouncePad;
 
 	// Controller
 	Controller controller;
@@ -61,8 +65,10 @@ private:
 	// Currency
 	sf::Text coinsText;
 	const int COINS_PER_HIT = 10;
-
 	ScreenTransition transitionCircle;
 	bool paused = false;
+	// ground
+
+	sf::RectangleShape ground;
 };
 
