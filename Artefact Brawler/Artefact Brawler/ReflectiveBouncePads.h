@@ -21,6 +21,6 @@ private:
 
 	sf::RectangleShape bouncePad;
 	float width = 300;
-	float height = 25;
+	float height = 10;
 	sf::Vector2f BPposition;
 };

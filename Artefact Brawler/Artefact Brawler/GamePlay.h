@@ -40,8 +40,8 @@ private:
 	// Objects
 	Player player;
 	Sandbag sandbag;
-	Platform platforms[3];
-	ReflectiveBouncePads bouncePad;
+	Platform platforms[MAX_PLATFORMS];
+	ReflectiveBouncePads bouncePads[MAX_PLATFORMS];
 
 	// Controller
 	Controller controller;

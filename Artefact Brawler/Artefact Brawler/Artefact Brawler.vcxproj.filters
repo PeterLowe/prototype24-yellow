@@ -102,6 +102,12 @@
     <ClCompile Include="ReflectiveBouncePads.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShootDown.cpp">
+      <Filter>Source Files\Special Attacks</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootUp.cpp">
+      <Filter>Source Files\Special Attacks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -169,6 +175,12 @@
     </ClInclude>
     <ClInclude Include="ReflectiveBouncePads.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootDown.h">
+      <Filter>Header Files\Special Attacks</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootUp.h">
+      <Filter>Header Files\Special Attacks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

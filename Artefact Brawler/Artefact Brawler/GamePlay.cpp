@@ -234,7 +234,7 @@ void GamePlay::update(sf::Time t_deltaTime)
 		{
 			player.jump();
 		}
-		for (int i = 0; i < 3; i++) // Used to check each platform
+		for (int i = 0; i < MAX_PLATFORMS; i++) // Used to check each platform
 		{
 			player.groundCheck(platforms[i]);
 
@@ -248,7 +248,7 @@ void GamePlay::update(sf::Time t_deltaTime)
 		player.checkBoundries();
 
 		// Sandbag
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < MAX_PLATFORMS; i++)
 		{
 			sandbag.groundCheck(platforms[i]);
 
@@ -265,7 +265,11 @@ void GamePlay::update(sf::Time t_deltaTime)
 		/// Attacks ///
 		doAttacks();
 		doSpecials();
-		bouncePadCheck(bouncePad);
+
+		for (int i = 0; i < MAX_BOUNCEPADS; i++)
+		{
+			bouncePadCheck(bouncePads[i]);
+		}
 		// Sandbags knockback
 		if (sandbag.knockingBack)
 		{
@@ -312,12 +316,16 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	drawSpecials(t_window);
 
 	// Platforms
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < MAX_PLATFORMS; i++)
 	{
 		t_window.draw(platforms[i].getBody());
 	}
 
-	t_window.draw(bouncePad.getBouncePad());
+	for (int i = 0; i < MAX_BOUNCEPADS; i++)
+	{
+		t_window.draw(bouncePads[i].getBouncePad());
+	}
+
 	// Sandbag's percentage
 	t_window.draw(sandbagPercentage);
 
@@ -368,6 +376,10 @@ void GamePlay::setupObjects()
 	platforms[0].setup({ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3 }); // Top
 	platforms[1].setup({ SCREEN_WIDTH / 3 - 50, (SCREEN_HEIGHT / 3) * 2 }); // Left
 	platforms[2].setup({ (SCREEN_WIDTH / 3 + 50) * 2, (SCREEN_HEIGHT / 3) * 2 }); // Right
+
+	// Bounce Pads
+	bouncePads[0].setUpBP({ 250, SCREEN_HEIGHT });
+	bouncePads[1].setUpBP({ 750, SCREEN_HEIGHT });
 
 	// Attack setups
 	AttackManager::setup();
@@ -779,7 +791,6 @@ void GamePlay::drawSpecials(sf::RenderWindow& t_window)
 	{
 		AttackManager::drawDownSpecial(t_window);
 	}
-	bouncePad.setUpBP({ (SCREEN_WIDTH / 3 + 5) * 3, (SCREEN_HEIGHT / 3) });
 
 	// Attack setups
 	AttackManager::setup();
@@ -789,13 +800,14 @@ void GamePlay::bouncePadCheck(ReflectiveBouncePads t_bouncingPad)
 {
 	if (sandbag.getBody().getGlobalBounds().intersects(t_bouncingPad.getBouncePad().getGlobalBounds()))
 	{
-		knockbackAngle = bouncePad.angle;
-		knockbackPower = bouncePad.power;
+		knockbackAngle = t_bouncingPad.angle;
+		knockbackPower = t_bouncingPad.power;
 
 		sandbag.hitAgain = true;
 		sandbag.onGround = true;
+
 		sandbag.knockingBack = true;
-		bouncePad.hasHit = true;
+		t_bouncingPad.hasHit = true;
 	}
 }
 
