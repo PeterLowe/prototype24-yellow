@@ -9,7 +9,7 @@
 #include <iostream>
 
 
-Scene Game::currentMode = Scene::CharacterSelect;
+Scene SceneClass::currentMode = Scene::MainMenu;
 /// <summary>
 /// default constructor
 /// setup the window properties
@@ -17,7 +17,7 @@ Scene Game::currentMode = Scene::CharacterSelect;
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ SCREEN_WIDTH, SCREEN_HEIGHT, 32U }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupFontAndText(); // load font 
@@ -74,7 +74,7 @@ void Game::processEvents()
 		}
 		
 		// Check which scene you are in and do the processEvents() of that scene
-		switch (currentMode)
+		switch (SceneClass::currentMode)
 		{
 		case Scene::None:
 			break;
@@ -127,7 +127,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 
 	// Check which scene you are in and do the update() of that scene
-	switch (currentMode)
+	switch (SceneClass::currentMode)
 	{
 	case Scene::None:
 		break;
@@ -159,10 +159,10 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	m_window.clear(sf::Color::White);
+	m_window.clear(sf::Color::Black);
 	
 	// Check which scene you are in and do the render() of that scene
-	switch (currentMode)
+	switch (SceneClass::currentMode)
 	{
 	case Scene::None:
 		break;

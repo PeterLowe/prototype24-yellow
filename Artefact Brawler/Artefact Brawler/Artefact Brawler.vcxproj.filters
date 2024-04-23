@@ -25,6 +25,18 @@
     <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{f31e1422-410d-4025-a7d7-6cdc7bcbdadd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Special Attacks">
+      <UniqueIdentifier>{2383cea7-0dd4-4bcf-841a-d36a84e00ffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Normal Attacks">
+      <UniqueIdentifier>{7dc932c9-d1a6-4438-abaf-c66e85d155d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Normal Attacks">
+      <UniqueIdentifier>{a8d7bd25-4b78-43dd-bb3e-82b68fcafbce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Special Attacks">
+      <UniqueIdentifier>{354c5113-5490-4a35-ae39-c2986c39fed8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -48,6 +60,45 @@
     <ClCompile Include="CharacterSelect.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sandbag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NeutralAttack.cpp">
+      <Filter>Source Files\Normal Attacks</Filter>
+    </ClCompile>
+    <ClCompile Include="UpAttack.cpp">
+      <Filter>Source Files\Normal Attacks</Filter>
+    </ClCompile>
+    <ClCompile Include="SideAttack.cpp">
+      <Filter>Source Files\Normal Attacks</Filter>
+    </ClCompile>
+    <ClCompile Include="DownAttack.cpp">
+      <Filter>Source Files\Normal Attacks</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackManager.cpp">
+      <Filter>Source Files\Normal Attacks</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Currency.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenTransition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootSide.cpp">
+      <Filter>Source Files\Special Attacks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -67,6 +118,51 @@
     </ClInclude>
     <ClInclude Include="CharacterSelect.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sandbag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NeutralAttack.h">
+      <Filter>Header Files\Normal Attacks</Filter>
+    </ClInclude>
+    <ClInclude Include="UpAttack.h">
+      <Filter>Header Files\Normal Attacks</Filter>
+    </ClInclude>
+    <ClInclude Include="SideAttack.h">
+      <Filter>Header Files\Normal Attacks</Filter>
+    </ClInclude>
+    <ClInclude Include="DownAttack.h">
+      <Filter>Header Files\Normal Attacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Currency.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackManager.h">
+      <Filter>Header Files\Normal Attacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenTransition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootSide.h">
+      <Filter>Header Files\Special Attacks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

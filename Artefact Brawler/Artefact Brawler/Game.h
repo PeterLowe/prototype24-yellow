@@ -16,16 +16,7 @@
 #include "Shop.h"
 #include "CharacterSelect.h"
 #include "GamePlay.h"
-
-enum class Scene
-{
-	None,
-	SplashScreen,
-	MainMenu,
-	Shop,
-	CharacterSelect,
-	GamePlay
-};
+#include "Scenes.h"
 
 
 class Game
@@ -38,9 +29,6 @@ public:
 	/// </summary>
 	void run();
 
-	// Screen Transition
-	static Scene currentMode; // static is so that this variable can only be made once
-	// Game::currentMode
 private:
 
 	void processEvents();

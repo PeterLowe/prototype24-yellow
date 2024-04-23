@@ -3,22 +3,26 @@
 #include <SFML/Graphics.hpp>
 #include<iostream>
 
-class CharacterSelect
+class CharacterSelect // LIAM
 {
 public:
-
-	sf::Sprite character1Sprite;
-	sf::Texture character1Texture;
 
 	CharacterSelect();
 	void processEvents(sf::Event t_event);
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
-	void loadCharacters();
-	sf::Sprite getChar1Body();
 
+	void setupSprite();
+
+	sf::Sprite getChar1Body();
 
 private:
 
+	sf::Sprite character1Sprite;
+	sf::Texture character1Texture;
+	sf::Sprite character2Sprite;
+	sf::Texture character2Texture;
+	sf::Sprite character3sprite;
+	sf::Texture character3Texture;
 };
 
