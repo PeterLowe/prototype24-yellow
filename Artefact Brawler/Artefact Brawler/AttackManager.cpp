@@ -1,3 +1,5 @@
+// IAN PEREZ BUNUEL
+
 #include "AttackManager.h"
 
 AttackType neutral = AttackType::BasicNeutral;

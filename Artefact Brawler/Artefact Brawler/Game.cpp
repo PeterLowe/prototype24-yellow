@@ -1,9 +1,5 @@
-/// <summary>
-/// @author Peter Lowe
-/// @date May 2019
-///
-/// you need to change the above lines or lose marks
-/// </summary>
+// IAN PEREZ BUNUEL
+
 
 #include "Game.h"
 #include <iostream>

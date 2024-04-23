@@ -1,3 +1,5 @@
+// IAN PEREZ BUNUEL
+
 #pragma once
 class Currency
 {

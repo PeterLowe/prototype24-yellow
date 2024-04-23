@@ -1,3 +1,5 @@
+// IAN PEREZ BUNUEL
+
 #include "ScreenTransition.h"
 
 ScreenTransition::ScreenTransition()
