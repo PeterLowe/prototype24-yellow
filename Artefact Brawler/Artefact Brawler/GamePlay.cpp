@@ -380,8 +380,8 @@ void GamePlay::setupObjects()
 	platforms[2].setup({ (SCREEN_WIDTH / 3 + 50) * 2, (SCREEN_HEIGHT / 3) * 2 }); // Right
 
 	// Bounce Pads
-	bouncePads[0].setUpBP({ 250, SCREEN_HEIGHT });
-	bouncePads[1].setUpBP({ 750, SCREEN_HEIGHT });
+	bouncePads[0].setUpBP({ 250, SCREEN_HEIGHT - 42 });
+	bouncePads[1].setUpBP({ 750, SCREEN_HEIGHT - 42 });
 
 	// Attack setups
 	AttackManager::setup();

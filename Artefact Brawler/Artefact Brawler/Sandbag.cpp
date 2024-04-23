@@ -38,7 +38,7 @@ void Sandbag::setup(sf::Vector2f t_pos)
 void Sandbag::groundCheck(Platform t_platform)
 {
 
-	if (groundChecker.getPosition().y >= SCREEN_HEIGHT)
+	if (groundChecker.getPosition().y >= SCREEN_HEIGHT - 45)
 	{
 		onGround = true;
 
