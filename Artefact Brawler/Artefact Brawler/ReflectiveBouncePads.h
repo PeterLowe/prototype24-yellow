@@ -12,7 +12,7 @@ public:
 
 	//player Knockback Info
 	float angle = 0.0f;
-	float power = 0.0f;
+	float power = 0.1f;
 	bool hasHit = false;
 
 private:
@@ -21,7 +21,4 @@ private:
 	float width = 300;
 	float height = 25;
 	sf::Vector2f BPposition;
-
-	sf::RectangleShape ground; // { Same width, 1.0f }
-	const sf::Vector2f GROUND_DISPLACEMENT = { 0.0f, -15 };
 };
