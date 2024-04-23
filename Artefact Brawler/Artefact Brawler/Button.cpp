@@ -20,9 +20,6 @@ void Button::setup(sf::Vector2f t_pos, float t_width, float t_height, Scene t_se
 	body.setSize({ width, height });
 	body.setFillColor(t_color);
 
-	body.setOutlineThickness(10);
-	body.setOutlineColor({ 0, 175, 255, 255 });
-
 	body.setOrigin({ width / 2, height / 2 });
 
 	position = t_pos;
@@ -32,10 +29,10 @@ void Button::setup(sf::Vector2f t_pos, float t_width, float t_height, Scene t_se
 bool Button::checkForMouse(sf::Vector2f t_mousePos)
 {
 	// Check if the mouse is within the button on the x-axis
-	if (t_mousePos.x >= position.x - ((width + 20) / 2) && t_mousePos.x <= position.x + ((width + 20) / 2))
+	if (t_mousePos.x >= position.x - ((width) / 2) && t_mousePos.x <= position.x + ((width) / 2))
 	{
 		// Check if the mouse is within the button on the y-axis
-		if (t_mousePos.y <= position.y + ((height + 20) / 2) && t_mousePos.y >= position.y - ((height + 20) / 2))
+		if (t_mousePos.y <= position.y + (height / 2) && t_mousePos.y >= position.y - (height / 2))
 		{
 			// if colliding
 			colliding = true;

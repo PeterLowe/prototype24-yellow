@@ -76,7 +76,7 @@ void MainMenu::render(sf::RenderWindow& t_window)
 
 void MainMenu::setupButtons()
 {
-	colosseum.setup(colosseumPos, buttonWidth, buttonHeight, Scene::GamePlay, sf::Color::Red); // CHANGE SCENE TO CHARACTER SELECT ONCE DONE
+	colosseum.setup(colosseumPos, buttonWidth, buttonHeight, Scene::CharacterSelect, sf::Color::Red);
 
 	shop.setup(shopPos, buttonWidth, buttonHeight, Scene::Shop, sf::Color::Yellow);
 

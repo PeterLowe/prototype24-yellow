@@ -31,7 +31,6 @@ public:
 	/// </summary>
 	void run();
 
-
 private:
 
 	void processEvents();
