@@ -48,7 +48,7 @@ private:
 	int speed = 10;
 
 	// Left or Right
-	float angleRight = 22.5; // 0 is straight up, 45 ->, 180 down, 315 <-
+	float angleRight = 337.5f; // 0 is straight up, 45 ->, 180 down, 315 <-
 	float angleLeft; // 0 is straight up, 45 ->, 180 down, 315 <-
 
 
