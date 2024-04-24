@@ -6,6 +6,7 @@
 #include "Button.h"
 #include "Scenes.h"
 #include "ScreenTransition.h"
+#include "Controller.h"
 
 class Game;
 
@@ -17,15 +18,25 @@ public:
 	void processEvents(sf::Event t_event);
 	void processMouseDown(sf::Event t_event);
 	void processMouseMove(sf::Event t_event);
+	void processController();
 
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
 
+	void moveMouseHitbox();
+
 private:
+
+	// Controller
+	Controller controller;
+	bool controllerConnected = false;
 
 	void setupButtons();
 
 	sf::Vector2f mousePos;
+	sf::RectangleShape mouseHitbox;
+	sf::Vector2f mouseHitboxPosition;
+	const int MOUSE_HITBOX_SPEED = 7;
 
 	// Buttons
 	Button colosseum;

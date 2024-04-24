@@ -5,6 +5,11 @@
 
 MainMenu::MainMenu()
 {
+	// Setup mouse hitbox
+	mouseHitbox.setFillColor(sf::Color::Blue);
+	mouseHitbox.setSize({ 20.0f, 20.0f });
+	mouseHitbox.setOrigin({ 10.0f, 10.0f });
+
 	setupButtons();
 }
 
@@ -46,12 +51,78 @@ void MainMenu::processMouseMove(sf::Event t_event)
 	mousePos.y = static_cast<float>(t_event.mouseMove.y);
 }
 
+void MainMenu::processController()
+{
+	if (controller.currentState.A)
+	{
+		if (colosseumColliding)
+		{
+			transitionCircle.transition(colosseum.sendTo);
+		}
+
+		if (shopColliding)
+		{
+			transitionCircle.transition(shop.sendTo);
+		}
+
+		if (helpColliding)
+		{
+			transitionCircle.transition(help.sendTo);
+		}
+	}
+
+	// Move the hitbox for the mouse using the controller
+	moveMouseHitbox();
+}
+
+
 void MainMenu::update(sf::Time t_deltaTime)
 {
-	// Check if your hovering over a button
-	colosseumColliding = colosseum.checkForMouse(mousePos);
-	shopColliding = shop.checkForMouse(mousePos);
-	helpColliding = help.checkForMouse(mousePos);
+	if (controllerConnected)
+	{
+		controller.update();
+		processController();
+
+
+		// Check if its over a button
+		if (mouseHitbox.getGlobalBounds().intersects(colosseum.getBody().getGlobalBounds()))
+		{
+			colosseumColliding = true;
+		}
+		else
+		{
+			colosseumColliding = false;
+		}
+
+		if (mouseHitbox.getGlobalBounds().intersects(shop.getBody().getGlobalBounds()))
+		{
+			shopColliding = true;
+		}
+		else
+		{
+			shopColliding = false;
+		}
+
+		if (mouseHitbox.getGlobalBounds().intersects(help.getBody().getGlobalBounds()))
+		{
+			helpColliding = true;
+		}
+		else
+		{
+			helpColliding = false;
+		}
+	}
+	else
+	{
+		mouseHitboxPosition = mousePos;
+		// Check if the controller was connected
+		controllerConnected = controller.connectCheck();
+
+		// Check if your hovering over a button
+		colosseumColliding = colosseum.checkForMouse(mousePos);
+		shopColliding = shop.checkForMouse(mousePos);
+		helpColliding = help.checkForMouse(mousePos);
+	}
 
 	// Screen Transition
 	if (transitionCircle.active)
@@ -72,6 +143,38 @@ void MainMenu::render(sf::RenderWindow& t_window)
 	{
 		t_window.draw(transitionCircle.getBody());
 	}
+
+	// Mouse hitbox
+	if (controllerConnected)
+	{
+		t_window.draw(mouseHitbox);
+	}
+}
+
+void MainMenu::moveMouseHitbox()
+{
+	// Up Movement
+	if (controller.currentState.LeftThumbStick.y <= -50)
+	{
+		mouseHitboxPosition.y += -MOUSE_HITBOX_SPEED;
+	}
+	// Down  Movement
+	else if (controller.currentState.LeftThumbStick.y >= 50)
+	{
+		mouseHitboxPosition.y += MOUSE_HITBOX_SPEED;
+	}
+	// Left  Movement
+	else if (controller.currentState.LeftThumbStick.x <= -50)
+	{
+		mouseHitboxPosition.x += -MOUSE_HITBOX_SPEED;
+	}
+	// Right Movement
+	else if (controller.currentState.LeftThumbStick.x >= 50)
+	{
+		mouseHitboxPosition.x += MOUSE_HITBOX_SPEED;
+	}
+
+	mouseHitbox.setPosition(mouseHitboxPosition);
 }
 
 void MainMenu::setupButtons()
