@@ -11,11 +11,11 @@ AttackType down = AttackType::BasicDown;
 static Attacks attacks;
 
 
-SpecialType specialNeutral = SpecialType::ShootingNeutral;
-SpecialType specialSideLeft = SpecialType::ShootingSideLeft;
-SpecialType specialSideRight = SpecialType::ShootingSideRight;
-SpecialType specialUp = SpecialType::ShootingUp;
-SpecialType specialDown = SpecialType::ShootingDown;
+SpecialType AttackManager::specialNeutral = SpecialType::ShootingNeutral;
+SpecialType AttackManager::specialSideLeft = SpecialType::ShootingSideLeft;
+SpecialType AttackManager::specialSideRight = SpecialType::ShootingSideRight;
+SpecialType AttackManager::specialUp = SpecialType::ShootingUp;
+SpecialType AttackManager::specialDown = SpecialType::ShootingDown;
 
 static Specials specials;
 

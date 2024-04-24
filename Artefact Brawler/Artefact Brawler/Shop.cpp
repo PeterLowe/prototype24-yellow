@@ -6,6 +6,7 @@
 Shop::Shop()
 {
 	setupFontAndText();
+	setupButtons();
 }
 
 void Shop::processEvents(sf::Event t_event)
@@ -23,6 +24,34 @@ void Shop::processKeys(sf::Event t_event)
 	{
 		transitionCircle.transition(Scene::MainMenu);
 	}
+
+	// Mouse
+	if (sf::Event::MouseButtonPressed == t_event.type)
+	{
+		processMouseDown(t_event);
+	}
+
+	if (sf::Event::MouseMoved == t_event.type)
+	{
+		processMouseMove(t_event);
+	}
+}
+
+void Shop::processMouseDown(sf::Event t_event)
+{
+	if (sideShootLeftColliding)
+	{
+		std::cout << "COLIDING \n";
+		sideShootLeft.onPress(Currency::coins, SpecialType::ShootingSideLeft);
+	}
+}
+
+void Shop::processMouseMove(sf::Event t_event)
+{
+	mousePos.x = static_cast<float>(t_event.mouseMove.x);
+	mousePos.y = static_cast<float>(t_event.mouseMove.y);
+
+	std::cout << mousePos.x << ", " << mousePos.y << std::endl;
 }
 
 void Shop::update(sf::Time t_deltaTime)
@@ -36,6 +65,10 @@ void Shop::update(sf::Time t_deltaTime)
 
 	// Coin update
 	coinsText.setString("Coins: " + std::to_string(Currency::coins));
+
+
+	// Check if your hovering over a button
+	sideShootLeftColliding = sideShootLeft.checkForMouse(mousePos);
 }
 
 void Shop::render(sf::RenderWindow& t_window)
@@ -48,6 +81,8 @@ void Shop::render(sf::RenderWindow& t_window)
 	{
 		t_window.draw(transitionCircle.getBody());
 	}
+
+	t_window.draw(sideShootLeft.getBody());
 }
 
 void Shop::setupFontAndText()
@@ -64,4 +99,9 @@ void Shop::setupFontAndText()
 	coinsText.setFillColor({ 255, 100, 0, 255 });
 	coinsText.setOutlineThickness(3.0f);
 	coinsText.setPosition(SCREEN_WIDTH - 250, 50);
+}
+
+void Shop::setupButtons()
+{
+	sideShootLeft.setup({500.0f, 500.0f}, 100.0f, 100.0f, 10, AttackVarients::Side, sf::Color::Blue);
 }
