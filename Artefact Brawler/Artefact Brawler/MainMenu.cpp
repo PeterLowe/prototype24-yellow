@@ -29,6 +29,9 @@ void MainMenu::processEvents(sf::Event t_event)
 
 void MainMenu::processMouseDown(sf::Event t_event)
 {
+	// Deactivate controller if the mouse is pressed
+	controllerConnected = false;
+
 	if (colosseumColliding)
 	{
 		transitionCircle.transition(colosseum.sendTo);
@@ -138,16 +141,18 @@ void MainMenu::render(sf::RenderWindow& t_window)
 	t_window.draw(shop.getBody());
 	//t_window.draw(help.getBody());
 
-	// Screen Transition
-	if (transitionCircle.active)
-	{
-		t_window.draw(transitionCircle.getBody());
-	}
 
 	// Mouse hitbox
 	if (controllerConnected)
 	{
 		t_window.draw(mouseHitbox);
+	}
+
+
+	// Screen Transition
+	if (transitionCircle.active)
+	{
+		t_window.draw(transitionCircle.getBody());
 	}
 }
 
