@@ -15,15 +15,6 @@ void Shop::processEvents(sf::Event t_event)
 	{
 		processKeys(t_event);
 	}
-}
-
-void Shop::processKeys(sf::Event t_event)
-{
-	// On escape swap to show scene
-	if (sf::Keyboard::Escape == t_event.key.code)
-	{
-		transitionCircle.transition(Scene::MainMenu);
-	}
 
 	// Mouse
 	if (sf::Event::MouseButtonPressed == t_event.type)
@@ -37,11 +28,19 @@ void Shop::processKeys(sf::Event t_event)
 	}
 }
 
+void Shop::processKeys(sf::Event t_event)
+{
+	// On escape swap to show scene
+	if (sf::Keyboard::Escape == t_event.key.code)
+	{
+		transitionCircle.transition(Scene::MainMenu);
+	}
+}
+
 void Shop::processMouseDown(sf::Event t_event)
 {
 	if (sideShootLeftColliding)
 	{
-		std::cout << "COLIDING \n";
 		sideShootLeft.onPress(Currency::coins, SpecialType::ShootingSideLeft);
 	}
 }
@@ -50,8 +49,6 @@ void Shop::processMouseMove(sf::Event t_event)
 {
 	mousePos.x = static_cast<float>(t_event.mouseMove.x);
 	mousePos.y = static_cast<float>(t_event.mouseMove.y);
-
-	std::cout << mousePos.x << ", " << mousePos.y << std::endl;
 }
 
 void Shop::update(sf::Time t_deltaTime)
