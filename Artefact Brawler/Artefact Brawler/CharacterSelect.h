@@ -4,6 +4,7 @@
 #include<iostream>
 #include "Button.h"
 #include "ScreenTransition.h"
+#include "PlayerType.h"
 
 class CharacterSelect // LIAM
 {

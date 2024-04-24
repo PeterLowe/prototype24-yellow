@@ -9,7 +9,6 @@ Player::Player()
 
 void Player::setup(sf::Vector2f t_pos)
 {
-	PlayerType::checkCharacter();
 
 	position = t_pos;
 	body.setPosition(position);
@@ -21,15 +20,8 @@ void Player::setup(sf::Vector2f t_pos)
 	// Ground checker setup
 	groundChecker.setPosition(position + GROUND_CHECK_DISPLACEMENT);
 	groundChecker.setFillColor(sf::Color::White);
-	groundChecker.setSize({ width, 1.0f });
+	groundChecker.setSize({ width, 5.0f });
 	groundChecker.setOrigin({ width / 2, 0.5f });
-
-	// Character Stats
-	maxJumps = PlayerType::maxJumps;
-	speed = PlayerType::speed;
-	jumpForce = PlayerType::jumpForce;
-	riseDuration = PlayerType::riseDuration;
-	changeInGravity = PlayerType::changeInGravity;
 }
 
 void Player::move(Controller& t_controller, bool t_controllerConnected)
@@ -168,7 +160,7 @@ void Player::groundCheck(Platform t_platform)
 	if (onGround && !jumping)
 	{
 		// Reset your jumps
-		jumpAmount = jumpForce;
+		jumpAmount = maxJumps;
 
 		// Since on the floor you can jump
 		canJump = true;
@@ -219,4 +211,14 @@ void Player::changeColor(bool t_canAttack)
 	{
 		body.setFillColor({ 50, 50, 255, 125 });
 	}
+}
+
+void Player::setStats()
+{
+	// Character Stats
+	maxJumps = PlayerType::maxJumps;
+	speed = PlayerType::speed;
+	jumpForce = PlayerType::jumpForce;
+	riseDuration = PlayerType::riseDuration;
+	changeInGravity = PlayerType::changeInGravity;
 }

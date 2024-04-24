@@ -223,8 +223,12 @@ void GamePlay::update(sf::Time t_deltaTime)
 	}
 	else
 	{
+		// Set your stats when the game starts
+		player.setStats();
+
 		paused = false;
 	}
+
 
 	if (!paused)
 	{

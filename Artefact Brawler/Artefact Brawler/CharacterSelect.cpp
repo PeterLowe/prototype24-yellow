@@ -25,36 +25,60 @@ void CharacterSelect::processMouseDown(sf::Event t_event)
 	if (character1Colliding)
 	{
 		transitionCircle.transition(character1Button.sendTo);
-		std::cout << "Character 1" << std::endl;
+		
+		// Set stats
+		PlayerType::currentCharacter = Character::Rose;
+		PlayerType::checkCharacter();
+
+		std::cout << "Rose" << std::endl;
 	}
 
 	if (character2Colliding)
 	{
 		transitionCircle.transition(character2Button.sendTo);
-		std::cout << "Character 2" << std::endl;
+
+		// Set stats
+		PlayerType::currentCharacter = Character::mrBanana;
+		PlayerType::checkCharacter();
+
+		std::cout << "Mr.Banana" << std::endl;
 	}
 
 	if (character3Colliding)
 	{
 		transitionCircle.transition(character3Button.sendTo);
-		std::cout << "Character 3" << std::endl;
+
+		// Set stats
+		PlayerType::currentCharacter = Character::Liam1;
+		PlayerType::checkCharacter();
+
+		std::cout << "Liam1" << std::endl;
 	}
 
 	if (character4Colliding)
 	{
 		transitionCircle.transition(character4Button.sendTo);
+
+		PlayerType::checkCharacter();
+
 		std::cout << "Character 4" << std::endl;
 	}
 
 	if (character5Colliding)
 	{
 		transitionCircle.transition(character5Button.sendTo);
+
+		PlayerType::checkCharacter();
+
 		std::cout << "Character 5" << std::endl;
 	}
 
 	if (character6Colliding)
 	{
 		transitionCircle.transition(character6Button.sendTo);
+
+		PlayerType::checkCharacter();
+
 		std::cout << "Character 6" << std::endl;
 	}
 }
