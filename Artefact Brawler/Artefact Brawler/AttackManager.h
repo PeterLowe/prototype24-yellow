@@ -71,6 +71,12 @@ class AttackManager
 {
 public:
 
+	static SpecialType specialNeutral;
+	static SpecialType specialSideLeft;
+	static SpecialType specialSideRight;
+	static SpecialType specialUp;
+	static SpecialType specialDown;
+
 	static void setup();
 
 	/// Normal Attacks ///

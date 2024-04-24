@@ -40,6 +40,7 @@
     <ClCompile Include="ShootSide.cpp" />
     <ClCompile Include="ShootUp.cpp" />
     <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="shopButtons.cpp" />
     <ClCompile Include="SideAttack.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
     <ClCompile Include="UpAttack.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="ShootSide.h" />
     <ClInclude Include="ShootUp.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="shopButtons.h" />
     <ClInclude Include="SideAttack.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="UpAttack.h" />
