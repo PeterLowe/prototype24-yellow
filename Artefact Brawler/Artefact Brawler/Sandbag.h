@@ -59,7 +59,7 @@ private:
     // Knockback
     float deceleration = 0;
     const float POWER_GRAVITY_MULTIPLIER = 1.5f;
-    const float PERCENTAGE_DIVIDER = 10.0f;
+    const float PERCENTAGE_DIVIDER = 15.0f;
 
     sf::Vector2f direction;
 
