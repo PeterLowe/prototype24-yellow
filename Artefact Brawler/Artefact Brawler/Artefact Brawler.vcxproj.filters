@@ -108,6 +108,9 @@
     <ClCompile Include="ShootUp.cpp">
       <Filter>Source Files\Special Attacks</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="ShootUp.h">
       <Filter>Header Files\Special Attacks</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerType.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

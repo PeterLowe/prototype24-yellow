@@ -32,6 +32,7 @@
     <ClCompile Include="NeutralAttack.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerType.cpp" />
     <ClCompile Include="ReflectiveBouncePads.cpp" />
     <ClCompile Include="Sandbag.cpp" />
     <ClCompile Include="ScreenTransition.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="NeutralAttack.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerType.h" />
     <ClInclude Include="ReflectiveBouncePads.h" />
     <ClInclude Include="Sandbag.h" />
     <ClInclude Include="Scenes.h" />

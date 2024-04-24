@@ -9,6 +9,8 @@ Player::Player()
 
 void Player::setup(sf::Vector2f t_pos)
 {
+	PlayerType::checkCharacter();
+
 	position = t_pos;
 	body.setPosition(position);
 
@@ -21,6 +23,13 @@ void Player::setup(sf::Vector2f t_pos)
 	groundChecker.setFillColor(sf::Color::White);
 	groundChecker.setSize({ width, 1.0f });
 	groundChecker.setOrigin({ width / 2, 0.5f });
+
+	// Character Stats
+	maxJumps = PlayerType::maxJumps;
+	speed = PlayerType::speed;
+	jumpForce = PlayerType::jumpForce;
+	riseDuration = PlayerType::riseDuration;
+	changeInGravity = PlayerType::changeInGravity;
 }
 
 void Player::move(Controller& t_controller, bool t_controllerConnected)
@@ -110,23 +119,23 @@ void Player::jump()
 		jumpAgain = false;
 	}
 
-	if (jumpTimer <= RISE_DURATION)
+	if (jumpTimer <= riseDuration)
 	{
-		position.y -= JUMP_FORCE + GRAVITY;
+		position.y -= jumpForce + (GRAVITY + changeInGravity);
 
 		jumpTimer++;
 	}
-	else if (jumpTimer >= RISE_DURATION) // Once done rising start decreasing the jump force
+	else if (jumpTimer >= riseDuration) // Once done rising start decreasing the jump force
 	{
 		// This makes a nice arc on the jump
 		deceleration += 0.5f;
-		position.y -= (JUMP_FORCE + GRAVITY) - deceleration;
+		position.y -= (jumpForce + (GRAVITY + changeInGravity)) - deceleration;
 
 		jumpTimer++;
 	}
 
 	// Jump is done, once the deleceration is == to the jump force
-	if (deceleration >= JUMP_FORCE + GRAVITY)
+	if (deceleration >= jumpForce + (GRAVITY + changeInGravity))
 	{
 		deceleration = 0;
 		jumpTimer = 0;
@@ -159,7 +168,7 @@ void Player::groundCheck(Platform t_platform)
 	if (onGround && !jumping)
 	{
 		// Reset your jumps
-		jumpAmount = MAX_JUMPS;
+		jumpAmount = jumpForce;
 
 		// Since on the floor you can jump
 		canJump = true;
@@ -179,7 +188,7 @@ void Player::gravity()
 		// While not fastfalling use normal gravity
 		else
 		{
-			position.y += GRAVITY;
+			position.y += (GRAVITY + changeInGravity);
 		}
 	}
 

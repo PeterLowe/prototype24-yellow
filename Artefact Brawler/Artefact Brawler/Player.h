@@ -4,10 +4,12 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "PlayerType.h"
 #include "Globals.h"
 #include "Controller.h"
 #include "Platform.h"
 #include "ReflectiveBouncePads.h"
+
 
 #include <iostream>
 
@@ -54,12 +56,13 @@ private:
 	const sf::Vector2f GROUND_CHECK_DISPLACEMENT = { 0.0f, (height / 2.0f) + 0.5f };
 
 	// Jump
-	const int MAX_JUMPS = 2;
+	int maxJumps = 2;
 	int jumpAmount = 0;
-	const int JUMP_FORCE = 13;
+	int jumpForce = 13;
 	int jumpTimer = 0;
-	const float RISE_DURATION = 1;
+	int riseDuration = 4;
 	float deceleration = 0;
+	int changeInGravity = 0;
 
 	// Fast fall
 	bool fastfall = false;
