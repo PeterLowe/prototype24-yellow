@@ -5,6 +5,11 @@
 
 Shop::Shop()
 {
+	// Setup mouse hitbox for controller
+	mouseHitbox.setFillColor(sf::Color::Blue);
+	mouseHitbox.setSize({ 20.0f, 20.0f });
+	mouseHitbox.setOrigin({ 10.0f, 10.0f });
+
 	setupFontAndText();
 	setupButtons();
 }
@@ -30,6 +35,9 @@ void Shop::processEvents(sf::Event t_event)
 
 void Shop::processKeys(sf::Event t_event)
 {
+	// Deactivate controller if the keyPressed is pressed
+	controllerConnected = false;
+
 	// On escape swap to show scene
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
@@ -39,6 +47,9 @@ void Shop::processKeys(sf::Event t_event)
 
 void Shop::processMouseDown(sf::Event t_event)
 {
+	// Deactivate controller if the mouse is pressed
+	controllerConnected = false;
+
 	if (sideShootLeftColliding)
 	{
 		sideShootLeft.onPress(Currency::coins, SpecialType::ShootingSideLeft);
@@ -51,8 +62,48 @@ void Shop::processMouseMove(sf::Event t_event)
 	mousePos.y = static_cast<float>(t_event.mouseMove.y);
 }
 
+void Shop::processController()
+{
+	if (controller.currentState.A)
+	{
+		if (sideShootLeftColliding)
+		{
+			sideShootLeft.onPress(Currency::coins, SpecialType::ShootingSideLeft);
+		}
+	}
+
+	// Move the hitbox for the mouse using the controller
+	moveMouseHitbox();
+}
+
 void Shop::update(sf::Time t_deltaTime)
 {
+	if (controllerConnected)
+	{
+		controller.update();
+		processController();
+
+
+		// Check if its over a button
+		if (mouseHitbox.getGlobalBounds().intersects(sideShootLeft.getBody().getGlobalBounds()))
+		{
+			sideShootLeftColliding = true;
+		}
+		else
+		{
+			sideShootLeftColliding = false;
+		}
+	}
+	else
+	{
+		mouseHitboxPosition = mousePos;
+		// Check if the controller was connected
+		controllerConnected = controller.connectCheck();
+
+
+		// Check if your hovering over a button
+		sideShootLeftColliding = sideShootLeft.checkForMouse(mousePos);
+	}
 
 	// Screen Transition
 	if (transitionCircle.active)
@@ -62,16 +113,20 @@ void Shop::update(sf::Time t_deltaTime)
 
 	// Coin update
 	coinsText.setString("Coins: " + std::to_string(Currency::coins));
-
-
-	// Check if your hovering over a button
-	sideShootLeftColliding = sideShootLeft.checkForMouse(mousePos);
 }
 
 void Shop::render(sf::RenderWindow& t_window)
 {
 	// Coins Text
 	t_window.draw(coinsText);
+
+
+	// Mouse hitbox
+	if (controllerConnected)
+	{
+		t_window.draw(mouseHitbox);
+	}
+
 
 	// Screen Transition
 	if (transitionCircle.active)
@@ -101,4 +156,30 @@ void Shop::setupFontAndText()
 void Shop::setupButtons()
 {
 	sideShootLeft.setup({500.0f, 500.0f}, 100.0f, 100.0f, 10, AttackVarients::Side, sf::Color::Blue);
+}
+
+void Shop::moveMouseHitbox()
+{
+	// Up Movement
+	if (controller.currentState.LeftThumbStick.y <= -50)
+	{
+		mouseHitboxPosition.y += -MOUSE_HITBOX_SPEED;
+	}
+	// Down  Movement
+	else if (controller.currentState.LeftThumbStick.y >= 50)
+	{
+		mouseHitboxPosition.y += MOUSE_HITBOX_SPEED;
+	}
+	// Left  Movement
+	else if (controller.currentState.LeftThumbStick.x <= -50)
+	{
+		mouseHitboxPosition.x += -MOUSE_HITBOX_SPEED;
+	}
+	// Right Movement
+	else if (controller.currentState.LeftThumbStick.x >= 50)
+	{
+		mouseHitboxPosition.x += MOUSE_HITBOX_SPEED;
+	}
+
+	mouseHitbox.setPosition(mouseHitboxPosition);
 }

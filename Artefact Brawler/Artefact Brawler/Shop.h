@@ -17,6 +17,7 @@ public:
 	void processKeys(sf::Event t_event);
 	void processMouseDown(sf::Event t_event);
 	void processMouseMove(sf::Event t_event);
+	void processController();
 
 	void update(sf::Time t_deltaTime);
 	void render(sf::RenderWindow& t_window);
@@ -25,6 +26,15 @@ public:
 	void setupButtons();
 
 private:
+
+	void moveMouseHitbox();
+
+	// Controller
+	Controller controller;
+	bool controllerConnected = false;
+	sf::RectangleShape mouseHitbox;
+	sf::Vector2f mouseHitboxPosition;
+	const int MOUSE_HITBOX_SPEED = 7;
 
 	sf::Vector2f mousePos;
 
