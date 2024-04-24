@@ -34,6 +34,8 @@ public:
 
 	void changeColor(bool t_canAttack);
 
+	void setStats();
+
 	bool jumping = false;
 	bool jumpAgain = false;
 	bool canJump = false;

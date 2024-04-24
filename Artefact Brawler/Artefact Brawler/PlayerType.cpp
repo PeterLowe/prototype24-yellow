@@ -19,7 +19,7 @@ void PlayerType::checkCharacter()
 		break;
 
 	case Character::Rose:
-		maxJumps;
+		maxJumps = Rose::MAX_JUMPS;
 		speed = Rose::SPEED;
 		jumpForce = Rose::JUMP_FORCE;
 		riseDuration = Rose::RISE_DURATION;
@@ -28,7 +28,7 @@ void PlayerType::checkCharacter()
 		break;
 
 	case Character::mrBanana:
-		maxJumps;
+		maxJumps = mrBanana::MAX_JUMPS;
 		speed = mrBanana::SPEED;
 		jumpForce = mrBanana::JUMP_FORCE;
 		riseDuration = mrBanana::RISE_DURATION;
@@ -37,7 +37,7 @@ void PlayerType::checkCharacter()
 		break;
 
 	case Character::Liam1:
-		maxJumps;
+		maxJumps = Liam1::MAX_JUMPS;
 		speed = Liam1::SPEED;
 		jumpForce = Liam1::JUMP_FORCE;
 		riseDuration = Liam1::RISE_DURATION;
