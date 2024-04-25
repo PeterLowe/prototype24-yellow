@@ -27,6 +27,15 @@ void PlayerType::checkCharacter()
 		name = "Rose";
 		break;
 
+	case Character::Soph2:
+		maxJumps = Soph2::MAX_JUMPS;
+		speed = Soph2::SPEED;
+		jumpForce = Soph2::JUMP_FORCE;
+		riseDuration = Soph2::RISE_DURATION;
+		changeInGravity = Soph2::CHANGE_IN_GRAVITY;
+		name = "Soph2";
+		break;
+
 	case Character::mrBanana:
 		maxJumps = mrBanana::MAX_JUMPS;
 		speed = mrBanana::SPEED;
@@ -36,6 +45,15 @@ void PlayerType::checkCharacter()
 		name = "Mr.Banana";
 		break;
 
+	case Character::Vit2:
+		maxJumps = Vit2::MAX_JUMPS;
+		speed = Vit2::SPEED;
+		jumpForce = Vit2::JUMP_FORCE;
+		riseDuration = Vit2::RISE_DURATION;
+		changeInGravity = Vit2::CHANGE_IN_GRAVITY;
+		name = "Vit2";
+		break;
+
 	case Character::Liam1:
 		maxJumps = Liam1::MAX_JUMPS;
 		speed = Liam1::SPEED;
@@ -43,6 +61,15 @@ void PlayerType::checkCharacter()
 		riseDuration = Liam1::RISE_DURATION;
 		changeInGravity = Liam1::CHANGE_IN_GRAVITY;
 		name = "Liam1";
+		break;
+
+	case Character::Liam2:
+		maxJumps = Liam2::MAX_JUMPS;
+		speed = Liam2::SPEED;
+		jumpForce = Liam2::JUMP_FORCE;
+		riseDuration = Liam2::RISE_DURATION;
+		changeInGravity = Liam2::CHANGE_IN_GRAVITY;
+		name = "Liam2";
 		break;
 	}
 }

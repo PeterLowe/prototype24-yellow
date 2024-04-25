@@ -82,7 +82,7 @@ void AttackManager::upAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& t_can
 {
 	// Call the up attack equipped
 	switch (up)
-	{  
+	{
 	case AttackType::None:
 		break;
 

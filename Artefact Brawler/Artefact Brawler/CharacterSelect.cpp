@@ -69,27 +69,33 @@ void CharacterSelect::processMouseDown(sf::Event t_event)
 	{
 		transitionCircle.transition(character4Button.sendTo);
 
+		// Set stats
+		PlayerType::currentCharacter = Character::Soph2;
 		PlayerType::checkCharacter();
 
-		std::cout << "Character 4" << std::endl;
+		std::cout << "Soph2" << std::endl;
 	}
 
 	if (character5Colliding)
 	{
 		transitionCircle.transition(character5Button.sendTo);
 
+		// Set stats
+		PlayerType::currentCharacter = Character::Vit2;
 		PlayerType::checkCharacter();
 
-		std::cout << "Character 5" << std::endl;
+		std::cout << "Vit2" << std::endl;
 	}
 
 	if (character6Colliding)
 	{
 		transitionCircle.transition(character6Button.sendTo);
 
+		// Set stats
+		PlayerType::currentCharacter = Character::Liam2;
 		PlayerType::checkCharacter();
 
-		std::cout << "Character 6" << std::endl;
+		std::cout << "Liam2" << std::endl;
 	}
 }
 
