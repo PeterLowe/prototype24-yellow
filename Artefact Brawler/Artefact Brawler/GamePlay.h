@@ -38,6 +38,8 @@ private:
 	void doSpecials();
 	void drawSpecials(sf::RenderWindow& t_window);
 
+	void Countdown();
+
 	// Objects
 	Player player;
 	Sandbag sandbag;
@@ -74,5 +76,10 @@ private:
 	// Background
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundSprite;
+
+	// Countdown
+	int STARTING_COUNTDOWN = 30 * 60;
+	int countdown = STARTING_COUNTDOWN;
+	sf::Text countdownText;
 };
 

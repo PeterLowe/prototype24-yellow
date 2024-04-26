@@ -22,12 +22,6 @@ void GamePlay::processKeys(sf::Event t_event)
 	// Deactivate controller
 	controllerConnected = false;
 
-	// On escape swap to show scene
-	if (sf::Keyboard::Escape == t_event.key.code)
-	{
-		transitionCircle.transition(Scene::Shop);
-	}
-
 	// Player's Jump
 	if (sf::Keyboard::Space == t_event.key.code)
 	{
@@ -232,6 +226,9 @@ void GamePlay::update(sf::Time t_deltaTime)
 
 	if (!paused)
 	{
+		// Countdown
+		Countdown();
+
 		// Player
 		player.move(controller, controllerConnected);
 		// Jumping
@@ -338,6 +335,11 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	// Coins Text
 	t_window.draw(coinsText);
 
+	// Countdown
+	t_window.draw(countdownText);
+
+
+
 	// Screen Transition
 	if (transitionCircle.active)
 	{
@@ -357,7 +359,7 @@ void GamePlay::setupFontAndText()
 	sandbagPercentage.setString("Sandbag: " + std::to_string(sandbag.percentage) + "%");
 	sandbagPercentage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
 	sandbagPercentage.setCharacterSize(30U);
-	sandbagPercentage.setOutlineColor(sf::Color::Red);
+	sandbagPercentage.setOutlineColor({ 150, 150, 150, 255 });
 	sandbagPercentage.setFillColor(sf::Color::White);
 	sandbagPercentage.setOutlineThickness(3.0f);
 	sandbagPercentage.setPosition(SCREEN_WIDTH - 250, SCREEN_HEIGHT - 50);
@@ -370,6 +372,15 @@ void GamePlay::setupFontAndText()
 	coinsText.setFillColor({ 255, 100, 0, 255});
 	coinsText.setOutlineThickness(3.0f);
 	coinsText.setPosition(SCREEN_WIDTH - 250, 50);
+
+	countdownText.setFont(font);
+	countdownText.setString(std::to_string(countdown / 60));
+	countdownText.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
+	countdownText.setCharacterSize(30U);
+	countdownText.setOutlineColor(sf::Color::Red);
+	countdownText.setFillColor(sf::Color::White);
+	countdownText.setOutlineThickness(3.0f);
+	countdownText.setPosition(SCREEN_WIDTH - 600, 25);
 }
 
 void GamePlay::setupObjects()
@@ -811,6 +822,21 @@ void GamePlay::drawSpecials(sf::RenderWindow& t_window)
 
 	// Attack setups
 	AttackManager::setup();
+}
+
+void GamePlay::Countdown()
+{
+	if (countdown > 0)
+	{
+		countdown--;
+		countdownText.setString(std::to_string(countdown / 60));
+	}
+	else
+	{
+		transitionCircle.transition(Scene::MainMenu);
+
+		countdown = STARTING_COUNTDOWN;
+	}
 }
 
 void GamePlay::bouncePadCheck(ReflectiveBouncePads t_bouncingPad)
