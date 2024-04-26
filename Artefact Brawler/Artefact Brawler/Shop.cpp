@@ -50,9 +50,25 @@ void Shop::processMouseDown(sf::Event t_event)
 	// Deactivate controller if the mouse is pressed
 	controllerConnected = false;
 
+	// Shoot attack buttons
 	if (sideShootLeftColliding)
 	{
 		sideShootLeft.onPress(Currency::coins, SpecialType::ShootingSideLeft);
+	}
+
+	if (sideShootRightColliding)
+	{
+		sideShootRight.onPress(Currency::coins, SpecialType::ShootingSideRight);
+	}
+
+	if (upShootColliding)
+	{
+		upShoot.onPress(Currency::coins, SpecialType::ShootingUp);
+	}
+
+	if (downShootColliding)
+	{
+		downShoot.onPress(Currency::coins, SpecialType::ShootingDown);
 	}
 }
 
@@ -70,6 +86,21 @@ void Shop::processController()
 		{
 			sideShootLeft.onPress(Currency::coins, SpecialType::ShootingSideLeft);
 		}
+
+		if (sideShootRightColliding)
+		{
+			sideShootRight.onPress(Currency::coins, SpecialType::ShootingSideRight);
+		}
+
+		if (upShootColliding)
+		{
+			upShoot.onPress(Currency::coins, SpecialType::ShootingUp);
+		}
+
+		if (downShootColliding)
+		{
+			downShoot.onPress(Currency::coins, SpecialType::ShootingDown);
+		}
 	}
 
 	// Move the hitbox for the mouse using the controller
@@ -83,16 +114,7 @@ void Shop::update(sf::Time t_deltaTime)
 		controller.update();
 		processController();
 
-
-		// Check if its over a button
-		if (mouseHitbox.getGlobalBounds().intersects(sideShootLeft.getBody().getGlobalBounds()))
-		{
-			sideShootLeftColliding = true;
-		}
-		else
-		{
-			sideShootLeftColliding = false;
-		}
+		controllerButtonCheck();
 	}
 	else
 	{
@@ -127,14 +149,17 @@ void Shop::render(sf::RenderWindow& t_window)
 		t_window.draw(mouseHitbox);
 	}
 
+	// Buttons
+	t_window.draw(sideShootLeft.getBody());
+	t_window.draw(sideShootRight.getBody());
+	t_window.draw(upShoot.getBody());
+	t_window.draw(downShoot.getBody());
 
 	// Screen Transition
 	if (transitionCircle.active)
 	{
 		t_window.draw(transitionCircle.getBody());
 	}
-
-	t_window.draw(sideShootLeft.getBody());
 }
 
 void Shop::setupFontAndText()
@@ -156,6 +181,9 @@ void Shop::setupFontAndText()
 void Shop::setupButtons()
 {
 	sideShootLeft.setup({500.0f, 500.0f}, 100.0f, 100.0f, 10, AttackVarients::SideLeft, sf::Color::Blue);
+	sideShootRight.setup({ 650.0f, 500.0f }, 100.0f, 100.0f, 10, AttackVarients::SideRight, sf::Color::Red);
+	upShoot.setup({ 800.0f, 500.0f }, 100.0f, 100.0f, 10, AttackVarients::Up, sf::Color::Green);
+	downShoot.setup({ 950.0f, 500.0f }, 100.0f, 100.0f, 10, AttackVarients::Up, sf::Color::Magenta);
 }
 
 void Shop::moveMouseHitbox()
@@ -200,4 +228,44 @@ void Shop::moveMouseHitbox()
 	}
 
 	mouseHitbox.setPosition(mouseHitboxPosition);
+}
+
+void Shop::controllerButtonCheck()
+{
+	// Check if its over a button
+	if (mouseHitbox.getGlobalBounds().intersects(sideShootLeft.getBody().getGlobalBounds()))
+	{
+		sideShootLeftColliding = true;
+	}
+	else
+	{
+		sideShootLeftColliding = false;
+	}
+
+	if (mouseHitbox.getGlobalBounds().intersects(sideShootRight.getBody().getGlobalBounds()))
+	{
+		sideShootRightColliding = true;
+	}
+	else
+	{
+		sideShootRightColliding = false;
+	}
+
+	if (mouseHitbox.getGlobalBounds().intersects(upShoot.getBody().getGlobalBounds()))
+	{
+		upShootColliding = true;
+	}
+	else
+	{
+		upShootColliding = false;
+	}
+
+	if (mouseHitbox.getGlobalBounds().intersects(downShoot.getBody().getGlobalBounds()))
+	{
+		downShootColliding = true;
+	}
+	else
+	{
+		downShootColliding = false;
+	}
 }
