@@ -310,6 +310,24 @@ void CharacterSelect::moveMouseHitbox()
 		mouseHitboxPosition.x += MOUSE_HITBOX_SPEED;
 	}
 
+	// Border collision
+	if (mouseHitboxPosition.x < 0)
+	{
+		mouseHitboxPosition.x = 0;
+	}
+	else if (mouseHitboxPosition.x > SCREEN_WIDTH)
+	{
+		mouseHitboxPosition.x = SCREEN_WIDTH;
+	}
+	if (mouseHitboxPosition.y < 0)
+	{
+		mouseHitboxPosition.y = 0;
+	}
+	else if (mouseHitboxPosition.y > SCREEN_HEIGHT)
+	{
+		mouseHitboxPosition.y = SCREEN_HEIGHT;
+	}
+
 	mouseHitbox.setPosition(mouseHitboxPosition);
 }
 
