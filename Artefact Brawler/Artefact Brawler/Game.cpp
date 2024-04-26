@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-Scene SceneClass::currentMode = Scene::MainMenu;
+Scene SceneClass::currentMode = Scene::SplashScreen;
 /// <summary>
 /// default constructor
 /// setup the window properties
