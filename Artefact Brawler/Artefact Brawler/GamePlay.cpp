@@ -213,6 +213,9 @@ void GamePlay::update(sf::Time t_deltaTime)
 	{
 		paused = true;
 		transitionCircle.transition(transitionCircle.goTo);
+
+		// Set the coins
+		coinsText.setString("Coins: " + std::to_string(Currency::coins));
 	}
 	else
 	{
