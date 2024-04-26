@@ -1,4 +1,5 @@
 // IAN PEREZ BUNUEL
+//liam treacy
 
 #include "AttackManager.h"
 
@@ -11,7 +12,7 @@ AttackType down = AttackType::BasicDown;
 static Attacks attacks;
 
 
-SpecialType AttackManager::specialNeutral = SpecialType::ShootingNeutral;
+SpecialType AttackManager::specialNeutral = SpecialType::Knee;
 SpecialType AttackManager::specialSideLeft = SpecialType::ShootingSideLeft;
 SpecialType AttackManager::specialSideRight = SpecialType::ShootingSideRight;
 SpecialType AttackManager::specialUp = SpecialType::ShootingUp;
@@ -46,7 +47,6 @@ void AttackManager::neutralAttack(sf::Vector2f t_pos, Sandbag& t_sandbag, bool& 
 	case AttackType::BasicNeutral:
 		attacks.basicNeutral.attack(t_pos, t_sandbag, t_canAttack);
 		break;
-
 	}
 }
 
@@ -777,6 +777,9 @@ void AttackManager::neutralSpecial(sf::Vector2f t_pos, Sandbag& t_sandbag, bool&
 	case SpecialType::ShootingNeutral:
 		break;
 
+	case SpecialType::Knee:
+		specials.kneeAttack.attack(t_pos, t_sandbag, t_canAttack);
+		break;
 	}
 }
 
@@ -849,6 +852,10 @@ void AttackManager::neutralSpecialSpawn(sf::Vector2f t_pos)
 
 	case SpecialType::ShootingNeutral:
 		break;
+
+	case SpecialType::Knee:
+		specials.kneeAttack.spawn(t_pos);
+		break;
 	}
 }
 
@@ -917,6 +924,11 @@ void AttackManager::drawNeutralSpecial(sf::RenderWindow& t_window)
 
 	case SpecialType::ShootingNeutral:
 		break;
+
+
+	case SpecialType::Knee:
+		t_window.draw(specials.kneeAttack.getBody());
+		break;
 	}
 }
 
@@ -984,6 +996,11 @@ bool AttackManager::getNeutralSpecialActive()
 
 		//return specials.shootNeutral.active;
 		return false;
+		break;
+
+	case SpecialType::Knee:
+		return specials.kneeAttack.active;
+
 		break;
 	}
 }
@@ -1062,6 +1079,11 @@ int AttackManager::getNeutralSpecialDamage()
 		//return specials.shootNeutral.damage;
 		return 0;
 		break;
+
+	case SpecialType::Knee:
+	
+		return specials.kneeAttack.damage;
+		break;
 	}
 }
 
@@ -1134,6 +1156,10 @@ float AttackManager::getNeutralSpecialPower()
 
 		//return specials.shootNeutral.power;
 		return 0;
+		break;
+
+	case SpecialType::Knee:
+		return specials.kneeAttack.power;
 		break;
 	}
 }
@@ -1208,6 +1234,10 @@ float AttackManager::getNeutralSpecialAngleD()
 		//return specials.shootNeutral.angleD;
 		return 0;
 		break;
+
+	case SpecialType::Knee:
+		return specials.kneeAttack.angleD;
+		break;
 	}
 }
 
@@ -1281,6 +1311,10 @@ int AttackManager::getNeutralSpecialEndlag()
 		//return specials.shootNeutral.END_LAG;
 		return 0;
 		break;
+
+	case SpecialType::Knee:
+		return specials.kneeAttack.END_LAG;
+		break;
 	}
 }
 
@@ -1353,6 +1387,11 @@ bool AttackManager::getNeutralSpecialHasHit()
 
 		//return specials.shootNeutral.hasHit;
 		return 0;
+		break;
+
+	case SpecialType::Knee:
+
+		return specials.kneeAttack.hasHit;
 		break;
 	}
 }

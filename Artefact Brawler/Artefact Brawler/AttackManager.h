@@ -1,5 +1,5 @@
 // IAN PEREZ BUNUEL
-
+// liam treacy
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -15,6 +15,8 @@
 #include "ShootSide.h"
 #include "ShootUp.h"
 #include "ShootDown.h"
+// special
+#include "kneeSpecial.h"
 
 enum class AttackType
 {
@@ -38,8 +40,8 @@ enum class SpecialType
 	ShootingSideLeft,
 	ShootingSideRight,
 	ShootingUp,
-	ShootingDown
-
+	ShootingDown,
+	Knee
 };
 
 // Structure that holds normal attacks
@@ -63,6 +65,7 @@ struct Specials
 	ShootSide shootSideRight;
 	ShootUp shootUp;
 	ShootDown shootDown;
+	kneeSpecial kneeAttack;
 };
 
 
