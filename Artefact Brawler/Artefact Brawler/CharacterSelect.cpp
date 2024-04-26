@@ -12,6 +12,7 @@ CharacterSelect::CharacterSelect()
 	// Setups
 	setupSprite();
 	setupButton();
+	setupFontAndText();
 }
 
 void CharacterSelect::processEvents(sf::Event t_event)
@@ -246,6 +247,43 @@ void CharacterSelect::update(sf::Time t_deltaTime)
 		character6Colliding = character6Button.checkForMouse(mousePos);
 	}
 
+	if (character1Colliding)
+	{
+		characterStats.setString("Rose\n\nSpeed: " + std::to_string(Rose::SPEED) + "\nJumps: " + std::to_string(Rose::MAX_JUMPS)+ "\nJump Force: " 
+		+std::to_string(Rose::JUMP_FORCE)+ "\nJump Length: " + std::to_string(Rose::RISE_DURATION) + "\nFall Speed: "
+		+ std::to_string(Rose::CHANGE_IN_GRAVITY));
+	}
+	if (character2Colliding)
+	{
+		characterStats.setString("Mr. Banana\n\nSpeed: " + std::to_string(mrBanana::SPEED) + "\nJumps: " + std::to_string(mrBanana::MAX_JUMPS)
+		+ "\nJump Force: " + std::to_string(mrBanana::JUMP_FORCE) + "\nJump Length: " + std::to_string(mrBanana::RISE_DURATION) + "\nFall Speed: "
+		+ std::to_string(mrBanana::CHANGE_IN_GRAVITY));
+	}
+	if (character3Colliding)
+	{
+		characterStats.setString("Liam Character 1\n\nSpeed: " + std::to_string(Liam1::SPEED) + "\nJumps: " + std::to_string(Liam1::MAX_JUMPS)
+		+ "\nJump Force: " + std::to_string(Liam1::JUMP_FORCE) + "\nJump Length: " + std::to_string(Liam1::RISE_DURATION) + "\nFall Speed: "
+		+ std::to_string(Liam1::CHANGE_IN_GRAVITY));
+	}
+	if (character4Colliding)
+	{
+		characterStats.setString("Soph Character 2\n\nSpeed: " + std::to_string(Soph2::SPEED) + "\nJumps: " + std::to_string(Soph2::MAX_JUMPS)
+		+ "\nJump Force: " + std::to_string(Soph2::JUMP_FORCE) + "\nJump Length: " + std::to_string(Soph2::RISE_DURATION) + "\nFall Speed: "
+		+ std::to_string(Soph2::CHANGE_IN_GRAVITY));
+	}
+	if (character5Colliding)
+	{
+		characterStats.setString("Vit Character 2\n\nSpeed: " + std::to_string(Vit2::SPEED) + "\nJumps: " + std::to_string(Vit2::MAX_JUMPS)
+		+ "\nJump Force: " + std::to_string(Vit2::JUMP_FORCE) + "\nJump Length: " + std::to_string(Vit2::RISE_DURATION) + "\nFall Speed: "
+		+ std::to_string(Vit2::CHANGE_IN_GRAVITY));
+	}
+	if (character6Colliding)
+	{
+		characterStats.setString("Liam Character 2\n\nSpeed: " + std::to_string(Liam2::SPEED) + "\nJumps: " + std::to_string(Liam2::MAX_JUMPS)
+		+ "\nJump Force: " + std::to_string(Liam2::JUMP_FORCE) + "\nJump Length: " + std::to_string(Liam2::RISE_DURATION) + "\nFall Speed: "
+		+ std::to_string(Liam2::CHANGE_IN_GRAVITY));
+	}
+
 	if (transitionCircle.active)
 	{
 		transitionCircle.transition(transitionCircle.goTo);
@@ -267,6 +305,7 @@ void CharacterSelect::render(sf::RenderWindow& t_window)
 	t_window.draw(character3sprite);
 
 	t_window.draw(frameSprite); // frame/border/background for character select screen
+	t_window.draw(characterStats);
 
 	// Mouse hitbox for controller
 	if (controllerConnected)
@@ -279,6 +318,7 @@ void CharacterSelect::render(sf::RenderWindow& t_window)
 	{
 		t_window.draw(transitionCircle.getBody());
 	}
+
 }
 
 
@@ -375,4 +415,20 @@ void CharacterSelect::setupButton()
 	character5Button.setup(character5Pos, buttonWidth, buttonHeight, Scene::GamePlay, sf::Color::Magenta);
 
 	character6Button.setup(character6Pos, buttonWidth, buttonHeight, Scene::GamePlay, sf::Color::Cyan);
+}
+
+void CharacterSelect::setupFontAndText()
+{
+	if (!font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	{
+		std::cout << "Error loading font" << std::endl;
+	}
+
+	characterStats.setFont(font);
+	characterStats.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
+	characterStats.setCharacterSize(30U);
+	characterStats.setOutlineColor(sf::Color::Red);
+	characterStats.setFillColor(sf::Color::White);
+	characterStats.setOutlineThickness(3.0f);
+	characterStats.setPosition(SCREEN_WIDTH / 2.5f, 10);
 }

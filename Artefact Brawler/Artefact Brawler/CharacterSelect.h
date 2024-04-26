@@ -22,6 +22,7 @@ public:
 
 	void setupSprite();
 	void setupButton();
+	void setupFontAndText();
 
 	sf::Sprite getChar1Body();
 
@@ -74,6 +75,11 @@ private:
 
 	int buttonHeight = 170;
 	int buttonWidth = 200;
+
+	bool character1Hover = false;
+
+	sf::Font font;
+	sf::Text characterStats;
 
 	ScreenTransition transitionCircle;
 };

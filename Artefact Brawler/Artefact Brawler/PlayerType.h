@@ -9,9 +9,9 @@ struct Rose // Soph change these stats
 {
 	// Default values currently 
 	static const int MAX_JUMPS = 2;
-	static const int SPEED = 5;
-	static const int JUMP_FORCE = 13; // How powerful the jump is
-	static const int RISE_DURATION = 1; // How long they jump for (in frames)
+	static const int SPEED = 7;
+	static const int JUMP_FORCE = 10; // How powerful the jump is
+	static const int RISE_DURATION = 4; // How long they jump for (in frames)
 	static const int CHANGE_IN_GRAVITY = 0;// How much gravity affects them. Bigger the number the faster they fall. Minus numbers the slower they fall (-9 MAX)
 };
 

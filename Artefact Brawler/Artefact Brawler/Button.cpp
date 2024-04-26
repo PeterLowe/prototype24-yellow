@@ -36,7 +36,7 @@ bool Button::checkForMouse(sf::Vector2f t_mousePos)
 		{
 			// if colliding
 			colliding = true;
-			return true;
+			return colliding;
 		}
 	}
 
