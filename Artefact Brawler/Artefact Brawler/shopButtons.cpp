@@ -47,9 +47,12 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 		case AttackVarients::Neutral:
 			break;
 
-		case AttackVarients::Side:
+		case AttackVarients::SideLeft:
 			std::cout << "EQUIPPED \n";
 			AttackManager::specialSideLeft = t_attack;
+			break;
+
+		case AttackVarients::SideRight:
 			AttackManager::specialSideRight = t_attack;
 			break;
 

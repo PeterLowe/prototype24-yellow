@@ -8,7 +8,8 @@
 enum class AttackVarients
 {
 	Neutral,
-	Side,
+	SideLeft,
+	SideRight,
 	Up,
 	Down
 };

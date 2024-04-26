@@ -155,7 +155,7 @@ void Shop::setupFontAndText()
 
 void Shop::setupButtons()
 {
-	sideShootLeft.setup({500.0f, 500.0f}, 100.0f, 100.0f, 10, AttackVarients::Side, sf::Color::Blue);
+	sideShootLeft.setup({500.0f, 500.0f}, 100.0f, 100.0f, 10, AttackVarients::SideLeft, sf::Color::Blue);
 }
 
 void Shop::moveMouseHitbox()
