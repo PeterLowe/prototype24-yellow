@@ -39,6 +39,7 @@ private:
 	void drawSpecials(sf::RenderWindow& t_window);
 
 	void Countdown();
+	void reset();
 
 	// Objects
 	Player player;

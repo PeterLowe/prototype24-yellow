@@ -6,7 +6,6 @@ GamePlay::GamePlay()
 	setupFontAndText();
 	setupObjects();
 	setupBackground();
-	sandbag.setup(sf::Vector2f{ 100.0f,100.0f });
 }
 
 void GamePlay::processEvents(sf::Event t_event)
@@ -386,7 +385,8 @@ void GamePlay::setupFontAndText()
 void GamePlay::setupObjects()
 {
 	// Player
-	player.setup({ 300, 100 });
+	player.setup({ (SCREEN_WIDTH / 3.0f) - 50, 380.0f });
+	sandbag.setup({ (SCREEN_WIDTH / 3.0f + 50) * 2, 380.0f });
 
 
 	// Platforms
@@ -835,8 +835,15 @@ void GamePlay::Countdown()
 	{
 		transitionCircle.transition(Scene::MainMenu);
 
+		reset();
 		countdown = STARTING_COUNTDOWN;
 	}
+}
+
+void GamePlay::reset()
+{
+	player.reset();
+	sandbag.reset();
 }
 
 void GamePlay::bouncePadCheck(ReflectiveBouncePads t_bouncingPad)

@@ -35,6 +35,9 @@ public:
     // Indicator that shows where the sandbag is while off screen
     void offScreenIndicator();
 
+    // Reset function
+    void reset();
+
     bool hitAgain = false;
     bool knockingBack = false;
 
@@ -55,6 +58,7 @@ private:
     float width = 50;
 
     sf::Vector2f position;
+    sf::Vector2f spawnPos;
 
     // Knockback
     float deceleration = 0;

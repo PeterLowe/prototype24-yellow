@@ -36,6 +36,9 @@ public:
 
 	void setStats();
 
+	// Reset function
+	void reset();
+
 	bool jumping = false;
 	bool jumpAgain = false;
 	bool canJump = false;
@@ -50,6 +53,7 @@ private:
 	float width = 50;
 
 	sf::Vector2f position;
+	sf::Vector2f spawnPos;
 
 	float speed = 5;
 

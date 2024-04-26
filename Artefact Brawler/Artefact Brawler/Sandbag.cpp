@@ -16,7 +16,8 @@ Sandbag::Sandbag()
 void Sandbag::setup(sf::Vector2f t_pos)
 {
 	// Body
-    position = t_pos;
+	spawnPos = t_pos;
+    position = spawnPos;
     body.setPosition(position);
 
     body.setFillColor(sf::Color::Red);
@@ -195,4 +196,15 @@ void Sandbag::offScreenIndicator()
 	{
 		indicatorActive = false;
 	}
+}
+
+void Sandbag::reset()
+{
+	percentage = 0;
+	position = spawnPos;
+	body.setPosition(position);
+	sprite.setPosition(position);
+
+	// Reset the knockback
+	knockingBack = false;
 }

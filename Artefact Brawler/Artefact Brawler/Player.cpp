@@ -9,8 +9,8 @@ Player::Player()
 
 void Player::setup(sf::Vector2f t_pos)
 {
-
-	position = t_pos;
+	spawnPos = t_pos;
+	position = spawnPos;
 	body.setPosition(position);
 
 	body.setFillColor(sf::Color::Blue);
@@ -221,4 +221,10 @@ void Player::setStats()
 	jumpForce = PlayerType::jumpForce;
 	riseDuration = PlayerType::riseDuration;
 	changeInGravity = PlayerType::changeInGravity;
+}
+
+void Player::reset()
+{
+	position = spawnPos;
+	body.setPosition(position);
 }
