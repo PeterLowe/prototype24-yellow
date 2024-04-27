@@ -5,7 +5,7 @@
 ScreenTransition::ScreenTransition()
 {
 	body.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-	body.setFillColor(sf::Color::White);
+	body.setFillColor(sf::Color::Black);
 	body.setRadius(size);
 	body.setOrigin(size, size);
 }

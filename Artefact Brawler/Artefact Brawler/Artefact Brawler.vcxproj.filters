@@ -114,8 +114,11 @@
     <ClCompile Include="shopButtons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kneeSpecial.cpp">
+    <ClCompile Include="Partical.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kneeSpecial.cpp">
+      <Filter>Source Files\Special Attacks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,8 +200,11 @@
     <ClInclude Include="shopButtons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="kneeSpecial.h">
+    <ClInclude Include="Partical.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kneeSpecial.h">
+      <Filter>Header Files\Special Attacks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

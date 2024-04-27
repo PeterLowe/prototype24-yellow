@@ -31,6 +31,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="NeutralAttack.cpp" />
+    <ClCompile Include="Partical.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerType.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="kneeSpecial.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NeutralAttack.h" />
+    <ClInclude Include="Partical.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerType.h" />

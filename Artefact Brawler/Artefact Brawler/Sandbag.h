@@ -3,8 +3,11 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+
 #include "Globals.h"
 #include "Platform.h"
+#include "Partical.h"
+
 #include <iostream>
 
 class Sandbag
@@ -49,6 +52,8 @@ public:
 
     bool onGround = false;
 
+    Partical particals[MAX_PARTICALS_SANDBAG];
+
 private:
 
     sf::Texture sandbagTexture;
@@ -76,6 +81,10 @@ private:
     sf::RectangleShape groundChecker;
     const sf::Vector2f GROUND_CHECK_DISPLACEMENT = { 0.0f, (height / 2.0f) };
     bool hitGround = false;
+
+    // Partical Effects
+    void hitParticals();
+    const int PER_HIT = MAX_PARTICALS_SANDBAG / 15;
 
 
 };
