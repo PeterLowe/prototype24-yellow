@@ -81,5 +81,9 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 
 			std::cout << "UNLOCKED \n";
 		}
+		else
+		{
+			std::cout << "NOT ENOUGH MONEY \n";
+		}
 	}
 }

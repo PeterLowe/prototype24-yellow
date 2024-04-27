@@ -183,10 +183,10 @@ void Shop::setupFontAndText()
 
 void Shop::setupButtons()
 {
-	sideShootLeft.setup({500.0f, 500.0f}, 100.0f, 100.0f, 10, AttackVarients::SideLeft, sf::Color::Blue);
-	sideShootRight.setup({ 650.0f, 500.0f }, 100.0f, 100.0f, 10, AttackVarients::SideRight, sf::Color::Red);
-	upShoot.setup({ 800.0f, 500.0f }, 100.0f, 100.0f, 10, AttackVarients::Up, sf::Color::Green);
-	downShoot.setup({ 950.0f, 500.0f }, 100.0f, 100.0f, 10, AttackVarients::Up, sf::Color::Magenta);
+	sideShootLeft.setup({500.0f, 500.0f}, 100.0f, 100.0f, 75, AttackVarients::SideLeft, sf::Color::Blue);
+	sideShootRight.setup({ 650.0f, 500.0f }, 100.0f, 100.0f, 75, AttackVarients::SideRight, sf::Color::Red);
+	upShoot.setup({ 800.0f, 500.0f }, 100.0f, 100.0f, 150, AttackVarients::Up, sf::Color::Green);
+	downShoot.setup({ 950.0f, 500.0f }, 100.0f, 100.0f, 150, AttackVarients::Up, sf::Color::Magenta);
 }
 
 void Shop::moveMouseHitbox()
