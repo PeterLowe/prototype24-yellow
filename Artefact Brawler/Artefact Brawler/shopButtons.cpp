@@ -45,6 +45,7 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 		switch (attackVarient)
 		{
 		case AttackVarients::Neutral:
+			AttackManager::specialNeutral = t_attack;
 			break;
 
 		case AttackVarients::SideLeft:
@@ -53,14 +54,17 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 			break;
 
 		case AttackVarients::SideRight:
+			std::cout << "EQUIPPED \n";
 			AttackManager::specialSideRight = t_attack;
 			break;
 
 		case AttackVarients::Up:
+			std::cout << "EQUIPPED \n";
 			AttackManager::specialUp = t_attack;
 			break;
 
 		case AttackVarients::Down:
+			std::cout << "EQUIPPED \n";
 			AttackManager::specialDown = t_attack;
 			break;
 		}
@@ -76,6 +80,10 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 			unlocked = true;
 
 			std::cout << "UNLOCKED \n";
+		}
+		else
+		{
+			std::cout << "NOT ENOUGH MONEY \n";
 		}
 	}
 }

@@ -28,6 +28,7 @@ public:
 private:
 
 	void moveMouseHitbox();
+	void controllerButtonCheck();
 
 	// Controller
 	Controller controller;
@@ -42,6 +43,12 @@ private:
 	// Buttons for attacks
 	shopButtons sideShootLeft;
 	bool sideShootLeftColliding = false;
+	shopButtons sideShootRight;
+	bool sideShootRightColliding = false;
+	shopButtons upShoot;
+	bool upShootColliding = false;
+	shopButtons downShoot;
+	bool downShootColliding = false;
 
 	sf::Font font;
 
