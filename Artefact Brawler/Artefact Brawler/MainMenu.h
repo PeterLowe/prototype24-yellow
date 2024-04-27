@@ -1,4 +1,4 @@
-// IAN PEREZ BUNUEL
+// IAN PEREZ BUNUEL VIT PRECHTL
 
 #pragma once
 
@@ -24,6 +24,7 @@ public:
 	void render(sf::RenderWindow& t_window);
 
 	void moveMouseHitbox();
+	void setupBackground();
 
 private:
 
@@ -41,20 +42,26 @@ private:
 	// Buttons
 	Button colosseum;
 	bool colosseumColliding = false;
-	sf::Vector2f colosseumPos = { 500.0f, 200.0f };
+	sf::Vector2f colosseumPos = { 365.0f, 370.0f };
 
 	Button shop;
 	bool shopColliding = false;
-	sf::Vector2f shopPos = { 200.0f, 200.0f };
+	sf::Vector2f shopPos = { 545.0f, 370.0f };
 
 	Button help;
 	bool helpColliding = false;
 	sf::Vector2f helpPos = { 200.0f, 200.0f };
 
-	float buttonWidth = 100.0f;
-	float buttonHeight = 200.0f;
+	float buttonWidth = 155.0f;
+	float buttonHeight = 270.0f;
 
 	ScreenTransition transitionCircle;
+
+	// Menu
+	sf::Texture menuTexture;
+	sf::Sprite menuSprite;
+	sf::Texture menuBackgroundTexture;
+	sf::Sprite menuBackgroundSprite;
 
 };
 

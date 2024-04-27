@@ -1,4 +1,4 @@
-// IAN PEREZ BUNUEL
+// IAN PEREZ BUNUEL VIT PRECHTL
 
 #include "MainMenu.h"
 
@@ -11,6 +11,7 @@ MainMenu::MainMenu()
 	mouseHitbox.setOrigin({ 10.0f, 10.0f });
 
 	setupButtons();
+	setupBackground();
 }
 
 void MainMenu::processEvents(sf::Event t_event)
@@ -136,6 +137,10 @@ void MainMenu::update(sf::Time t_deltaTime)
 
 void MainMenu::render(sf::RenderWindow& t_window)
 {
+	// Main Menu
+	t_window.draw(menuBackgroundSprite);
+	t_window.draw(menuSprite);
+
 	// Buttons
 	t_window.draw(colosseum.getBody());
 	t_window.draw(shop.getBody());
@@ -200,11 +205,30 @@ void MainMenu::moveMouseHitbox()
 	mouseHitbox.setPosition(mouseHitboxPosition);
 }
 
+void MainMenu::setupBackground()
+{
+	if (!menuTexture.loadFromFile("ASSETS\\IMAGES\\MainMenu.png"))
+	{
+		std::cout << "error loading the Main Menu texture" << std::endl;
+	}
+	menuSprite.setTexture(menuTexture);
+	menuSprite.setOrigin(110, 85);
+	menuSprite.setScale(3, 3);
+	menuSprite.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+
+	if (!menuBackgroundTexture.loadFromFile("ASSETS\\IMAGES\\MenuBackground.png"))
+	{
+		std::cout << "error loading the Main Menu Background texture" << std::endl;
+	}
+	menuBackgroundSprite.setTexture(menuBackgroundTexture);
+	menuBackgroundSprite.setScale(2, 2);
+}
+
 void MainMenu::setupButtons()
 {
-	colosseum.setup(colosseumPos, buttonWidth, buttonHeight, Scene::CharacterSelect, sf::Color::Red);
+	colosseum.setup(colosseumPos, buttonWidth, buttonHeight, Scene::CharacterSelect, sf::Color{255,0,0,80});
 
-	shop.setup(shopPos, buttonWidth, buttonHeight, Scene::Shop, sf::Color::Yellow);
+	shop.setup(shopPos, buttonWidth, buttonHeight, Scene::Shop, sf::Color{255,255,0,80});
 
 	//help.setup(helpPos, buttonWidth, buttonHeight, Scene::Help);
 }
