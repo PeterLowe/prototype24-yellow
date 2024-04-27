@@ -1,6 +1,6 @@
 #include "CharacterSelect.h"
 #include <iostream>
-//LIAM TREACY SOPHIA STANLEY IAN PEREZ BUNUEL
+//LIAM TREACY SOPHIA STANLEY IAN PEREZ BUNUEL VIT PRECHTL
 CharacterSelect::CharacterSelect()
 {
 	// Mouse for the controller
@@ -292,12 +292,16 @@ void CharacterSelect::update(sf::Time t_deltaTime)
 
 void CharacterSelect::render(sf::RenderWindow& t_window)
 {
+	// Profile Buttons
 	t_window.draw(character1Button.getBody());
 	t_window.draw(character2Button.getBody());
 	t_window.draw(character3Button.getBody());
 	t_window.draw(character4Button.getBody());
 	t_window.draw(character5Button.getBody());
 	t_window.draw(character6Button.getBody());
+
+	// Profile Sprites
+	t_window.draw(monkeyProfileSprite);
 
 	// character sprites
 	t_window.draw(character1Sprite);
@@ -400,6 +404,16 @@ void CharacterSelect::setupSprite()
 	}
 	frameSprite.setTexture(frameTexture);
 	frameSprite.setScale(2.0f, 2.0f);
+
+	// Monkey Character
+	if (!monkeyProfileTexture.loadFromFile("ASSETS\\IMAGES\\MonkeyCharacterProfile.png"))
+	{
+		std::cout << "Error loading MonkeyCharacterProfile" << std::endl;
+	}
+	monkeyProfileSprite.setTexture(monkeyProfileTexture);
+	monkeyProfileSprite.setScale(2.6f, 2.2f);
+	monkeyProfileSprite.setOrigin(42, 60);
+	monkeyProfileSprite.setPosition(character2Pos);
 }
 
 void CharacterSelect::setupButton()

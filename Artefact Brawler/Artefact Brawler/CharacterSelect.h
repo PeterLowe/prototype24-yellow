@@ -7,7 +7,7 @@
 #include "PlayerType.h"
 #include "Controller.h"
 
-class CharacterSelect // LIAM
+class CharacterSelect // LIAM TREACY VIT PRECHTL
 {
 public:
 
@@ -48,6 +48,10 @@ private:
 
 	sf::Texture frameTexture;
 	sf::Sprite frameSprite;
+
+	// Monkey Character
+	sf::Texture monkeyProfileTexture;
+	sf::Sprite monkeyProfileSprite;
 
 	Button character1Button;
 	sf::Vector2f character1Pos = { 329.0f, 405.0f };
