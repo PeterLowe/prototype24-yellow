@@ -125,6 +125,9 @@ void Shop::update(sf::Time t_deltaTime)
 
 		// Check if your hovering over a button
 		sideShootLeftColliding = sideShootLeft.checkForMouse(mousePos);
+		sideShootRightColliding = sideShootRight.checkForMouse(mousePos);
+		upShootColliding = upShoot.checkForMouse(mousePos);
+		downShootColliding = downShoot.checkForMouse(mousePos);
 	}
 
 	// Screen Transition
