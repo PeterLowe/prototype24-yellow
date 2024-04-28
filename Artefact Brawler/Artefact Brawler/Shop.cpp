@@ -12,6 +12,15 @@ Shop::Shop()
 
 	setupFontAndText();
 	setupButtons();
+
+	// Background
+	if (!backgroundTexture.loadFromFile("ASSETS\\IMAGES\\shopBackground.png"))
+	{
+		std::cout << "problem loading background texture" << std::endl;
+	}
+
+	backgroundSprite.setTexture(backgroundTexture);
+	backgroundSprite.setScale(2, 2);
 }
 
 void Shop::processEvents(sf::Event t_event)
@@ -154,6 +163,9 @@ void Shop::update(sf::Time t_deltaTime)
 
 void Shop::render(sf::RenderWindow& t_window)
 {
+	// Background
+	t_window.draw(backgroundSprite);
+
 	// Coins Text
 	t_window.draw(coinsText);
 
@@ -196,11 +208,11 @@ void Shop::setupFontAndText()
 
 void Shop::setupButtons()
 {
-	knee.setup({100, 500.0f}, 100.0f, 100.0f, 75, AttackVarients::Neutral, sf::Color::Cyan);
-	sideShootLeft.setup({300.0f, 500.0f}, 100.0f, 100.0f, 75, AttackVarients::SideLeft, sf::Color::Blue);
-	sideShootRight.setup({ 550.0f, 500.0f }, 100.0f, 100.0f, 75, AttackVarients::SideRight, sf::Color::Red);
-	upShoot.setup({ 800.0f, 500.0f }, 100.0f, 100.0f, 150, AttackVarients::Up, sf::Color::Green);
-	downShoot.setup({ 1000.0f, 500.0f }, 100.0f, 100.0f, 150, AttackVarients::Down, sf::Color::Magenta);
+	knee.setup({110, 630.0f }, 100.0f, 100.0f, 75, AttackVarients::Neutral, sf::Color::Cyan);
+	sideShootLeft.setup({300.0f, 630.0f }, 100.0f, 100.0f, 75, AttackVarients::SideLeft, sf::Color::Blue);
+	sideShootRight.setup({ 550.0f, 630.0f }, 100.0f, 100.0f, 75, AttackVarients::SideRight, sf::Color::Red);
+	upShoot.setup({ 800.0f, 630.0f }, 100.0f, 100.0f, 150, AttackVarients::Up, sf::Color::Green);
+	downShoot.setup({ 1000.0f, 630.0f }, 100.0f, 100.0f, 150, AttackVarients::Down, sf::Color::Magenta);
 }
 
 void Shop::moveMouseHitbox()
