@@ -51,6 +51,12 @@ void Shop::processMouseDown(sf::Event t_event)
 	controllerConnected = false;
 
 	// Shoot attack buttons
+	if (kneeColliding)
+	{
+		knee.onPress(Currency::coins, SpecialType::Knee);
+	}
+
+	// Shoot attack buttons
 	if (sideShootLeftColliding)
 	{
 		sideShootLeft.onPress(Currency::coins, SpecialType::ShootingSideLeft);
@@ -82,6 +88,11 @@ void Shop::processController()
 {
 	if (controller.currentState.A)
 	{
+		if (kneeColliding)
+		{
+			knee.onPress(Currency::coins, SpecialType::Knee);
+		}
+
 		if (sideShootLeftColliding)
 		{
 			sideShootLeft.onPress(Currency::coins, SpecialType::ShootingSideLeft);
@@ -124,6 +135,7 @@ void Shop::update(sf::Time t_deltaTime)
 
 
 		// Check if your hovering over a button
+		kneeColliding = knee.checkForMouse(mousePos);
 		sideShootLeftColliding = sideShootLeft.checkForMouse(mousePos);
 		sideShootRightColliding = sideShootRight.checkForMouse(mousePos);
 		upShootColliding = upShoot.checkForMouse(mousePos);
@@ -153,6 +165,7 @@ void Shop::render(sf::RenderWindow& t_window)
 	}
 
 	// Buttons
+	t_window.draw(knee.getBody());
 	t_window.draw(sideShootLeft.getBody());
 	t_window.draw(sideShootRight.getBody());
 	t_window.draw(upShoot.getBody());
@@ -183,10 +196,11 @@ void Shop::setupFontAndText()
 
 void Shop::setupButtons()
 {
-	sideShootLeft.setup({500.0f, 500.0f}, 100.0f, 100.0f, 75, AttackVarients::SideLeft, sf::Color::Blue);
-	sideShootRight.setup({ 650.0f, 500.0f }, 100.0f, 100.0f, 75, AttackVarients::SideRight, sf::Color::Red);
-	upShoot.setup({ 800.0f, 500.0f }, 100.0f, 100.0f, 150, AttackVarients::Up, sf::Color::Green);
-	downShoot.setup({ 950.0f, 500.0f }, 100.0f, 100.0f, 150, AttackVarients::Up, sf::Color::Magenta);
+	knee.setup({250, 500.0f}, 100.0f, 100.0f, 75, AttackVarients::SideLeft, sf::Color::Cyan);
+	sideShootLeft.setup({400.0f, 500.0f}, 100.0f, 100.0f, 75, AttackVarients::SideLeft, sf::Color::Blue);
+	sideShootRight.setup({ 550.0f, 500.0f }, 100.0f, 100.0f, 75, AttackVarients::SideRight, sf::Color::Red);
+	upShoot.setup({ 700.0f, 500.0f }, 100.0f, 100.0f, 150, AttackVarients::Up, sf::Color::Green);
+	downShoot.setup({ 850.0f, 500.0f }, 100.0f, 100.0f, 150, AttackVarients::Up, sf::Color::Magenta);
 }
 
 void Shop::moveMouseHitbox()
@@ -236,6 +250,15 @@ void Shop::moveMouseHitbox()
 void Shop::controllerButtonCheck()
 {
 	// Check if its over a button
+	if (mouseHitbox.getGlobalBounds().intersects(knee.getBody().getGlobalBounds()))
+	{
+		kneeColliding = true;
+	}
+	else
+	{
+		kneeColliding = false;
+	}
+
 	if (mouseHitbox.getGlobalBounds().intersects(sideShootLeft.getBody().getGlobalBounds()))
 	{
 		sideShootLeftColliding = true;

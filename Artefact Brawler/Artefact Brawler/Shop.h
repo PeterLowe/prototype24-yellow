@@ -41,6 +41,8 @@ private:
 
 
 	// Buttons for attacks
+	shopButtons knee;
+	bool kneeColliding = false;
 	shopButtons sideShootLeft;
 	bool sideShootLeftColliding = false;
 	shopButtons sideShootRight;
