@@ -7,7 +7,7 @@
 #include "PlayerType.h"
 #include "Controller.h"
 
-class CharacterSelect // LIAM TREACY VIT PRECHTL
+class CharacterSelect // LIAM TREACY VIT PRECHTL SOPHIA STANLEY
 {
 public:
 
@@ -39,12 +39,12 @@ private:
 
 	sf::Vector2f mousePos = {};
 
+	sf::Sprite character3Sprite;
+	sf::Texture character3Texture;
 	sf::Sprite character1Sprite;
 	sf::Texture character1Texture;
-	sf::Sprite character2Sprite;
-	sf::Texture character2Texture;
-	sf::Sprite character3sprite;
-	sf::Texture character3Texture;
+	sf::Sprite character6sprite;
+	sf::Texture character6Texture;
 
 	sf::Texture frameTexture;
 	sf::Sprite frameSprite;
@@ -52,6 +52,18 @@ private:
 	// Monkey Character
 	sf::Texture monkeyProfileTexture;
 	sf::Sprite monkeyProfileSprite;
+
+	// Rose 
+	sf::Texture roseProfileTexture;
+	sf::Sprite roseProfileSprite;
+
+	// Liam 1
+	sf::Texture liam1ProfileTexture;
+	sf::Sprite liam1ProfileSprite;
+
+	// Rabbit Man
+	sf::Texture liam2ProfileTexture;
+	sf::Sprite liam2ProfileSprite;
 
 	Button character1Button;
 	sf::Vector2f character1Pos = { 329.0f, 405.0f };
@@ -84,6 +96,8 @@ private:
 
 	sf::Font font;
 	sf::Text characterStats;
+
+	sf::RectangleShape spriteWindow;
 
 	ScreenTransition transitionCircle;
 };
