@@ -5,7 +5,7 @@
 void shopButtons::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(body);
-	t_window.draw(text);
+	t_window.draw(unlockText);
 }
 
 void shopButtons::setup(sf::Vector2f t_pos, float t_width, float t_height, int t_price, AttackVarients t_attackType, sf::Color t_color)
@@ -31,14 +31,14 @@ void shopButtons::setup(sf::Vector2f t_pos, float t_width, float t_height, int t
 		std::cout << "problem loading arial black font" << std::endl;
 	}
 
-	text.setFont(font);
-	text.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
-	text.setCharacterSize(12U);
-	text.setOutlineColor(sf::Color::Black);
-	text.setFillColor(sf::Color::Red);
-	text.setOutlineThickness(3.0f);
-	text.setPosition({ position.x - (width / 2) + 5, position.y - (height / 2) + 5 });
-	text.setString("Locked");
+	unlockText.setFont(font);
+	unlockText.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
+	unlockText.setCharacterSize(12U);
+	unlockText.setOutlineColor(sf::Color::Black);
+	unlockText.setFillColor(sf::Color::Red);
+	unlockText.setOutlineThickness(3.0f);
+	unlockText.setPosition({ position.x - (width / 2) + 5, position.y - (height / 2) + 5 });
+	unlockText.setString("Locked");
 }
 
 bool shopButtons::checkForMouse(sf::Vector2f t_mousePos)
@@ -93,7 +93,7 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 		}
 
 		// Set color
-		text.setFillColor(sf::Color::Green);
+		unlockText.setFillColor(sf::Color::Green);
 	}
 	else
 	{
@@ -105,8 +105,8 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 			// Set unlocked to true
 			unlocked = true;
 
-			text.setString("Unlocked");
-			text.setFillColor({0, 255, 0, 100});
+			unlockText.setString("Unlocked");
+			unlockText.setFillColor({0, 255, 0, 100});
 
 		}
 		else

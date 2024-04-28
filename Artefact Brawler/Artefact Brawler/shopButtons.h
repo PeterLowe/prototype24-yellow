@@ -47,6 +47,6 @@ private:
 	AttackVarients attackVarient;
 
 	sf::Font font;
-	sf::Text text;
+	sf::Text unlockText;
 };
 
