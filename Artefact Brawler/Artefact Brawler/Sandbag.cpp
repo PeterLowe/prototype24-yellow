@@ -1,4 +1,4 @@
-// IAN PEREZ BUNUEL VIT PRECHTL
+// IAN PEREZ BUNUEL, VIT PRECHTL
 
 #include "Sandbag.h"
 
@@ -11,6 +11,12 @@ Sandbag::Sandbag()
     sprite.setTexture(sandbagTexture);
     sprite.setOrigin(16, 32);
     sprite.setScale(1.5, 1.5);
+
+	// Partical Color
+	for (int i = 0; i < MAX_PARTICALS_SANDBAG; i++)
+	{
+		particals[i].setColor(sf::Color::Yellow);
+	}
 }
 
 void Sandbag::setup(sf::Vector2f t_pos)
@@ -181,6 +187,8 @@ int Sandbag::bounce(float t_angleD)
 void Sandbag::takeDamage(int t_damage)
 {
 	percentage += t_damage;
+
+	hitParticals();
 }
 
 void Sandbag::offScreenIndicator()
@@ -207,4 +215,15 @@ void Sandbag::reset()
 
 	// Reset the knockback
 	knockingBack = false;
+}
+
+void Sandbag::hitParticals()
+{
+	for (int i = 0; i < PER_HIT; i++)
+	{
+		if (!particals[i].active)
+		{
+			particals[i].spawn(position);
+		}
+	}
 }

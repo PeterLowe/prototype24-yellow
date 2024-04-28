@@ -1,6 +1,6 @@
 #include "GamePlay.h"
 #include "game.h"
-// IAN PEREZ BUNUEL LIAM TREACY VIT PRECHTL
+// IAN PEREZ BUNUEL, LIAM TREACY, VIT PRECHTL
 GamePlay::GamePlay()
 {
 	setupFontAndText();
@@ -298,6 +298,16 @@ void GamePlay::update(sf::Time t_deltaTime)
 		}
 
 		player.changeColor(canAttack);
+
+		// Partical Effects
+		for (int i = 0; i < MAX_PARTICALS_SANDBAG; i++)
+		{
+			if (sandbag.particals[i].active)
+			{
+				sandbag.particals[i].move();
+				sandbag.particals[i].bounds();
+			}
+		}
 	}
 }
 
@@ -329,6 +339,16 @@ void GamePlay::render(sf::RenderWindow& t_window)
 	for (int i = 0; i < MAX_BOUNCEPADS; i++)
 	{
 		t_window.draw(bouncePads[i].getBouncePad());
+	}
+
+	// Particals
+	for (int i = 0; i < MAX_PARTICALS_SANDBAG; i++)
+	{
+		if (sandbag.particals[i].active)
+		{
+			t_window.draw(sandbag.particals[i].getBody());
+			t_window.draw(sandbag.particals[i].getSprite());
+		}
 	}
 
 	// Sandbag's percentage

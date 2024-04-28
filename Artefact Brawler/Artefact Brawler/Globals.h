@@ -11,3 +11,6 @@ const int GRAVITY = 10;
 // Obsticals
 const int MAX_PLATFORMS = 3;
 const int MAX_BOUNCEPADS = 2;
+
+// Particals
+const int MAX_PARTICALS_SANDBAG = 300;

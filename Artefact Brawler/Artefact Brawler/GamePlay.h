@@ -1,8 +1,9 @@
-// IAN PEREZ BUNUEL VIT PRECHTL
+// IAN PEREZ BUNUEL, VIT PRECHTL
 
 #pragma once
 
 #include <SFML/Graphics.hpp>
+
 #include "Player.h"
 #include "Sandbag.h"
 #include "Currency.h"
@@ -10,7 +11,9 @@
 #include "AttackManager.h"
 #include "Scenes.h"
 #include "ScreenTransition.h"
-#include"ReflectiveBouncePads.h"
+#include "ReflectiveBouncePads.h"
+#include "Partical.h"
+
 #include <iostream>
 
 class GamePlay
