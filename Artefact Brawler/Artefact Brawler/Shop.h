@@ -58,5 +58,9 @@ private:
 	sf::Text coinsText;
 
 	ScreenTransition transitionCircle;
+
+	// Background
+	sf::Texture backgroundTexture;
+	sf::Sprite backgroundSprite;
 };
 
