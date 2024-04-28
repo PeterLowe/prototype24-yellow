@@ -273,7 +273,7 @@ void CharacterSelect::update(sf::Time t_deltaTime)
 	}
 	if (character5Colliding)
 	{
-		characterStats.setString("Vit Character 2\n\nSpeed: " + std::to_string(Vit2::SPEED) + "\nJumps: " + std::to_string(Vit2::MAX_JUMPS)
+		characterStats.setString("Sandbag Boy\n\nSpeed: " + std::to_string(Vit2::SPEED) + "\nJumps: " + std::to_string(Vit2::MAX_JUMPS)
 		+ "\nJump Force: " + std::to_string(Vit2::JUMP_FORCE) + "\nJump Length: " + std::to_string(Vit2::RISE_DURATION) + "\nFall Speed: "
 		+ std::to_string(Vit2::CHANGE_IN_GRAVITY));
 	}
@@ -310,9 +310,17 @@ void CharacterSelect::render(sf::RenderWindow& t_window)
 	{
 		t_window.draw(character1Sprite);
 	}
+	if (character2Colliding)
+	{
+		t_window.draw(character2Sprite);
+	}
 	if (character3Colliding)
 	{
 		t_window.draw(character3Sprite); 
+	}
+	if (character5Colliding)
+	{
+		t_window.draw(character5Sprite);
 	}
 	if (character6Colliding)
 	{
@@ -397,6 +405,14 @@ void CharacterSelect::setupSprite()
 	character1Sprite.setScale(3.0f, 3.0f);
 	character1Sprite.setPosition(200.0f, 100.0f);
 
+	if (!character2Texture.loadFromFile("ASSETS\\IMAGES\\MonkeyCharacter.png"))
+	{
+		std::cout << "Error loading character 2 monkey sprite" << std::endl;
+	}
+	character2Sprite.setTexture(character2Texture);
+	character2Sprite.setScale(3.0f, 3.0f);
+	character2Sprite.setPosition(200.0f, 100.0f);
+
 	if (!character3Texture.loadFromFile("ASSETS\\IMAGES\\char1.png"))
 	{
 		std::cout << "Error loading character 3 sprite" << std::endl;
@@ -404,6 +420,14 @@ void CharacterSelect::setupSprite()
 	character3Sprite.setTexture(character3Texture);
 	character3Sprite.setScale(3.0f, 3.0f);
 	character3Sprite.setPosition(200.0f, 100.0f);
+
+	if (!character5Texture.loadFromFile("ASSETS\\IMAGES\\Sandbag_Boy.png"))
+	{
+		std::cout << "Error loading character 5 sandbag boy sprite" << std::endl;
+	}
+	character5Sprite.setTexture(character5Texture);
+	character5Sprite.setScale(3.0f, 3.0f);
+	character5Sprite.setPosition(200.0f, 100.0f);
 
 	if (!character6Texture.loadFromFile("ASSETS\\IMAGES\\rabbit_man.png"))
 	{

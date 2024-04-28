@@ -41,8 +41,12 @@ private:
 
 	sf::Sprite character3Sprite;
 	sf::Texture character3Texture;
+	sf::Sprite character2Sprite;
+	sf::Texture character2Texture;
 	sf::Sprite character1Sprite;
 	sf::Texture character1Texture;
+	sf::Sprite character5Sprite;
+	sf::Texture character5Texture;
 	sf::Sprite character6sprite;
 	sf::Texture character6Texture;
 
