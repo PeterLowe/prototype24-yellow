@@ -7,6 +7,11 @@ void shopButtons::draw(sf::RenderWindow& t_window)
 	t_window.draw(body);
 	t_window.draw(unlockText);
 	t_window.draw(attackTypeText);
+
+	if (!unlocked)
+	{
+		t_window.draw(priceText);
+	}
 }
 
 void shopButtons::setup(sf::Vector2f t_pos, float t_width, float t_height, int t_price, AttackVarients t_attackType, sf::Color t_color)
@@ -51,26 +56,35 @@ void shopButtons::setup(sf::Vector2f t_pos, float t_width, float t_height, int t
 	switch (t_attackType)
 	{
 	case AttackVarients::Neutral:
-		attackTypeText.setString("Neutral Attack");
+		attackTypeText.setString("Neutral Special");
 		break;
 
 	case AttackVarients::SideLeft:
-		attackTypeText.setString("Side Left Attack");
+		attackTypeText.setString("Side Special Left");
 		break;
 
 	case AttackVarients::SideRight:
-		attackTypeText.setString("Side Right Attack");
+		attackTypeText.setString("Side Special Right");
 		break;
 
 	case AttackVarients::Up:
-		attackTypeText.setString("    Up Attack");
+		attackTypeText.setString("    Up Special");
 		break;
 
 	case AttackVarients::Down:
-		attackTypeText.setString("  Down Attack");
+		attackTypeText.setString("  Down Special");
 		break;
 
 	}
+
+	priceText.setFont(font);
+	priceText.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
+	priceText.setCharacterSize(16U);
+	priceText.setOutlineColor(sf::Color::Yellow);
+	priceText.setFillColor({ 255, 100, 0, 255 });
+	priceText.setOutlineThickness(3.0f);
+	priceText.setPosition({ position.x - (width / 2) + 10, position.y - (height / 2) + 15 });
+	priceText.setString(std::to_string(price));
 }
 
 bool shopButtons::checkForMouse(sf::Vector2f t_mousePos)

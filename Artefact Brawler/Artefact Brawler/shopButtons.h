@@ -48,6 +48,7 @@ private:
 
 	sf::Font font;
 	sf::Text unlockText;
+	sf::Text priceText;
 	sf::Text attackTypeText;
 };
 
