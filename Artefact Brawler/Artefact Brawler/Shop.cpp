@@ -165,11 +165,11 @@ void Shop::render(sf::RenderWindow& t_window)
 	}
 
 	// Buttons
-	t_window.draw(knee.getBody());
-	t_window.draw(sideShootLeft.getBody());
-	t_window.draw(sideShootRight.getBody());
-	t_window.draw(upShoot.getBody());
-	t_window.draw(downShoot.getBody());
+	knee.draw(t_window);
+	sideShootLeft.draw(t_window);
+	sideShootRight.draw(t_window);
+	upShoot.draw(t_window);
+	downShoot.draw(t_window);
 
 	// Screen Transition
 	if (transitionCircle.active)

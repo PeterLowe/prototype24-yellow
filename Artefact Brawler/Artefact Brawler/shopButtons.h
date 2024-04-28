@@ -23,6 +23,7 @@ public:
 	sf::RectangleShape getBody() { return body; }
 
 	void setup(sf::Vector2f t_pos, float t_width, float t_height, int t_price, AttackVarients t_attackType, sf::Color t_color);
+	void draw(sf::RenderWindow& t_window);
 
 	bool checkForMouse(sf::Vector2f t_mousePos);
 
@@ -44,5 +45,8 @@ private:
 	int price = 0;
 
 	AttackVarients attackVarient;
+
+	sf::Font font;
+	sf::Text text;
 };
 

@@ -2,6 +2,12 @@
 
 #include "shopButtons.h"
 
+void shopButtons::draw(sf::RenderWindow& t_window)
+{
+	t_window.draw(body);
+	t_window.draw(text);
+}
+
 void shopButtons::setup(sf::Vector2f t_pos, float t_width, float t_height, int t_price, AttackVarients t_attackType, sf::Color t_color)
 {
 	attackVarient = t_attackType;
@@ -18,6 +24,21 @@ void shopButtons::setup(sf::Vector2f t_pos, float t_width, float t_height, int t
 
 	position = t_pos;
 	body.setPosition(position);
+
+	// Text
+	if (!font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	{
+		std::cout << "problem loading arial black font" << std::endl;
+	}
+
+	text.setFont(font);
+	text.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
+	text.setCharacterSize(12U);
+	text.setOutlineColor(sf::Color::Black);
+	text.setFillColor(sf::Color::Red);
+	text.setOutlineThickness(3.0f);
+	text.setPosition({ position.x - (width / 2) + 5, position.y - (height / 2) + 5 });
+	text.setString("Locked");
 }
 
 bool shopButtons::checkForMouse(sf::Vector2f t_mousePos)
@@ -70,6 +91,9 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 			AttackManager::specialDown = t_attack;
 			break;
 		}
+
+		// Set color
+		text.setFillColor(sf::Color::Green);
 	}
 	else
 	{
@@ -81,7 +105,9 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 			// Set unlocked to true
 			unlocked = true;
 
-			std::cout << "UNLOCKED \n";
+			text.setString("Unlocked");
+			text.setFillColor({0, 255, 0, 100});
+
 		}
 		else
 		{
