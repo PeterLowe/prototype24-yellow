@@ -12,7 +12,7 @@ SplashScreen::SplashScreen()
 
 void SplashScreen::processEvents(sf::Event t_event)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	if (sf::Event::KeyPressed == t_event.type)
 	{
 		transitionCircle.transition(Scene::MainMenu);
 	}
