@@ -25,6 +25,7 @@ public:
 
 	void moveMouseHitbox();
 	void setupBackground();
+	void setupText();
 
 private:
 
@@ -50,7 +51,7 @@ private:
 
 	Button help;
 	bool helpColliding = false;
-	sf::Vector2f helpPos = { 200.0f, 200.0f };
+	sf::Vector2f helpPos = { 725.0f, 370.0f };
 
 	float buttonWidth = 155.0f;
 	float buttonHeight = 270.0f;
@@ -62,6 +63,10 @@ private:
 	sf::Sprite menuSprite;
 	sf::Texture menuBackgroundTexture;
 	sf::Sprite menuBackgroundSprite;
+
+	// Help Text
+	sf::Text helpText;
+	sf::Font font;
 
 };
 

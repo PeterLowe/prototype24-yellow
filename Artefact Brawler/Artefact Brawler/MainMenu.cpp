@@ -12,6 +12,7 @@ MainMenu::MainMenu()
 
 	setupButtons();
 	setupBackground();
+	setupText();
 }
 
 void MainMenu::processEvents(sf::Event t_event)
@@ -144,7 +145,12 @@ void MainMenu::render(sf::RenderWindow& t_window)
 	// Buttons
 	t_window.draw(colosseum.getBody());
 	t_window.draw(shop.getBody());
-	//t_window.draw(help.getBody());
+
+	if (helpColliding)
+	{
+		t_window.draw(help.getBody());
+		t_window.draw(helpText);
+	}
 
 
 	// Mouse hitbox
@@ -224,11 +230,28 @@ void MainMenu::setupBackground()
 	menuBackgroundSprite.setScale(2, 2);
 }
 
+void MainMenu::setupText()
+{
+	if (!font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	{
+		std::cout << "problem loading arial black font" << std::endl;
+	}
+
+	helpText.setFont(font);
+	helpText.setStyle(sf::Text::Italic | sf::Text::Bold);
+	helpText.setCharacterSize(20U);
+	helpText.setOutlineColor(sf::Color::Black);
+	helpText.setFillColor(sf::Color::White);
+	helpText.setOutlineThickness(3.0f);
+
+	helpText.setString("Use WASD to move and space to jump \n Use J and a direction to do an attack \n this attack can be side left, side right, up, down \n or neutral. You can do the same with K for special attacks. \n These attacks are unlocked in the shop. \n To leave the shop use escape. \n Gain money for the shop by beating up the sandbag. \n If you would like to use a controller press the start button when you enter a new scene, \n this will allow you to use it. \n The controller controls are: \n A to jump, X for normal attack and Y for special attacks.");
+}
+
 void MainMenu::setupButtons()
 {
 	colosseum.setup(colosseumPos, buttonWidth, buttonHeight, Scene::CharacterSelect, sf::Color{255,0,0,80});
 
 	shop.setup(shopPos, buttonWidth, buttonHeight, Scene::Shop, sf::Color{255,255,0,80});
 
-	//help.setup(helpPos, buttonWidth, buttonHeight, Scene::Help);
+	help.setup(helpPos, buttonWidth, buttonHeight, Scene::MainMenu, sf::Color{ 50, 50, 50, 150 });
 }
