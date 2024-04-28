@@ -30,9 +30,9 @@ struct mrBanana // Vit change these stats
 	// Default values currently 
 	static const int MAX_JUMPS = 1;
 	static const int SPEED = 6;
-	static const int JUMP_FORCE = 24; // How powerful the jump is
+	static const int JUMP_FORCE = 20; // How powerful the jump is
 	static const int RISE_DURATION = 1; // How long they jump for (in frames)
-	static const int CHANGE_IN_GRAVITY = 0;// How much gravity affects them. Bigger the number the faster they fall. Minus numbers the slower they fall (-9 MAX)
+	static const int CHANGE_IN_GRAVITY = 5;// How much gravity affects them. Bigger the number the faster they fall. Minus numbers the slower they fall (-9 MAX)
 };
 
 struct Vit2 // Vit change these stats
@@ -58,11 +58,11 @@ struct Liam1 // Liam change these stats
 struct Liam2 // Liam change these stats
 {
 	// Default values currently 
-	static const int MAX_JUMPS = 2;
-	static const int SPEED = 5;
-	static const int JUMP_FORCE = 13; // How powerful the jump is
+	static const int MAX_JUMPS = 3;
+	static const int SPEED = 8;
+	static const int JUMP_FORCE = 15; // How powerful the jump is
 	static const int RISE_DURATION = 1; // How long they jump for (in frames)
-	static const int CHANGE_IN_GRAVITY = 0;// How much gravity affects them. Bigger the number the faster they fall. Minus numbers the slower they fall (-9 MAX)
+	static const int CHANGE_IN_GRAVITY = -3;// How much gravity affects them. Bigger the number the faster they fall. Minus numbers the slower they fall (-9 MAX)
 };
 
 // Chosen Character
