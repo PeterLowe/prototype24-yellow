@@ -279,7 +279,7 @@ void CharacterSelect::update(sf::Time t_deltaTime)
 	}
 	if (character6Colliding)
 	{
-		characterStats.setString("Liam Character 2\n\nSpeed: " + std::to_string(Liam2::SPEED) + "\nJumps: " + std::to_string(Liam2::MAX_JUMPS)
+		characterStats.setString("Rabbit Man\n\nSpeed: " + std::to_string(Liam2::SPEED) + "\nJumps: " + std::to_string(Liam2::MAX_JUMPS)
 		+ "\nJump Force: " + std::to_string(Liam2::JUMP_FORCE) + "\nJump Length: " + std::to_string(Liam2::RISE_DURATION) + "\nFall Speed: "
 		+ std::to_string(Liam2::CHANGE_IN_GRAVITY));
 	}
@@ -293,23 +293,35 @@ void CharacterSelect::update(sf::Time t_deltaTime)
 void CharacterSelect::render(sf::RenderWindow& t_window)
 {
 	// Profile Buttons
-	t_window.draw(character1Button.getBody());
-	t_window.draw(character2Button.getBody());
-	t_window.draw(character3Button.getBody());
 	t_window.draw(character4Button.getBody());
 	t_window.draw(character5Button.getBody());
 	t_window.draw(character6Button.getBody());
 
+	t_window.draw(spriteWindow);
+
 	// Profile Sprites
 	t_window.draw(monkeyProfileSprite);
+	t_window.draw(roseProfileSprite);
+	t_window.draw(liam1ProfileSprite);
+	t_window.draw(liam2ProfileSprite);
 
 	// character sprites
-	t_window.draw(character1Sprite);
-	t_window.draw(character2Sprite);
-	t_window.draw(character3sprite);
+	if (character1Colliding)
+	{
+		t_window.draw(character1Sprite);
+	}
+	if (character3Colliding)
+	{
+		t_window.draw(character3Sprite); 
+	}
+	if (character6Colliding)
+	{
+		t_window.draw(character6sprite);
+	}
 
 	t_window.draw(frameSprite); // frame/border/background for character select screen
 	t_window.draw(characterStats);
+
 
 	// Mouse hitbox for controller
 	if (controllerConnected)
@@ -377,26 +389,29 @@ void CharacterSelect::moveMouseHitbox()
 
 void CharacterSelect::setupSprite()
 {
-	if (!character2Texture.loadFromFile("ASSETS\\IMAGES\\Character2.png"))
+	if (!character1Texture.loadFromFile("ASSETS\\IMAGES\\Character2.png"))
 	{
-		std::cout << "Error loading character 2 sprite" << std::endl;
-	}
-	character2Sprite.setTexture(character2Texture);
-	character2Sprite.setPosition(600.0f, 200.0f);
-
-	if (!character1Texture.loadFromFile("ASSETS\\IMAGES\\char1.png"))
-	{
-		std::cout << "Error loading character 2 sprite" << std::endl;
+		std::cout << "Error loading character 1 sprite" << std::endl;
 	}
 	character1Sprite.setTexture(character1Texture);
-	character1Sprite.setPosition(500.0f, 200.0f);
+	character1Sprite.setScale(3.0f, 3.0f);
+	character1Sprite.setPosition(200.0f, 100.0f);
 
-	if (!character3Texture.loadFromFile("ASSETS\\IMAGES\\rabbit_man.png"))
+	if (!character3Texture.loadFromFile("ASSETS\\IMAGES\\char1.png"))
 	{
-		std::cout << "Error loading character 2 sprite" << std::endl;
+		std::cout << "Error loading character 3 sprite" << std::endl;
 	}
-	character3sprite.setTexture(character3Texture);
-	character3sprite.setPosition(300.0f, 200.0f);
+	character3Sprite.setTexture(character3Texture);
+	character3Sprite.setScale(3.0f, 3.0f);
+	character3Sprite.setPosition(200.0f, 100.0f);
+
+	if (!character6Texture.loadFromFile("ASSETS\\IMAGES\\rabbit_man.png"))
+	{
+		std::cout << "Error loading character 6 sprite" << std::endl;
+	}
+	character6sprite.setTexture(character6Texture);
+	character6sprite.setScale(3.0f, 3.0f);
+	character6sprite.setPosition(200.0f, 100.0f);
 
 	if (!frameTexture.loadFromFile("ASSETS\\IMAGES\\CharacterSelectFrame.png"))
 	{
@@ -414,6 +429,41 @@ void CharacterSelect::setupSprite()
 	monkeyProfileSprite.setScale(2.6f, 2.2f);
 	monkeyProfileSprite.setOrigin(42, 60);
 	monkeyProfileSprite.setPosition(character2Pos);
+
+	// Rose
+	if (!roseProfileTexture.loadFromFile("ASSETS\\IMAGES\\RosePortrait.png"))
+	{
+		std::cout << "Error loading Rose portrait" << std::endl;
+	}
+	roseProfileSprite.setTexture(roseProfileTexture);
+	roseProfileSprite.setScale(2.0f, 2.0f);
+	roseProfileSprite.setOrigin(50, 42);
+	roseProfileSprite.setPosition(character1Pos);
+
+	// Liam 1
+	if (!liam1ProfileTexture.loadFromFile("ASSETS\\IMAGES\\liamCharSelectIcon.png"))
+	{
+		std::cout << "Error loading Liam 1 portrait" << std::endl;
+	}
+	liam1ProfileSprite.setTexture(liam1ProfileTexture);
+	liam1ProfileSprite.setScale(2.6f, 1.9f);
+	liam1ProfileSprite.setOrigin(42, 50);
+	liam1ProfileSprite.setPosition(character3Pos);
+
+	// Rabbit Man
+	if (!liam2ProfileTexture.loadFromFile("ASSETS\\IMAGES\\rabbitMan.png"))
+	{
+		std::cout << "Error loading Liam 2 portrait" << std::endl;
+	}
+	liam2ProfileSprite.setTexture(liam2ProfileTexture);
+	liam2ProfileSprite.setScale(2.6f, 1.9f);
+	liam2ProfileSprite.setOrigin(42, 50);
+	liam2ProfileSprite.setPosition(character6Pos);
+
+	spriteWindow.setSize({ 360.0f, 306.0f });
+	spriteWindow.setFillColor(sf::Color::Red);
+	//spriteWindow.setOrigin(180.0f, 153.0f);
+	spriteWindow.setPosition(55.0f, 2.0f);
 }
 
 void CharacterSelect::setupButton()
