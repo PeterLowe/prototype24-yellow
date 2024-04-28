@@ -48,5 +48,6 @@ private:
 
 	sf::Font font;
 	sf::Text unlockText;
+	sf::Text attackTypeText;
 };
 

@@ -6,6 +6,7 @@ void shopButtons::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(body);
 	t_window.draw(unlockText);
+	t_window.draw(attackTypeText);
 }
 
 void shopButtons::setup(sf::Vector2f t_pos, float t_width, float t_height, int t_price, AttackVarients t_attackType, sf::Color t_color)
@@ -33,12 +34,43 @@ void shopButtons::setup(sf::Vector2f t_pos, float t_width, float t_height, int t
 
 	unlockText.setFont(font);
 	unlockText.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
-	unlockText.setCharacterSize(12U);
+	unlockText.setCharacterSize(16U);
 	unlockText.setOutlineColor(sf::Color::Black);
 	unlockText.setFillColor(sf::Color::Red);
 	unlockText.setOutlineThickness(3.0f);
-	unlockText.setPosition({ position.x - (width / 2) + 5, position.y - (height / 2) + 5 });
+	unlockText.setPosition({ position.x - (width / 2) + 5, position.y - 8});
 	unlockText.setString("Locked");
+
+	attackTypeText.setFont(font);
+	attackTypeText.setStyle(sf::Text::Italic | sf::Text::Bold);
+	attackTypeText.setCharacterSize(20U);
+	attackTypeText.setOutlineColor(sf::Color::Black);
+	attackTypeText.setFillColor(sf::Color::White);
+	attackTypeText.setOutlineThickness(3.0f);
+	attackTypeText.setPosition({ position.x - width, position.y - height });
+	switch (t_attackType)
+	{
+	case AttackVarients::Neutral:
+		attackTypeText.setString("Neutral Attack");
+		break;
+
+	case AttackVarients::SideLeft:
+		attackTypeText.setString("Side Left Attack");
+		break;
+
+	case AttackVarients::SideRight:
+		attackTypeText.setString("Side Right Attack");
+		break;
+
+	case AttackVarients::Up:
+		attackTypeText.setString("    Up Attack");
+		break;
+
+	case AttackVarients::Down:
+		attackTypeText.setString("  Down Attack");
+		break;
+
+	}
 }
 
 bool shopButtons::checkForMouse(sf::Vector2f t_mousePos)
@@ -68,6 +100,7 @@ void shopButtons::onPress(int& t_coins, SpecialType t_attack)
 		switch (attackVarient)
 		{
 		case AttackVarients::Neutral:
+			std::cout << "EQUIPPED \n";
 			AttackManager::specialNeutral = t_attack;
 			break;
 
