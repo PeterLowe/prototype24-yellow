@@ -1,3 +1,5 @@
+// IAN PEREZ BUNUEL
+
 #include "shopButtons.h"
 
 void shopButtons::setup(sf::Vector2f t_pos, float t_width, float t_height, int t_price, AttackVarients t_attackType, sf::Color t_color)

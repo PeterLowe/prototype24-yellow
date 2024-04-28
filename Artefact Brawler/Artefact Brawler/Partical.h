@@ -1,3 +1,5 @@
+// IAN PEREZ BUNUEL
+
 #pragma once
 
 #include <SFML/Graphics.hpp>
@@ -12,6 +14,7 @@ public:
 
 	void setColor(sf::Color t_color) { body.setFillColor(t_color); }
 	sf::RectangleShape getBody() { return body; }
+	sf::Sprite getSprite() { return sprite; }
 
 	void spawn(sf::Vector2f t_pos);
 
@@ -26,8 +29,14 @@ private:
 	void setup();
 
 	sf::RectangleShape body;
-	float size = 0;
+	sf::Sprite sprite;
+	sf::Texture texture;
+
+	float size = 0.0f;
 	const int MIN_SIZE = 1;
+
+	float scale = 0.0f;
+	const float MIN_SCALE = 0.2f;
 
 	sf::Vector2f position;
 	int speed = 0;

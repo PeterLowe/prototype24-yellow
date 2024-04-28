@@ -1,9 +1,19 @@
+// IAN PEREZ BUNUEL
+
 #include "Partical.h"
 #include <iostream>
 
 Partical::Partical()
 {
 	setup();
+
+	if (!texture.loadFromFile("ASSETS\\IMAGES\\Gcoin.png"))
+	{
+		std::cout << "problem loading Coin texture" << std::endl;
+	}
+
+	sprite.setTexture(texture);
+	sprite.setOrigin(16, 16);
 }
 
 void Partical::setup()
@@ -17,6 +27,7 @@ void Partical::spawn(sf::Vector2f t_pos)
 	// Set position
 	position = t_pos;
 	body.setPosition(position);
+	sprite.setPosition(position);
 
 	// Randomize angle particals go in
 	float randDirection = (rand() % 360);
@@ -29,11 +40,17 @@ void Partical::spawn(sf::Vector2f t_pos)
 	int randAngleD = (rand() % 360) + 1;
 	float randSize = (rand() % 20) + 5;
 
+
 	// Body
 	size = randSize;
 	body.setSize({ size, size });
 	body.setOrigin({ size / 2, size / 2 });
 	body.setRotation(randAngleD);
+
+	// Sprite
+	scale = 1;
+	sprite.setScale(scale, scale);
+	sprite.setRotation(randAngleD);
 
 	active = true;
 }
@@ -54,6 +71,9 @@ void Partical::move()
 	{
 		size -= 0.2f;
 		body.setSize({ size, size });
+
+		scale -= 0.02f;
+		sprite.setScale({ scale, scale });
 	}
 	else
 	{
@@ -78,6 +98,7 @@ void Partical::move()
 	}
 
 	body.setPosition(position);
+	sprite.setPosition(position);
 }
 
 void Partical::bounds()

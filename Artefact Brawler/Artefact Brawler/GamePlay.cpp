@@ -1,6 +1,6 @@
 #include "GamePlay.h"
 #include "game.h"
-// IAN PEREZ BUNUEL LIAM TREACY VIT PRECHTL
+// IAN PEREZ BUNUEL, LIAM TREACY, VIT PRECHTL
 GamePlay::GamePlay()
 {
 	setupFontAndText();
@@ -347,6 +347,7 @@ void GamePlay::render(sf::RenderWindow& t_window)
 		if (sandbag.particals[i].active)
 		{
 			t_window.draw(sandbag.particals[i].getBody());
+			t_window.draw(sandbag.particals[i].getSprite());
 		}
 	}
 

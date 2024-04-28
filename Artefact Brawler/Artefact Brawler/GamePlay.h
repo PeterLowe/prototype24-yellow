@@ -1,4 +1,4 @@
-// IAN PEREZ BUNUEL VIT PRECHTL
+// IAN PEREZ BUNUEL, VIT PRECHTL
 
 #pragma once
 
@@ -13,7 +13,6 @@
 #include "ScreenTransition.h"
 #include "ReflectiveBouncePads.h"
 #include "Partical.h"
-
 
 #include <iostream>
 
