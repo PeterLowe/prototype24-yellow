@@ -267,7 +267,7 @@ void CharacterSelect::update(sf::Time t_deltaTime)
 	}
 	if (character4Colliding)
 	{
-		characterStats.setString("Soph Character 2\n\nSpeed: " + std::to_string(Soph2::SPEED) + "\nJumps: " + std::to_string(Soph2::MAX_JUMPS)
+		characterStats.setString("Stargazer\n\nSpeed: " + std::to_string(Soph2::SPEED) + "\nJumps: " + std::to_string(Soph2::MAX_JUMPS)
 		+ "\nJump Force: " + std::to_string(Soph2::JUMP_FORCE) + "\nJump Length: " + std::to_string(Soph2::RISE_DURATION) + "\nFall Speed: "
 		+ std::to_string(Soph2::CHANGE_IN_GRAVITY));
 	}
@@ -298,10 +298,12 @@ void CharacterSelect::render(sf::RenderWindow& t_window)
 	t_window.draw(character6Button.getBody());
 
 	t_window.draw(spriteWindow);
-
+	t_window.draw(characterBackgroundSprite);
 	// Profile Sprites
 	t_window.draw(monkeyProfileSprite);
+	t_window.draw(sandbagBoyProfileSprite);
 	t_window.draw(roseProfileSprite);
+	t_window.draw(stargazerProfileSprite);
 	t_window.draw(liam1ProfileSprite);
 	t_window.draw(liam2ProfileSprite);
 
@@ -317,6 +319,10 @@ void CharacterSelect::render(sf::RenderWindow& t_window)
 	if (character3Colliding)
 	{
 		t_window.draw(character3Sprite); 
+	}
+	if (character4Colliding)
+	{
+		t_window.draw(character4Sprite);
 	}
 	if (character5Colliding)
 	{
@@ -421,6 +427,14 @@ void CharacterSelect::setupSprite()
 	character3Sprite.setScale(3.0f, 3.0f);
 	character3Sprite.setPosition(200.0f, 100.0f);
 
+	if (!character4Texture.loadFromFile("ASSETS\\IMAGES\\Stargazer.png"))
+	{
+		std::cout << "Error loading character 4 Stargazer sprite" << std::endl;
+	}
+	character4Sprite.setTexture(character4Texture);
+	character4Sprite.setScale(3.0f, 3.0f);
+	character4Sprite.setPosition(200.0f, 100.0f);
+
 	if (!character5Texture.loadFromFile("ASSETS\\IMAGES\\Sandbag_Boy.png"))
 	{
 		std::cout << "Error loading character 5 sandbag boy sprite" << std::endl;
@@ -444,7 +458,7 @@ void CharacterSelect::setupSprite()
 	frameSprite.setTexture(frameTexture);
 	frameSprite.setScale(2.0f, 2.0f);
 
-	// Monkey Character
+	// Monkey Character Profile
 	if (!monkeyProfileTexture.loadFromFile("ASSETS\\IMAGES\\MonkeyCharacterProfile.png"))
 	{
 		std::cout << "Error loading MonkeyCharacterProfile" << std::endl;
@@ -454,7 +468,27 @@ void CharacterSelect::setupSprite()
 	monkeyProfileSprite.setOrigin(42, 60);
 	monkeyProfileSprite.setPosition(character2Pos);
 
-	// Rose
+	//Sandbag Boy Profile
+	if (!sandbagBoyProfileTexture.loadFromFile("ASSETS\\IMAGES\\SandBagBoyProfile.png"))
+	{
+		std::cout << "Error loading SandbagBoyProfile" << std::endl;
+	}
+	sandbagBoyProfileSprite.setTexture(sandbagBoyProfileTexture);
+	sandbagBoyProfileSprite.setScale(2.6f, 2.0f);
+	sandbagBoyProfileSprite.setOrigin(42, 60);
+	sandbagBoyProfileSprite.setPosition(character5Pos);
+
+	// Rose Profile
+	if (!stargazerProfileTexture.loadFromFile("ASSETS\\IMAGES\\Stargazer_Portrait.png"))
+	{
+		std::cout << "Error loading Rose portrait" << std::endl;
+	}
+	stargazerProfileSprite.setTexture(stargazerProfileTexture);
+	stargazerProfileSprite.setScale(2.0f, 2.0f);
+	stargazerProfileSprite.setOrigin(50, 42);
+	stargazerProfileSprite.setPosition(character4Pos);
+
+	// Stargazer Profile
 	if (!roseProfileTexture.loadFromFile("ASSETS\\IMAGES\\RosePortrait.png"))
 	{
 		std::cout << "Error loading Rose portrait" << std::endl;
@@ -464,7 +498,7 @@ void CharacterSelect::setupSprite()
 	roseProfileSprite.setOrigin(50, 42);
 	roseProfileSprite.setPosition(character1Pos);
 
-	// Liam 1
+	// Liam 1 Profile
 	if (!liam1ProfileTexture.loadFromFile("ASSETS\\IMAGES\\liamCharSelectIcon.png"))
 	{
 		std::cout << "Error loading Liam 1 portrait" << std::endl;
@@ -474,7 +508,7 @@ void CharacterSelect::setupSprite()
 	liam1ProfileSprite.setOrigin(42, 50);
 	liam1ProfileSprite.setPosition(character3Pos);
 
-	// Rabbit Man
+	// Rabbit Man Profile
 	if (!liam2ProfileTexture.loadFromFile("ASSETS\\IMAGES\\rabbitMan.png"))
 	{
 		std::cout << "Error loading Liam 2 portrait" << std::endl;
@@ -488,6 +522,13 @@ void CharacterSelect::setupSprite()
 	spriteWindow.setFillColor(sf::Color::Red);
 	//spriteWindow.setOrigin(180.0f, 153.0f);
 	spriteWindow.setPosition(55.0f, 2.0f);
+
+	//Character preview background
+	if (!characterBackgroundTexture.loadFromFile("ASSETS\\IMAGES\\MenuBackground.png"))
+	{
+		std::cout << "Error loading MenuBackground file" << std::endl;
+	}
+	characterBackgroundSprite.setTexture(characterBackgroundTexture);
 }
 
 void CharacterSelect::setupButton()

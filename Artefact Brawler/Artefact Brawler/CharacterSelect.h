@@ -45,6 +45,8 @@ private:
 	sf::Texture character2Texture;
 	sf::Sprite character1Sprite;
 	sf::Texture character1Texture;
+	sf::Sprite character4Sprite;
+	sf::Texture character4Texture;
 	sf::Sprite character5Sprite;
 	sf::Texture character5Texture;
 	sf::Sprite character6sprite;
@@ -53,13 +55,24 @@ private:
 	sf::Texture frameTexture;
 	sf::Sprite frameSprite;
 
+	sf::Texture characterBackgroundTexture;
+	sf::Sprite characterBackgroundSprite;
+
 	// Monkey Character
 	sf::Texture monkeyProfileTexture;
 	sf::Sprite monkeyProfileSprite;
 
+	//Sandbag Boy Profile
+	sf::Texture sandbagBoyProfileTexture;
+	sf::Sprite sandbagBoyProfileSprite;
+
 	// Rose 
 	sf::Texture roseProfileTexture;
 	sf::Sprite roseProfileSprite;
+
+	// Stargazer
+	sf::Texture stargazerProfileTexture;
+	sf::Sprite stargazerProfileSprite;
 
 	// Liam 1
 	sf::Texture liam1ProfileTexture;
@@ -86,7 +99,7 @@ private:
 	bool character4Colliding = false;
 
 	Button character5Button;
-	sf::Vector2f character5Pos = { 544.0f, 585.0f };
+	sf::Vector2f character5Pos = { 548.0f, 610.0f };
 	bool character5Colliding = false;
 
 	Button character6Button;
