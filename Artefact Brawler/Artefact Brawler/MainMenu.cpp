@@ -146,10 +146,18 @@ void MainMenu::render(sf::RenderWindow& t_window)
 	t_window.draw(colosseum.getBody());
 	t_window.draw(shop.getBody());
 
+	if (colosseumColliding)
+	{
+		t_window.draw(colosseumText);
+	}
+	if (shopColliding)
+	{
+		t_window.draw(shopText);
+	}
 	if (helpColliding)
 	{
 		t_window.draw(help.getBody());
-		t_window.draw(helpText);
+		t_window.draw(helpScreenSprite);
 	}
 
 
@@ -228,6 +236,13 @@ void MainMenu::setupBackground()
 	}
 	menuBackgroundSprite.setTexture(menuBackgroundTexture);
 	menuBackgroundSprite.setScale(2, 2);
+
+	if (!helpScreenTexture.loadFromFile("ASSETS\\IMAGES\\HelpScreen.png"))
+	{
+		std::cout << "error loading the HelpScreen texture" << std::endl;
+	}
+	helpScreenSprite.setTexture(helpScreenTexture);
+	helpScreenSprite.setScale(2, 2);
 }
 
 void MainMenu::setupText()
@@ -237,14 +252,17 @@ void MainMenu::setupText()
 		std::cout << "problem loading arial black font" << std::endl;
 	}
 
-	helpText.setFont(font);
-	helpText.setStyle(sf::Text::Italic | sf::Text::Bold);
-	helpText.setCharacterSize(20U);
-	helpText.setOutlineColor(sf::Color::Black);
-	helpText.setFillColor(sf::Color::White);
-	helpText.setOutlineThickness(3.0f);
+	colosseumText.setFont(font);
+	colosseumText.setCharacterSize(60U);
+	colosseumText.setFillColor(sf::Color::White);
+	colosseumText.setPosition((SCREEN_WIDTH / 2) - 210, 550);
+	colosseumText.setString("COLLOSEUM");
 
-	helpText.setString("Use WASD to move and space to jump \n Use J and a direction to do an attack \n this attack can be side left, side right, up, down \n or neutral. You can do the same with K for special attacks. \n These attacks are unlocked in the shop. \n To leave the shop use escape. \n Gain money for the shop by beating up the sandbag. \n If you would like to use a controller press the start button when you enter a new scene, \n this will allow you to use it. \n The controller controls are: \n A to jump, X for normal attack and Y for special attacks.");
+	shopText.setFont(font);
+	shopText.setCharacterSize(60U);
+	shopText.setFillColor(sf::Color::White);
+	shopText.setPosition((SCREEN_WIDTH / 2) - 100, 550);
+	shopText.setString("SHOP");
 }
 
 void MainMenu::setupButtons()

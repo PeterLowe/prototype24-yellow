@@ -63,10 +63,13 @@ private:
 	sf::Sprite menuSprite;
 	sf::Texture menuBackgroundTexture;
 	sf::Sprite menuBackgroundSprite;
+	sf::Text colosseumText;
+	sf::Text shopText;
 
-	// Help Text
-	sf::Text helpText;
+	// Help
 	sf::Font font;
+	sf::Texture helpScreenTexture;
+	sf::Sprite helpScreenSprite;
 
 };
 
