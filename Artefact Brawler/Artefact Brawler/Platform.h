@@ -10,10 +10,10 @@ class Platform
 public:
 	Platform();
 
-	void setup(sf::Vector2f t_pos);
+	void setup(sf::Vector2f t_pos, int levelRandomIndex);
 	sf::RectangleShape getBody() { return body; }
 	sf::RectangleShape getGround() { return ground; }
-	sf::Sprite getPlatformSprite() { return platformSprite; }
+	sf::Sprite getPlatformSprite() { return platformColosseumSprite; }
 
 private:
 
@@ -26,8 +26,11 @@ private:
 	sf::RectangleShape ground; // { Same width, 1.0f }
 	const sf::Vector2f GROUND_DISPLACEMENT = { 0.0f, -15 };
 
-	// Platform
-	sf::Sprite platformSprite;
-	sf::Texture platformTexture;
+	// Platform - Colosseum
+	sf::Sprite platformColosseumSprite;
+	sf::Texture platformColosseumTexture;
+	// Platform - Temple
+	sf::Sprite platformTempleSprite;
+	sf::Texture platformTempleTexture;
 };
 

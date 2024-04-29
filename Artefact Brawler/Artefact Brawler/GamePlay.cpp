@@ -4,6 +4,7 @@
 GamePlay::GamePlay()
 {
 	setupFontAndText();
+	levelRandomise();
 	setupObjects();
 	setupBackground();
 }
@@ -313,7 +314,15 @@ void GamePlay::update(sf::Time t_deltaTime)
 
 void GamePlay::render(sf::RenderWindow& t_window)
 {
-	t_window.draw(backgroundSprite);
+	if (randomLevelIndex == 1)
+	{
+		t_window.draw(background1Sprite);
+	}
+	if (randomLevelIndex == 2)
+	{
+		t_window.draw(background2Sprite);
+	}
+
 	// Sandbag
 	t_window.draw(sandbag.getSprite());
 
@@ -413,9 +422,9 @@ void GamePlay::setupObjects()
 
 
 	// Platforms
-	platforms[0].setup({ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3 }); // Top
-	platforms[1].setup({ SCREEN_WIDTH / 3 - 50, (SCREEN_HEIGHT / 3) * 2 }); // Left
-	platforms[2].setup({ (SCREEN_WIDTH / 3 + 50) * 2, (SCREEN_HEIGHT / 3) * 2 }); // Right
+	platforms[0].setup({ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3 }, randomLevelIndex); // Top
+	platforms[1].setup({ SCREEN_WIDTH / 3 - 50, (SCREEN_HEIGHT / 3) * 2 }, randomLevelIndex); // Left
+	platforms[2].setup({ (SCREEN_WIDTH / 3 + 50) * 2, (SCREEN_HEIGHT / 3) * 2 }, randomLevelIndex); // Right
 
 	// Bounce Pads
 	bouncePads[0].setUpBP({ 250, SCREEN_HEIGHT - 42 });
@@ -427,13 +436,29 @@ void GamePlay::setupObjects()
 
 void GamePlay::setupBackground()
 {
-	if (!backgroundTexture.loadFromFile("ASSETS\\IMAGES\\Colosseum.png"))
+	// Background 1 - Colosseum
+	if (!background1Texture.loadFromFile("ASSETS\\IMAGES\\Colosseum.png"))
 	{
 		std::cout << "problem loading Colosseum texture" << std::endl;
 	}
 
-	backgroundSprite.setTexture(backgroundTexture);
-	backgroundSprite.setScale(2, 2);
+	background1Sprite.setTexture(background1Texture);
+	background1Sprite.setScale(2, 2);
+
+	//Background 2 - Overgrown Temple
+	if (!background2Texture.loadFromFile("ASSETS\\IMAGES\\Temple.png"))
+	{
+		std::cout << "problem loading Overgrown Temple texture" << std::endl;
+	}
+
+	background2Sprite.setTexture(background2Texture);
+	background2Sprite.setScale(2, 2);
+}
+
+void GamePlay::levelRandomise()
+{
+	srand(time(NULL));
+	randomLevelIndex = (rand() % 2) + 1;
 }
 
 void GamePlay::doAttacks()

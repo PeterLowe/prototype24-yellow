@@ -14,6 +14,8 @@
 #include "ReflectiveBouncePads.h"
 #include "Partical.h"
 
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 class GamePlay
@@ -35,6 +37,7 @@ private:
 	void setupFontAndText();
 	void setupObjects();
 	void setupBackground();
+	void levelRandomise();
 
 	void doAttacks();
 	void drawAttacks(sf::RenderWindow& t_window);
@@ -62,6 +65,8 @@ private:
 	int endLagDuration; // Set after doing an attack
 	bool damageDone = false;
 
+	int randomLevelIndex;
+
 	// Sandbag Knockback info
 	float knockbackAngle = 0.0f;
 	float knockbackPower = 0.0f;
@@ -77,9 +82,12 @@ private:
 	ScreenTransition transitionCircle;
 	bool paused = false;
 
-	// Background
-	sf::Texture backgroundTexture;
-	sf::Sprite backgroundSprite;
+	// Background - Colosseum
+	sf::Texture background1Texture;
+	sf::Sprite background1Sprite;
+	// Background - Overgrown Temple
+	sf::Texture background2Texture;
+	sf::Sprite background2Sprite;
 
 	// Countdown
 	int STARTING_COUNTDOWN = 30 * 60;
