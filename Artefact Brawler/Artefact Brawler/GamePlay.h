@@ -66,6 +66,7 @@ private:
 	bool damageDone = false;
 
 	int randomLevelIndex;
+	int platformPositionIndex;
 
 	// Sandbag Knockback info
 	float knockbackAngle = 0.0f;

@@ -422,9 +422,24 @@ void GamePlay::setupObjects()
 
 
 	// Platforms
-	platforms[0].setup({ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3 }, randomLevelIndex); // Top
-	platforms[1].setup({ SCREEN_WIDTH / 3 - 50, (SCREEN_HEIGHT / 3) * 2 }, randomLevelIndex); // Left
-	platforms[2].setup({ (SCREEN_WIDTH / 3 + 50) * 2, (SCREEN_HEIGHT / 3) * 2 }, randomLevelIndex); // Right
+	if (platformPositionIndex == 1)
+	{
+		platforms[0].setup({ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3 }, randomLevelIndex); // Top
+		platforms[1].setup({ SCREEN_WIDTH / 3 - 50, (SCREEN_HEIGHT / 3) * 2 }, randomLevelIndex); // Left
+		platforms[2].setup({ (SCREEN_WIDTH / 3 + 50) * 2, (SCREEN_HEIGHT / 3) * 2 }, randomLevelIndex); // Right
+	}
+	if (platformPositionIndex == 2)
+	{
+		platforms[0].setup({ (SCREEN_WIDTH / 2) + 200, SCREEN_HEIGHT / 4 }, randomLevelIndex); // Top
+		platforms[1].setup({ SCREEN_WIDTH / 4, (SCREEN_HEIGHT / 3) }, randomLevelIndex); // Left
+		platforms[2].setup({ (SCREEN_WIDTH / 3 - 80) * 2, (SCREEN_HEIGHT / 2) * 1.4 }, randomLevelIndex); // Right
+	}
+	if (platformPositionIndex == 3)
+	{
+		platforms[0].setup({ (SCREEN_WIDTH / 3) - 50, SCREEN_HEIGHT / 5 }, randomLevelIndex); // Top
+		platforms[1].setup({ SCREEN_WIDTH / 2 + 200, (SCREEN_HEIGHT / 2) }, randomLevelIndex); // Left
+		platforms[2].setup({ (SCREEN_WIDTH / 2) - 170, (SCREEN_HEIGHT / 2) + 150 }, randomLevelIndex); // Right
+	}
 
 	// Bounce Pads
 	bouncePads[0].setUpBP({ 250, SCREEN_HEIGHT - 42 });
@@ -459,6 +474,7 @@ void GamePlay::levelRandomise()
 {
 	srand(time(NULL));
 	randomLevelIndex = (rand() % 2) + 1;
+	platformPositionIndex = (rand() % 3) + 1;
 }
 
 void GamePlay::doAttacks()
@@ -885,6 +901,9 @@ void GamePlay::Countdown()
 
 		reset();
 		countdown = STARTING_COUNTDOWN;
+		levelRandomise();
+		setupObjects();
+		setupBackground();
 	}
 }
 
